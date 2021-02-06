@@ -4,6 +4,11 @@
  * See: https://www.gatsbyjs.com/docs/gatsby-config/
  */
 
+require("dotenv").config({
+  path: `.env`,
+});
+const sanityConfig = require("./sanity-config");
+
 module.exports = {
   /* Your site config here */
   siteMetadata: {
@@ -29,8 +34,7 @@ module.exports = {
     {
       resolve: `gatsby-source-sanity`,
       options: {
-        projectId: `62mi8gkm`,
-        dataset: `production`,
+        ...sanityConfig,
         // a token with read permissions is required
         // if you have a private dataset
         // token: process.env.SANITY_TOKEN,

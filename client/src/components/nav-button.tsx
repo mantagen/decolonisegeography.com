@@ -1,8 +1,8 @@
 import React, { useCallback } from "react";
 import styled from "styled-components";
+import { colours } from "../theme";
 import { BREAK_POINT_M_PX } from "./global-style";
 
-import { NAV_COLOR } from "./nav";
 import SrOnly from "./sr-only";
 /* Right align */
 /* transform: translate(calc(var(--z) - (var(--z)) / 1.41)); */
@@ -82,7 +82,7 @@ const NavButtonRoot = styled.button<{ isOpen: boolean }>`
   }
 
   &:hover ${NavButtonLine} {
-    background-color: ${props => (props.isOpen ? "white" : NAV_COLOR)};
+    background-color: ${props => (props.isOpen ? colours.white : colours.black)};
   }
 
   @media (min-width: ${BREAK_POINT_M_PX}px) {

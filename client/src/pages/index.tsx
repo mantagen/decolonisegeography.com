@@ -6,12 +6,12 @@ import isFuture from "date-fns/isFuture";
 import Layout from "../components/layout";
 import Seo from "../components/seo";
 import PostPreview from "../components/post-preview";
-import { DeepRequired } from "../utils/deep-required";
+import { DeepRequired } from "../helpers/deep-required";
 import getBlogPostPath from "../helpers/get-blog-post-path";
-import { MAX_IMAGE_WIDTH_PX } from "../helpers/constants";
+import { IMAGE_MAX_WIDTH_PX } from "../theme";
 
 const PostPreviews = styled.ul`
-  max-width: ${MAX_IMAGE_WIDTH_PX}px;
+  max-width: ${IMAGE_MAX_WIDTH_PX}px;
   margin: 0 auto;
 `;
 

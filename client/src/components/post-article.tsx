@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { MAX_IMAGE_WIDTH_PX } from "../helpers/constants";
+import { IMAGE_MAX_WIDTH_PX } from "../theme";
 
 const PostArticle = styled.article`
   display: flex;
@@ -8,7 +8,7 @@ const PostArticle = styled.article`
   flex: auto;
   align-self: center;
   width: 100%;
-  max-width: ${MAX_IMAGE_WIDTH_PX}px;
+  max-width: ${IMAGE_MAX_WIDTH_PX}px;
 `;
 
 export default PostArticle;

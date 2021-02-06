@@ -2,7 +2,7 @@ import React from "react";
 import { graphql } from "gatsby";
 import Layout from "../components/layout";
 import Post from "../components/post";
-import { DeepRequired } from "../utils/deep-required";
+import { DeepRequired } from "../helpers/deep-required";
 
 export const query = graphql`
   query PostTemplate($id: String!) {

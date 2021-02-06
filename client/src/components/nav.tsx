@@ -4,11 +4,11 @@
 import { Link } from "gatsby";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import { colours } from "../theme";
 
 import { BREAK_POINT_M_PX } from "./global-style";
 import NavButton from "./nav-button";
 
-export const NAV_COLOR = "rgb(0, 140, 255)";
 const DURATION_MS = 300;
 
 const NavRoot = styled.nav<{ isHidden: boolean }>`
@@ -54,7 +54,7 @@ const NavInnerWrapper = styled.div<{ isOpen: boolean }>`
   width: 100%;
   height: 100%;
   padding: 1rem;
-  background-color: ${NAV_COLOR};
+  background-color: ${colours.black};
   color: #fff;
   opacity: ${props => (props.isOpen ? 1 : 0)};
   transition: opacity ${DURATION_MS}ms ease-in-out,
@@ -67,6 +67,7 @@ const NavInnerWrapper = styled.div<{ isOpen: boolean }>`
 
   @media (min-width: ${BREAK_POINT_M_PX}px) {
     transform: translateY(${props => (props.isOpen ? 0 : "0.4rem")});
+    padding: 0.7rem 1rem;
   }
 `;
 const NavLink = styled(Link)`

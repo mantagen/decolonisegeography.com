@@ -12,7 +12,6 @@ import PostArticle from "./post-article";
 import PostContent from "./post-content";
 import PostHeader from "./post-header";
 import PostImage from "./post-image";
-import { MAX_IMAGE_WIDTH_PX } from "../helpers/constants";
 import PostMainImage from "./post-main-image";
 
 const ByLineAndSocial = styled.div`
