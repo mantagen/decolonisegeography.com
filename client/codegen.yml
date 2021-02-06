@@ -1,0 +1,5 @@
+schema: https://62mi8gkm.api.sanity.io/v1/graphql/production/default
+generates:
+  ./src/types.d.ts:
+    plugins:
+      - typescript
