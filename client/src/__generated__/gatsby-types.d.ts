@@ -877,7 +877,6 @@ type Query_sitePageArgs = {
   children: Maybe<NodeFilterListInput>;
   internal: Maybe<InternalFilterInput>;
   isCreatedByStatefulCreatePages: Maybe<BooleanQueryOperatorInput>;
-  context: Maybe<SitePageContextFilterInput>;
   pluginCreator: Maybe<SitePluginFilterInput>;
   pluginCreatorId: Maybe<StringQueryOperatorInput>;
   componentPath: Maybe<StringQueryOperatorInput>;
@@ -4140,7 +4139,6 @@ type SitePage = Node & {
   readonly children: ReadonlyArray<Node>;
   readonly internal: Internal;
   readonly isCreatedByStatefulCreatePages: Maybe<Scalars['Boolean']>;
-  readonly context: Maybe<SitePageContext>;
   readonly pluginCreator: Maybe<SitePlugin>;
   readonly pluginCreatorId: Maybe<Scalars['String']>;
   readonly componentPath: Maybe<Scalars['String']>;
@@ -4165,14 +4163,6 @@ type SitePageConnection_groupArgs = {
   skip: Maybe<Scalars['Int']>;
   limit: Maybe<Scalars['Int']>;
   field: SitePageFieldsEnum;
-};
-
-type SitePageContext = {
-  readonly id: Maybe<Scalars['String']>;
-};
-
-type SitePageContextFilterInput = {
-  readonly id: Maybe<StringQueryOperatorInput>;
 };
 
 type SitePageEdge = {
@@ -4274,7 +4264,6 @@ enum SitePageFieldsEnum {
   internal___owner = 'internal.owner',
   internal___type = 'internal.type',
   isCreatedByStatefulCreatePages = 'isCreatedByStatefulCreatePages',
-  context___id = 'context.id',
   pluginCreator___id = 'pluginCreator.id',
   pluginCreator___parent___id = 'pluginCreator.parent.id',
   pluginCreator___parent___parent___id = 'pluginCreator.parent.parent.id',
@@ -4370,7 +4359,6 @@ type SitePageFilterInput = {
   readonly children: Maybe<NodeFilterListInput>;
   readonly internal: Maybe<InternalFilterInput>;
   readonly isCreatedByStatefulCreatePages: Maybe<BooleanQueryOperatorInput>;
-  readonly context: Maybe<SitePageContextFilterInput>;
   readonly pluginCreator: Maybe<SitePluginFilterInput>;
   readonly pluginCreatorId: Maybe<StringQueryOperatorInput>;
   readonly componentPath: Maybe<StringQueryOperatorInput>;
@@ -4755,16 +4743,6 @@ type StringQueryOperatorInput = {
   readonly glob: Maybe<Scalars['String']>;
 };
 
-type PostTemplateQueryVariables = Exact<{
-  id: Scalars['String'];
-}>;
-
-
-type PostTemplateQuery = { readonly post: Maybe<(
-    Pick<SanityPost, 'title' | 'subtitle' | 'publishedAt' | '_rawBody'>
-    & { readonly categories: Maybe<ReadonlyArray<Maybe<Pick<SanityCategory, '_key' | 'title'>>>>, readonly slug: Maybe<Pick<SanitySlug, 'current'>>, readonly mainImage: Maybe<{ readonly asset: Maybe<{ readonly fluid: Maybe<Pick<SanityImageFluid, 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>> }> }>, readonly authors: Maybe<ReadonlyArray<Maybe<Pick<SanityAuthor, '_key' | 'name'>>>> }
-  )> };
-
 type PagesQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -4785,6 +4763,16 @@ type SeoQuery = { readonly allSiteSettings: { readonly edges: ReadonlyArray<{ re
         Pick<SanitySiteSettings, 'siteUrl' | 'title' | 'description' | 'keywords'>
         & { readonly author: Maybe<Pick<SanityAuthor, 'name'>> }
       ) }> } };
+
+type PostTemplateQueryVariables = Exact<{
+  id: Scalars['String'];
+}>;
+
+
+type PostTemplateQuery = { readonly post: Maybe<(
+    Pick<SanityPost, 'title' | 'subtitle' | 'publishedAt' | '_rawBody'>
+    & { readonly categories: Maybe<ReadonlyArray<Maybe<Pick<SanityCategory, '_key' | 'title'>>>>, readonly slug: Maybe<Pick<SanitySlug, 'current'>>, readonly mainImage: Maybe<{ readonly asset: Maybe<{ readonly fluid: Maybe<Pick<SanityImageFluid, 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>> }> }>, readonly authors: Maybe<ReadonlyArray<Maybe<Pick<SanityAuthor, '_key' | 'name'>>>> }
+  )> };
 
 type GatsbySanityImageFixedFragment = Pick<SanityImageFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp'>;
 

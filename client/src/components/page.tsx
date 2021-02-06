@@ -4,10 +4,12 @@ import styled from "styled-components";
 import Layout from "./layout";
 import PortableText from "./portable-text";
 import PostArticle from "./post-article";
-import PostContent from "./post-content";
 
 const PageArticle = styled(PostArticle)`
   justify-content: center;
+`;
+const PageContent = styled(PostArticle)`
+  padding: 1em 0;
 `;
 
 interface PageProps {
@@ -19,9 +21,9 @@ const Page: React.FC<PageProps> = props => {
   return (
     <Layout>
       <PageArticle>
-        <PostContent>
+        <PageContent>
           <PortableText blocks={blocks} />
-        </PostContent>
+        </PageContent>
       </PageArticle>
     </Layout>
   );
