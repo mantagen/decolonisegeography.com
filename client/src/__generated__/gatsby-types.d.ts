@@ -877,6 +877,7 @@ type Query_sitePageArgs = {
   children: Maybe<NodeFilterListInput>;
   internal: Maybe<InternalFilterInput>;
   isCreatedByStatefulCreatePages: Maybe<BooleanQueryOperatorInput>;
+  context: Maybe<SitePageContextFilterInput>;
   pluginCreator: Maybe<SitePluginFilterInput>;
   pluginCreatorId: Maybe<StringQueryOperatorInput>;
   componentPath: Maybe<StringQueryOperatorInput>;
@@ -1723,7 +1724,7 @@ type SanityBlockFilterListInput = {
   readonly elemMatch: Maybe<SanityBlockFilterInput>;
 };
 
-type SanityBlockOrImage = SanityBlock | SanityImage;
+type SanityBlockOrImageOrTwitterOrYoutube = SanityBlock | SanityImage | SanityTwitter | SanityYoutube;
 
 type SanityCategory = SanityDocument & Node & {
   readonly _id: Maybe<Scalars['String']>;
@@ -3805,6 +3806,18 @@ type SanitySpanFilterListInput = {
   readonly elemMatch: Maybe<SanitySpanFilterInput>;
 };
 
+type SanityTwitter = {
+  readonly _key: Maybe<Scalars['String']>;
+  readonly _type: Maybe<Scalars['String']>;
+  readonly id: Maybe<Scalars['String']>;
+};
+
+type SanityYoutube = {
+  readonly _key: Maybe<Scalars['String']>;
+  readonly _type: Maybe<Scalars['String']>;
+  readonly url: Maybe<Scalars['String']>;
+};
+
 type Site = Node & {
   readonly buildTime: Maybe<Scalars['Date']>;
   readonly siteMetadata: Maybe<SiteSiteMetadata>;
@@ -4139,6 +4152,7 @@ type SitePage = Node & {
   readonly children: ReadonlyArray<Node>;
   readonly internal: Internal;
   readonly isCreatedByStatefulCreatePages: Maybe<Scalars['Boolean']>;
+  readonly context: Maybe<SitePageContext>;
   readonly pluginCreator: Maybe<SitePlugin>;
   readonly pluginCreatorId: Maybe<Scalars['String']>;
   readonly componentPath: Maybe<Scalars['String']>;
@@ -4163,6 +4177,14 @@ type SitePageConnection_groupArgs = {
   skip: Maybe<Scalars['Int']>;
   limit: Maybe<Scalars['Int']>;
   field: SitePageFieldsEnum;
+};
+
+type SitePageContext = {
+  readonly id: Maybe<Scalars['String']>;
+};
+
+type SitePageContextFilterInput = {
+  readonly id: Maybe<StringQueryOperatorInput>;
 };
 
 type SitePageEdge = {
@@ -4264,6 +4286,7 @@ enum SitePageFieldsEnum {
   internal___owner = 'internal.owner',
   internal___type = 'internal.type',
   isCreatedByStatefulCreatePages = 'isCreatedByStatefulCreatePages',
+  context___id = 'context.id',
   pluginCreator___id = 'pluginCreator.id',
   pluginCreator___parent___id = 'pluginCreator.parent.id',
   pluginCreator___parent___parent___id = 'pluginCreator.parent.parent.id',
@@ -4322,7 +4345,6 @@ enum SitePageFieldsEnum {
   pluginCreator___pluginOptions___pure = 'pluginCreator.pluginOptions.pure',
   pluginCreator___pluginOptions___output = 'pluginCreator.pluginOptions.output',
   pluginCreator___pluginOptions___createLinkInHead = 'pluginCreator.pluginOptions.createLinkInHead',
-  pluginCreator___pluginOptions___trackingIds = 'pluginCreator.pluginOptions.trackingIds',
   pluginCreator___pluginOptions___path = 'pluginCreator.pluginOptions.path',
   pluginCreator___pluginOptions___pathCheck = 'pluginCreator.pluginOptions.pathCheck',
   pluginCreator___nodeAPIs = 'pluginCreator.nodeAPIs',
@@ -4359,6 +4381,7 @@ type SitePageFilterInput = {
   readonly children: Maybe<NodeFilterListInput>;
   readonly internal: Maybe<InternalFilterInput>;
   readonly isCreatedByStatefulCreatePages: Maybe<BooleanQueryOperatorInput>;
+  readonly context: Maybe<SitePageContextFilterInput>;
   readonly pluginCreator: Maybe<SitePluginFilterInput>;
   readonly pluginCreatorId: Maybe<StringQueryOperatorInput>;
   readonly componentPath: Maybe<StringQueryOperatorInput>;
@@ -4528,7 +4551,6 @@ enum SitePluginFieldsEnum {
   pluginOptions___pure = 'pluginOptions.pure',
   pluginOptions___output = 'pluginOptions.output',
   pluginOptions___createLinkInHead = 'pluginOptions.createLinkInHead',
-  pluginOptions___trackingIds = 'pluginOptions.trackingIds',
   pluginOptions___path = 'pluginOptions.path',
   pluginOptions___pathCheck = 'pluginOptions.pathCheck',
   nodeAPIs = 'nodeAPIs',
@@ -4660,7 +4682,6 @@ type SitePluginPluginOptions = {
   readonly pure: Maybe<Scalars['Boolean']>;
   readonly output: Maybe<Scalars['String']>;
   readonly createLinkInHead: Maybe<Scalars['Boolean']>;
-  readonly trackingIds: Maybe<ReadonlyArray<Maybe<Scalars['String']>>>;
   readonly path: Maybe<Scalars['String']>;
   readonly pathCheck: Maybe<Scalars['Boolean']>;
 };
@@ -4700,7 +4721,6 @@ type SitePluginPluginOptionsFilterInput = {
   readonly pure: Maybe<BooleanQueryOperatorInput>;
   readonly output: Maybe<StringQueryOperatorInput>;
   readonly createLinkInHead: Maybe<BooleanQueryOperatorInput>;
-  readonly trackingIds: Maybe<StringQueryOperatorInput>;
   readonly path: Maybe<StringQueryOperatorInput>;
   readonly pathCheck: Maybe<BooleanQueryOperatorInput>;
 };
@@ -4756,14 +4776,6 @@ type IndexPageQuery = { readonly allSiteSettings: { readonly edges: ReadonlyArra
         & { readonly mainImage: Maybe<{ readonly asset: Maybe<{ readonly fluid: Maybe<Pick<SanityImageFluid, 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>> }> }>, readonly slug: Maybe<Pick<SanitySlug, 'current'>> }
       ) }> } };
 
-type SeoQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type SeoQuery = { readonly allSiteSettings: { readonly edges: ReadonlyArray<{ readonly node: (
-        Pick<SanitySiteSettings, 'siteUrl' | 'title' | 'description' | 'keywords'>
-        & { readonly author: Maybe<Pick<SanityAuthor, 'name'>> }
-      ) }> } };
-
 type PostTemplateQueryVariables = Exact<{
   id: Scalars['String'];
 }>;
@@ -4773,6 +4785,14 @@ type PostTemplateQuery = { readonly post: Maybe<(
     Pick<SanityPost, 'title' | 'subtitle' | 'publishedAt' | '_rawBody'>
     & { readonly categories: Maybe<ReadonlyArray<Maybe<Pick<SanityCategory, '_key' | 'title'>>>>, readonly slug: Maybe<Pick<SanitySlug, 'current'>>, readonly mainImage: Maybe<{ readonly asset: Maybe<{ readonly fluid: Maybe<Pick<SanityImageFluid, 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>> }> }>, readonly authors: Maybe<ReadonlyArray<Maybe<Pick<SanityAuthor, '_key' | 'name'>>>> }
   )> };
+
+type SeoQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type SeoQuery = { readonly allSiteSettings: { readonly edges: ReadonlyArray<{ readonly node: (
+        Pick<SanitySiteSettings, 'siteUrl' | 'title' | 'description' | 'keywords'>
+        & { readonly author: Maybe<Pick<SanityAuthor, 'name'>> }
+      ) }> } };
 
 type GatsbySanityImageFixedFragment = Pick<SanityImageFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp'>;
 

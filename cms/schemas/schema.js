@@ -14,6 +14,8 @@ import contact from "./documents/contact";
 
 // We import object schemas
 import blockContent from "./objects/blockContent";
+import twitter from "./objects/twitter";
+import youtube from './objects/youtube'
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -33,5 +35,7 @@ export default createSchema({
     blockContent,
     about,
     contact,
+    twitter,
+    youtube,
   ]),
 });

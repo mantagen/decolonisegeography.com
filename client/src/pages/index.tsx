@@ -89,13 +89,14 @@ const IndexPage: React.FC<IndexPageProps> = props => {
   let { allSiteSettings, posts } = props.data;
   let { edges: postEdges = [] } = posts;
   const [siteSettingsEdge] = allSiteSettings.edges;
-  const siteMeta = siteSettingsEdge.node;
 
-  if (!siteMeta) {
-    throw new Error(
-      'Missing "Site settings". Open the studio at http://localhost:3333 and add some content to "Site settings" and restart the development server.'
+  if (!siteSettingsEdge) {
+    console.error(
+      'Missing "Site settings". Open the CMS and add some content to "Site settings".'
     );
   }
+
+  const siteMeta = siteSettingsEdge ? siteSettingsEdge.node : {};
 
   postEdges = [...postEdges, ...postEdges, ...postEdges];
 

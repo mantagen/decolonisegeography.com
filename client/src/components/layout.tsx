@@ -10,6 +10,7 @@ import "@fontsource/playfair-display/900.css";
 import GlobalStyle, { BREAK_POINT_M_PX } from "./global-style";
 import Nav from "./nav";
 import { Link } from "gatsby";
+import useFontsReady from "../helpers/use-fonts-ready";
 
 const SiteHeader = styled.header`
   padding: 1rem;
@@ -37,6 +38,10 @@ const SiteMain = styled.main`
 `;
 
 const Layout: React.FC = props => {
+  const fontsReady = useFontsReady();
+
+  console.log(fontsReady);
+
   return (
     <Fragment>
       <GlobalStyle />

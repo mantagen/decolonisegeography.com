@@ -4,11 +4,12 @@ import styled from "styled-components";
 import Layout from "./layout";
 import PortableText from "./portable-text";
 import PostArticle from "./post-article";
+import PostContent from "./post-content";
 
 const PageArticle = styled(PostArticle)`
   justify-content: center;
 `;
-const PageContent = styled(PostArticle)`
+const PageContent = styled(PostContent)`
   padding: 1em 0;
 `;
 

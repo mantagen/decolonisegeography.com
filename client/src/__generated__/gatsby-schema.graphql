@@ -835,7 +835,7 @@ type Query {
   allDirectory(filter: DirectoryFilterInput, sort: DirectorySortInput, skip: Int, limit: Int): DirectoryConnection!
   site(buildTime: DateQueryOperatorInput, siteMetadata: SiteSiteMetadataFilterInput, port: IntQueryOperatorInput, host: StringQueryOperatorInput, polyfill: BooleanQueryOperatorInput, pathPrefix: StringQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): Site
   allSite(filter: SiteFilterInput, sort: SiteSortInput, skip: Int, limit: Int): SiteConnection!
-  sitePage(path: StringQueryOperatorInput, component: StringQueryOperatorInput, internalComponentName: StringQueryOperatorInput, componentChunkName: StringQueryOperatorInput, matchPath: StringQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput, isCreatedByStatefulCreatePages: BooleanQueryOperatorInput, pluginCreator: SitePluginFilterInput, pluginCreatorId: StringQueryOperatorInput, componentPath: StringQueryOperatorInput): SitePage
+  sitePage(path: StringQueryOperatorInput, component: StringQueryOperatorInput, internalComponentName: StringQueryOperatorInput, componentChunkName: StringQueryOperatorInput, matchPath: StringQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput, isCreatedByStatefulCreatePages: BooleanQueryOperatorInput, context: SitePageContextFilterInput, pluginCreator: SitePluginFilterInput, pluginCreatorId: StringQueryOperatorInput, componentPath: StringQueryOperatorInput): SitePage
   allSitePage(filter: SitePageFilterInput, sort: SitePageSortInput, skip: Int, limit: Int): SitePageConnection!
   sanityAbout(_id: StringQueryOperatorInput, _type: StringQueryOperatorInput, _createdAt: DateQueryOperatorInput, _updatedAt: DateQueryOperatorInput, _rev: StringQueryOperatorInput, _key: StringQueryOperatorInput, title: StringQueryOperatorInput, body: SanityBlockFilterListInput, _rawBody: JSONQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): SanityAbout
   allSanityAbout(filter: SanityAboutFilterInput, sort: SanityAboutSortInput, skip: Int, limit: Int): SanityAboutConnection!
@@ -1393,7 +1393,7 @@ input SanityBlockFilterListInput {
   elemMatch: SanityBlockFilterInput
 }
 
-union SanityBlockOrImage = SanityBlock | SanityImage
+union SanityBlockOrImageOrTwitterOrYoutube = SanityBlock | SanityImage | SanityTwitter | SanityYoutube
 
 type SanityCategory implements SanityDocument & Node {
   _id: String
@@ -3372,6 +3372,18 @@ input SanitySpanFilterListInput {
   elemMatch: SanitySpanFilterInput
 }
 
+type SanityTwitter {
+  _key: String
+  _type: String
+  id: String
+}
+
+type SanityYoutube {
+  _key: String
+  _type: String
+  url: String
+}
+
 type Site implements Node {
   buildTime(
     # Format the date using Moment.js' date tokens, e.g. `date(formatString: "YYYY
@@ -3698,6 +3710,7 @@ type SitePage implements Node {
   children: [Node!]!
   internal: Internal!
   isCreatedByStatefulCreatePages: Boolean
+  context: SitePageContext
   pluginCreator: SitePlugin
   pluginCreatorId: String
   componentPath: String
@@ -3710,6 +3723,14 @@ type SitePageConnection {
   pageInfo: PageInfo!
   distinct(field: SitePageFieldsEnum!): [String!]!
   group(skip: Int, limit: Int, field: SitePageFieldsEnum!): [SitePageGroupConnection!]!
+}
+
+type SitePageContext {
+  id: String
+}
+
+input SitePageContextFilterInput {
+  id: StringQueryOperatorInput
 }
 
 type SitePageEdge {
@@ -3811,6 +3832,7 @@ enum SitePageFieldsEnum {
   internal___owner
   internal___type
   isCreatedByStatefulCreatePages
+  context___id
   pluginCreator___id
   pluginCreator___parent___id
   pluginCreator___parent___parent___id
@@ -3869,7 +3891,6 @@ enum SitePageFieldsEnum {
   pluginCreator___pluginOptions___pure
   pluginCreator___pluginOptions___output
   pluginCreator___pluginOptions___createLinkInHead
-  pluginCreator___pluginOptions___trackingIds
   pluginCreator___pluginOptions___path
   pluginCreator___pluginOptions___pathCheck
   pluginCreator___nodeAPIs
@@ -3906,6 +3927,7 @@ input SitePageFilterInput {
   children: NodeFilterListInput
   internal: InternalFilterInput
   isCreatedByStatefulCreatePages: BooleanQueryOperatorInput
+  context: SitePageContextFilterInput
   pluginCreator: SitePluginFilterInput
   pluginCreatorId: StringQueryOperatorInput
   componentPath: StringQueryOperatorInput
@@ -4063,7 +4085,6 @@ enum SitePluginFieldsEnum {
   pluginOptions___pure
   pluginOptions___output
   pluginOptions___createLinkInHead
-  pluginOptions___trackingIds
   pluginOptions___path
   pluginOptions___pathCheck
   nodeAPIs
@@ -4195,7 +4216,6 @@ type SitePluginPluginOptions {
   pure: Boolean
   output: String
   createLinkInHead: Boolean
-  trackingIds: [String]
   path: String
   pathCheck: Boolean
 }
@@ -4235,7 +4255,6 @@ input SitePluginPluginOptionsFilterInput {
   pure: BooleanQueryOperatorInput
   output: StringQueryOperatorInput
   createLinkInHead: BooleanQueryOperatorInput
-  trackingIds: StringQueryOperatorInput
   path: StringQueryOperatorInput
   pathCheck: BooleanQueryOperatorInput
 }

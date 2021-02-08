@@ -85,5 +85,11 @@ export default {
       type: "image",
       options: { hotspot: true },
     },
+    {
+      type: "twitter",
+    },
+    {
+      type: "youtube",
+    },
   ],
 };

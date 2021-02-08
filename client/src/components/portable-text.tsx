@@ -4,6 +4,8 @@ import BasePortableText from "@sanity/block-content-to-react";
 import Figure from "./figure";
 import { Link } from "gatsby";
 import getBlogPostPath from "../helpers/get-blog-post-path";
+import Youtube from "./youtube";
+import Twitter from "./twitter";
 
 const serializers = {
   marks: {
@@ -32,6 +34,8 @@ const serializers = {
   types: {
     authorReference: ({ node }) => <span>{node.author.name}</span>,
     mainImage: Figure,
+    youtube: ({ node }) => <Youtube url={node.url} />,
+    twitter: ({ node }) => <Twitter id={node.id} />,
   },
 };
 

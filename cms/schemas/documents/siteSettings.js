@@ -1,8 +1,8 @@
 export default {
-  name: "siteSettings",
   type: "document",
+  name: "siteSettings",
   title: "Site Settings",
-  __experimental_actions: ["update", /* 'create', 'delete', */ "publish"],
+  __experimental_actions: ["update", "create", "publish"],
   fields: [
     {
       name: "siteUrl",

@@ -1,7 +1,8 @@
 export default {
+  type: "document",
   name: "about",
   title: "About",
-  type: "document",
+  __experimental_actions: ["update", "create", "publish"],
   fields: [
     {
       name: "title",
