@@ -34,12 +34,15 @@ const useFontsReady = () => {
   const [fontsReady, setFontsReady] = useState(false);
 
   useEffect(() => {
-    if (!("fonts" in document)) {
-      setFontsReady(true);
+    if (typeof document !== undefined) {
+      (document as DocumentWithFonts).fonts.ready.then(() =>
+        setFontsReady(true)
+      );
+      if (!("fonts" in document)) {
+        setFontsReady(true);
+      }
     }
   }, []);
-
-  (document as DocumentWithFonts).fonts.ready.then(() => setFontsReady(true));
 
   return fontsReady;
 };
