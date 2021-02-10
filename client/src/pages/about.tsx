@@ -5,6 +5,7 @@ import Layout from "../components/layout";
 import PortableText from "../components/portable-text";
 import PostArticle from "../components/post-article";
 import PostContent from "../components/post-content";
+import Seo from "../components/seo";
 import { IMAGE_MAX_WIDTH_PX } from "../theme";
 // import Page from "../components/page";
 import map from "./map.png";
@@ -54,6 +55,7 @@ const About: React.FC = () => {
 
   return (
     <Layout>
+      <Seo title="About" />
       <PostArticle>
         <PostContent>
           <PortableText blocks={_rawBody} />

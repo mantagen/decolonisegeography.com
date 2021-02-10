@@ -51,8 +51,6 @@ const Layout: React.FC = props => {
   const { children } = props;
   const fontsReady = useFontsReady();
 
-  console.log(fontsReady);
-
   return (
     <Fragment>
       <GlobalStyle />

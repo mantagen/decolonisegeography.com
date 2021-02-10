@@ -3,6 +3,7 @@ import { graphql } from "gatsby";
 import Layout from "../components/layout";
 import Post from "../components/post";
 import { DeepRequired } from "../helpers/deep-required";
+import useSiteSettings from "../hooks/useSiteSettings";
 
 export const query = graphql`
   query PostTemplate($id: String!) {
@@ -48,8 +49,6 @@ export const query = graphql`
   }
 `;
 
-// type PostTemplateData = DeepRequired
-
 export type PostTemplateData = DeepRequired<
   GatsbyTypes.PostTemplateQuery,
   | ["post", "title"]
@@ -64,16 +63,17 @@ export type PostTemplateData = DeepRequired<
 
 interface PostTemplateProps {
   data: PostTemplateData;
-  pageContext: any;
 }
-const PostTemplate: React.FC<PostTemplateProps> = ({ data, pageContext }) => {
+const PostTemplate: React.FC<PostTemplateProps> = ({ data }) => {
+  const siteSettings = useSiteSettings();
+
   if (!data || !data.post) {
     return null;
   }
 
   return (
     <Layout>
-      <Post post={data.post} />
+      <Post post={data.post} siteSettings={siteSettings} />
     </Layout>
   );
 };

@@ -1,7 +1,7 @@
 import React from "react";
 import { Helmet } from "react-helmet";
 import { useLocation } from "@reach/router";
-import { graphql, useStaticQuery } from "gatsby";
+import useSiteSettings from "../hooks/useSiteSettings";
 
 export type SeoProps = {
   title?: string;
@@ -12,32 +12,7 @@ export type SeoProps = {
 
 const Seo: React.FC<SeoProps> = props => {
   const { pathname } = useLocation();
-  const {
-    allSiteSettings: { edges },
-  } = useStaticQuery<GatsbyTypes.SeoQuery>(graphql`
-    query Seo {
-      allSiteSettings: allSanitySiteSettings {
-        edges {
-          node {
-            siteUrl
-            title
-            description
-            keywords
-            author {
-              name
-            }
-          }
-        }
-      }
-    }
-  `);
-
-  if (!edges[0]) {
-    throw new Error("No edges returned from allSiteSettings");
-  }
-
-  // Destructuring in order to 
-  const defaults = { ...edges[0].node };
+  const defaults = useSiteSettings();
 
   if (defaults.siteUrl === "" && typeof window !== "undefined") {
     defaults.siteUrl = window.location.origin;

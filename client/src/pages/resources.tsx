@@ -1,8 +1,9 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { graphql, useStaticQuery } from "gatsby";
 
 import Layout from "../components/layout";
 import Page from "../components/page";
+import Seo from "../components/seo";
 
 const Resources: React.FC = () => {
   const {
@@ -35,7 +36,12 @@ const Resources: React.FC = () => {
 
   const { _rawBody } = node;
 
-  return <Page blocks={_rawBody} />;
+  return (
+    <Fragment>
+      <Seo title="Resources" />
+      <Page blocks={_rawBody} />;
+    </Fragment>
+  );
 };
 
 export default Resources;

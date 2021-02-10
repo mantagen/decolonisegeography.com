@@ -1,7 +1,8 @@
 import { graphql, useStaticQuery } from "gatsby";
-import React from "react";
+import React, { Fragment } from "react";
 import Layout from "../components/layout";
 import Page from "../components/page";
+import Seo from "../components/seo";
 
 const About: React.FC = () => {
   const {
@@ -34,7 +35,12 @@ const About: React.FC = () => {
 
   const { _rawBody } = node;
 
-  return <Page blocks={_rawBody} />;
+  return (
+    <Fragment>
+      <Seo title="Contact" />
+      <Page blocks={_rawBody} />;
+    </Fragment>
+  );
 };
 
 export default About;

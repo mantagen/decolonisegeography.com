@@ -1,8 +1,8 @@
 import { Link } from "gatsby";
 import React from "react";
 import styled from "styled-components";
-import { PostTemplateData } from "../templates/post";
 
+import { PostTemplateData } from "../templates/post";
 import formatDate from "../helpers/format-date";
 import getBlogPostPath from "../helpers/get-blog-post-path";
 import PortableText from "./portable-text";
@@ -13,6 +13,8 @@ import PostContent from "./post-content";
 import PostHeader from "./post-header";
 import PostImage from "./post-image";
 import PostMainImage from "./post-main-image";
+import { SiteSettings } from "../hooks/useSiteSettings";
+import Seo from "./seo";
 
 const ByLineAndSocial = styled.div`
   display: flex;
@@ -28,9 +30,15 @@ const PublishedAt = styled.span`
 
 const SocialLink = styled.a``;
 
-interface PostProps extends PostTemplateData {}
+interface PostProps extends PostTemplateData {
+  siteSettings: SiteSettings;
+}
 
 const Post: React.FC<PostProps> = props => {
+  const { post, siteSettings } = props;
+
+  const { siteUrl } = siteSettings;
+
   const {
     title,
     subtitle,
@@ -39,10 +47,16 @@ const Post: React.FC<PostProps> = props => {
     mainImage,
     publishedAt,
     slug,
-  } = props.post;
+  } = post;
 
   return (
     <PostArticle>
+      <Seo
+        title={title}
+        description={subtitle}
+        image={mainImage.asset?.fluid?.src}
+        author={authors[0]?.name}
+      />
       <PostHeader>
         <H1>{title}</H1>
         <Subtitle as="p">{subtitle}</Subtitle>
@@ -56,7 +70,7 @@ const Post: React.FC<PostProps> = props => {
           </span>
           <SocialLink
             // TODO: add author data to the tweet text
-            href={`https://twitter.com/share?url=${getBlogPostPath({
+            href={`https://twitter.com/share?url=${siteUrl}${getBlogPostPath({
               publishedAt,
               slug,
             })}&text=${title}:`}
