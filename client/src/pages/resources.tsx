@@ -29,7 +29,6 @@ const Resources: React.FC = () => {
     console.warn(
       `Only one 'resources' page should exist, but found ${edges.length}`
     );
-    return <Layout />;
   }
 
   const [{ node }] = edges;

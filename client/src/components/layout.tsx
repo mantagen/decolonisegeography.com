@@ -11,6 +11,7 @@ import GlobalStyle, { BREAK_POINT_M_PX } from "./global-style";
 import Nav from "./nav";
 import { Link } from "gatsby";
 import useFontsReady from "../helpers/use-fonts-ready";
+import { colours } from "../theme";
 
 const SiteHeader = styled.header`
   padding: 1rem;
@@ -37,7 +38,17 @@ const SiteMain = styled.main`
   flex-grow: 1;
 `;
 
+const NoContent = styled.div`
+  font-size: 1rem;
+  flex: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: ${colours.textGrey};
+`;
+
 const Layout: React.FC = props => {
+  const { children } = props;
   const fontsReady = useFontsReady();
 
   console.log(fontsReady);
@@ -51,7 +62,10 @@ const Layout: React.FC = props => {
         </SiteTitle>
         <Nav />
       </SiteHeader>
-      <SiteMain>{props.children}</SiteMain>
+
+      <SiteMain>
+        {children ? children : <NoContent>Watch this space!</NoContent>}
+      </SiteMain>
     </Fragment>
   );
 };

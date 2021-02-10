@@ -1,4 +1,5 @@
 import { createGlobalStyle } from "styled-components";
+import { colours } from "../theme";
 
 export const BREAK_POINT_S_PX = 480;
 export const BREAK_POINT_M_PX = 760;
@@ -24,7 +25,7 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     padding: 0;
     font-family: "Lora";
-    color: rgba(0, 0, 0, 0.94);
+    color: ${colours.black};
 
     font-size: 100%;
 

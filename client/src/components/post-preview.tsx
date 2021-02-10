@@ -2,6 +2,7 @@ import { Link } from "gatsby";
 import React from "react";
 import styled from "styled-components";
 import formatDate from "../helpers/format-date";
+import { colours } from "../theme";
 import { BREAK_POINT_M_PX, BREAK_POINT_S_PX } from "./global-style";
 import PostImage, { PostImageProps } from "./post-image";
 
@@ -55,7 +56,8 @@ const PostPreviewImageWrapper = styled.div<{ variant: PostPreviewVariant }>`
   `}
 `;
 const PostPreviewImage = styled(PostImage)`
-  border: 1px solid rgba(0, 0, 0, 0.15);
+  // border: 1px solid rgba(0, 0, 0, 0.15);
+  background-color: ${colours.backgroundGrey};
   height: 100%;
 `;
 const PostPreviewTitle = styled.h2<{ variant: PostPreviewVariant }>`
@@ -74,7 +76,7 @@ const PostPreviewTitle = styled.h2<{ variant: PostPreviewVariant }>`
 `;
 const PostPreviewSubtitle = styled.p`
   font-family: "Lato", sans-serif;
-  color: rgba(0, 0, 0, 0.54);
+  color: ${colours.textGrey};
   font-size: 0.9rem;
   margin: 0 0 0.5em 0;
   line-height: 1.3em;

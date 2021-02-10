@@ -18,6 +18,7 @@ const MapContainer = styled.div`
 `;
 const MapImg = styled.img`
   max-width: ${IMAGE_MAX_WIDTH_PX}px;
+  width: 100%;
 `;
 
 const About: React.FC = () => {
@@ -53,9 +54,6 @@ const About: React.FC = () => {
 
   return (
     <Layout>
-      <MapContainer>
-        <MapImg src={map} alt="Upside down world map" />
-      </MapContainer>
       <PostArticle>
         <PostContent>
           <PortableText blocks={_rawBody} />

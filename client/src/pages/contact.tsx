@@ -28,7 +28,6 @@ const About: React.FC = () => {
     console.warn(
       `Only one 'contact' page should exist, but found ${edges.length}`
     );
-    return <Layout />;
   }
 
   const [{ node }] = edges;

@@ -71,7 +71,8 @@ export const articleContentCss = css`
   }
 
   figure {
-    display: block;
+    display: flex;
+    justify-content: center;
     margin: 0;
     margin-block-start: 1em;
     margin-block-end: 1em;

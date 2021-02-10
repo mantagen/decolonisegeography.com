@@ -1,5 +1,6 @@
 import React from "react";
 import GatsbyImage, { GatsbyImageFluidProps } from "gatsby-image";
+import { colours } from "../theme";
 
 export interface PostImageProps {
   asset: GatsbyImageFluidProps;
@@ -15,7 +16,7 @@ const PostImage: React.FC<PostImageProps> = props => {
       fluid={asset.fluid}
       alt={alt}
       className={className}
-      backgroundColor="#f9f9f9"
+      backgroundColor={colours.backgroundGrey}
     />
   );
 };
