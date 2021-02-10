@@ -1,6 +1,11 @@
 import React from "react";
 // @ts-ignore
 import { TwitterTweetEmbed } from "react-twitter-embed";
+import styled from "styled-components";
+
+const TwitterRoot = styled(TwitterTweetEmbed)`
+  margin-top: 1em;
+`;
 
 interface TwitterProps {
   id: string;

@@ -12,6 +12,7 @@ import { IMAGE_MAX_WIDTH_PX } from "../theme";
 
 const PostPreviews = styled.ul`
   max-width: ${IMAGE_MAX_WIDTH_PX}px;
+  width: 100%;
   margin: 0 auto;
 `;
 
@@ -98,8 +99,6 @@ const IndexPage: React.FC<IndexPageProps> = props => {
 
   const siteMeta = siteSettingsEdge ? siteSettingsEdge.node : {};
 
-  postEdges = [...postEdges, ...postEdges, ...postEdges];
-
   const rows = postEdges
     .filter(edge => !isFuture(new Date(edge.node.publishedAt)))
     .reduce(
@@ -128,6 +127,8 @@ const IndexPage: React.FC<IndexPageProps> = props => {
       }[][]
     );
 
+  console.log(rows);
+
   const postPreviewProps = useCallback(
     (node: PostNode) => ({
       key: `index__PostPreview__post:${node.id}`,
@@ -153,6 +154,15 @@ const IndexPage: React.FC<IndexPageProps> = props => {
         {rows.map((row, rowNumber) => {
           if (row.length === 1) {
             const [{ node }] = row;
+
+            if (rows.length === 1) {
+              // This is the only post on the blog, so should be full size
+              return (
+                <PostPreviewsRow key={`index__PostPreview__post:${rowNumber}`}>
+                  <PostPreview {...postPreviewProps(node)} variant="full" />
+                </PostPreviewsRow>
+              );
+            }
 
             return (
               <PostPreviewsRow key={`index__PostPreview__post:${rowNumber}`}>

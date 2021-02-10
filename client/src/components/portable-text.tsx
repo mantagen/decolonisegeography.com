@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import sanityConfig from "../../sanity-config";
 import BasePortableText from "@sanity/block-content-to-react";
 import Figure from "./figure";
@@ -6,6 +6,7 @@ import { Link } from "gatsby";
 import getBlogPostPath from "../helpers/get-blog-post-path";
 import Youtube from "./youtube";
 import Twitter from "./twitter";
+import GoogleDriveVideo from "./google-drive-video";
 
 const serializers = {
   marks: {
@@ -36,6 +37,7 @@ const serializers = {
     mainImage: Figure,
     youtube: ({ node }) => <Youtube url={node.url} />,
     twitter: ({ node }) => <Twitter id={node.id} />,
+    googleDriveVideo: ({ node }) => <GoogleDriveVideo id={node.id} />,
   },
 };
 
@@ -45,11 +47,13 @@ interface PortableTextProps {
 const PortableText: React.FC<PortableTextProps> = props => {
   const { blocks } = props;
   return (
-    <BasePortableText
-      blocks={blocks}
-      serializers={serializers}
-      {...sanityConfig}
-    />
+    <Fragment>
+      <BasePortableText
+        blocks={blocks}
+        serializers={serializers}
+        {...sanityConfig}
+      />
+    </Fragment>
   );
 };
 

@@ -101,7 +101,7 @@ const PublishedAt = styled.p`
   font-size: 0.9rem;
 `;
 
-type PostPreviewVariant = "whole" | "half" | "third";
+type PostPreviewVariant = "full" | "whole" | "half" | "third";
 
 interface PostPreviewProps {
   image: PostImageProps;

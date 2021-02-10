@@ -4,6 +4,7 @@ import { articleContentCss } from "./typography";
 
 const PostContent = styled.div`
   max-width: ${TEXT_MAX_WIDTH_PX}px;
+  width: 100%;
 
   ${articleContentCss}
 `;

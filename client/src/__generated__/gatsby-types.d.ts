@@ -737,6 +737,8 @@ type Query = {
   readonly allSanityContact: SanityContactConnection;
   readonly sanityPost: Maybe<SanityPost>;
   readonly allSanityPost: SanityPostConnection;
+  readonly sanityResources: Maybe<SanityResources>;
+  readonly allSanityResources: SanityResourcesConnection;
   readonly sanityFileAsset: Maybe<SanityFileAsset>;
   readonly allSanityFileAsset: SanityFileAssetConnection;
   readonly sanityImageAsset: Maybe<SanityImageAsset>;
@@ -1025,6 +1027,31 @@ type Query_sanityPostArgs = {
 type Query_allSanityPostArgs = {
   filter: Maybe<SanityPostFilterInput>;
   sort: Maybe<SanityPostSortInput>;
+  skip: Maybe<Scalars['Int']>;
+  limit: Maybe<Scalars['Int']>;
+};
+
+
+type Query_sanityResourcesArgs = {
+  _id: Maybe<StringQueryOperatorInput>;
+  _type: Maybe<StringQueryOperatorInput>;
+  _createdAt: Maybe<DateQueryOperatorInput>;
+  _updatedAt: Maybe<DateQueryOperatorInput>;
+  _rev: Maybe<StringQueryOperatorInput>;
+  _key: Maybe<StringQueryOperatorInput>;
+  title: Maybe<StringQueryOperatorInput>;
+  body: Maybe<SanityBlockFilterListInput>;
+  _rawBody: Maybe<JSONQueryOperatorInput>;
+  id: Maybe<StringQueryOperatorInput>;
+  parent: Maybe<NodeFilterInput>;
+  children: Maybe<NodeFilterListInput>;
+  internal: Maybe<InternalFilterInput>;
+};
+
+
+type Query_allSanityResourcesArgs = {
+  filter: Maybe<SanityResourcesFilterInput>;
+  sort: Maybe<SanityResourcesSortInput>;
   skip: Maybe<Scalars['Int']>;
   limit: Maybe<Scalars['Int']>;
 };
@@ -2379,6 +2406,12 @@ type SanityGeopointFilterInput = {
   readonly alt: Maybe<FloatQueryOperatorInput>;
 };
 
+type SanityGoogleDriveVideo = {
+  readonly _key: Maybe<Scalars['String']>;
+  readonly _type: Maybe<Scalars['String']>;
+  readonly id: Maybe<Scalars['String']>;
+};
+
 type SanityImage = {
   readonly _key: Maybe<Scalars['String']>;
   readonly _type: Maybe<Scalars['String']>;
@@ -3474,6 +3507,208 @@ type SanityPostSortInput = {
 type SanityResolveReferencesConfiguration = {
   /** Max depth to resolve references to */
   readonly maxDepth: Scalars['Int'];
+};
+
+type SanityResources = SanityDocument & Node & {
+  readonly _id: Maybe<Scalars['String']>;
+  readonly _type: Maybe<Scalars['String']>;
+  readonly _createdAt: Maybe<Scalars['Date']>;
+  readonly _updatedAt: Maybe<Scalars['Date']>;
+  readonly _rev: Maybe<Scalars['String']>;
+  readonly _key: Maybe<Scalars['String']>;
+  readonly title: Maybe<Scalars['String']>;
+  readonly body: Maybe<ReadonlyArray<Maybe<SanityBlock>>>;
+  readonly _rawBody: Maybe<Scalars['JSON']>;
+  readonly id: Scalars['ID'];
+  readonly parent: Maybe<Node>;
+  readonly children: ReadonlyArray<Node>;
+  readonly internal: Internal;
+};
+
+
+type SanityResources__createdAtArgs = {
+  formatString: Maybe<Scalars['String']>;
+  fromNow: Maybe<Scalars['Boolean']>;
+  difference: Maybe<Scalars['String']>;
+  locale: Maybe<Scalars['String']>;
+};
+
+
+type SanityResources__updatedAtArgs = {
+  formatString: Maybe<Scalars['String']>;
+  fromNow: Maybe<Scalars['Boolean']>;
+  difference: Maybe<Scalars['String']>;
+  locale: Maybe<Scalars['String']>;
+};
+
+
+type SanityResources__rawBodyArgs = {
+  resolveReferences: Maybe<SanityResolveReferencesConfiguration>;
+};
+
+type SanityResourcesConnection = {
+  readonly totalCount: Scalars['Int'];
+  readonly edges: ReadonlyArray<SanityResourcesEdge>;
+  readonly nodes: ReadonlyArray<SanityResources>;
+  readonly pageInfo: PageInfo;
+  readonly distinct: ReadonlyArray<Scalars['String']>;
+  readonly group: ReadonlyArray<SanityResourcesGroupConnection>;
+};
+
+
+type SanityResourcesConnection_distinctArgs = {
+  field: SanityResourcesFieldsEnum;
+};
+
+
+type SanityResourcesConnection_groupArgs = {
+  skip: Maybe<Scalars['Int']>;
+  limit: Maybe<Scalars['Int']>;
+  field: SanityResourcesFieldsEnum;
+};
+
+type SanityResourcesEdge = {
+  readonly next: Maybe<SanityResources>;
+  readonly node: SanityResources;
+  readonly previous: Maybe<SanityResources>;
+};
+
+enum SanityResourcesFieldsEnum {
+  _id = '_id',
+  _type = '_type',
+  _createdAt = '_createdAt',
+  _updatedAt = '_updatedAt',
+  _rev = '_rev',
+  _key = '_key',
+  title = 'title',
+  body = 'body',
+  body____key = 'body._key',
+  body____type = 'body._type',
+  body___children = 'body.children',
+  body___children____key = 'body.children._key',
+  body___children____type = 'body.children._type',
+  body___children___marks = 'body.children.marks',
+  body___children___text = 'body.children.text',
+  body___style = 'body.style',
+  body___list = 'body.list',
+  body____rawChildren = 'body._rawChildren',
+  _rawBody = '_rawBody',
+  id = 'id',
+  parent___id = 'parent.id',
+  parent___parent___id = 'parent.parent.id',
+  parent___parent___parent___id = 'parent.parent.parent.id',
+  parent___parent___parent___children = 'parent.parent.parent.children',
+  parent___parent___children = 'parent.parent.children',
+  parent___parent___children___id = 'parent.parent.children.id',
+  parent___parent___children___children = 'parent.parent.children.children',
+  parent___parent___internal___content = 'parent.parent.internal.content',
+  parent___parent___internal___contentDigest = 'parent.parent.internal.contentDigest',
+  parent___parent___internal___description = 'parent.parent.internal.description',
+  parent___parent___internal___fieldOwners = 'parent.parent.internal.fieldOwners',
+  parent___parent___internal___ignoreType = 'parent.parent.internal.ignoreType',
+  parent___parent___internal___mediaType = 'parent.parent.internal.mediaType',
+  parent___parent___internal___owner = 'parent.parent.internal.owner',
+  parent___parent___internal___type = 'parent.parent.internal.type',
+  parent___children = 'parent.children',
+  parent___children___id = 'parent.children.id',
+  parent___children___parent___id = 'parent.children.parent.id',
+  parent___children___parent___children = 'parent.children.parent.children',
+  parent___children___children = 'parent.children.children',
+  parent___children___children___id = 'parent.children.children.id',
+  parent___children___children___children = 'parent.children.children.children',
+  parent___children___internal___content = 'parent.children.internal.content',
+  parent___children___internal___contentDigest = 'parent.children.internal.contentDigest',
+  parent___children___internal___description = 'parent.children.internal.description',
+  parent___children___internal___fieldOwners = 'parent.children.internal.fieldOwners',
+  parent___children___internal___ignoreType = 'parent.children.internal.ignoreType',
+  parent___children___internal___mediaType = 'parent.children.internal.mediaType',
+  parent___children___internal___owner = 'parent.children.internal.owner',
+  parent___children___internal___type = 'parent.children.internal.type',
+  parent___internal___content = 'parent.internal.content',
+  parent___internal___contentDigest = 'parent.internal.contentDigest',
+  parent___internal___description = 'parent.internal.description',
+  parent___internal___fieldOwners = 'parent.internal.fieldOwners',
+  parent___internal___ignoreType = 'parent.internal.ignoreType',
+  parent___internal___mediaType = 'parent.internal.mediaType',
+  parent___internal___owner = 'parent.internal.owner',
+  parent___internal___type = 'parent.internal.type',
+  children = 'children',
+  children___id = 'children.id',
+  children___parent___id = 'children.parent.id',
+  children___parent___parent___id = 'children.parent.parent.id',
+  children___parent___parent___children = 'children.parent.parent.children',
+  children___parent___children = 'children.parent.children',
+  children___parent___children___id = 'children.parent.children.id',
+  children___parent___children___children = 'children.parent.children.children',
+  children___parent___internal___content = 'children.parent.internal.content',
+  children___parent___internal___contentDigest = 'children.parent.internal.contentDigest',
+  children___parent___internal___description = 'children.parent.internal.description',
+  children___parent___internal___fieldOwners = 'children.parent.internal.fieldOwners',
+  children___parent___internal___ignoreType = 'children.parent.internal.ignoreType',
+  children___parent___internal___mediaType = 'children.parent.internal.mediaType',
+  children___parent___internal___owner = 'children.parent.internal.owner',
+  children___parent___internal___type = 'children.parent.internal.type',
+  children___children = 'children.children',
+  children___children___id = 'children.children.id',
+  children___children___parent___id = 'children.children.parent.id',
+  children___children___parent___children = 'children.children.parent.children',
+  children___children___children = 'children.children.children',
+  children___children___children___id = 'children.children.children.id',
+  children___children___children___children = 'children.children.children.children',
+  children___children___internal___content = 'children.children.internal.content',
+  children___children___internal___contentDigest = 'children.children.internal.contentDigest',
+  children___children___internal___description = 'children.children.internal.description',
+  children___children___internal___fieldOwners = 'children.children.internal.fieldOwners',
+  children___children___internal___ignoreType = 'children.children.internal.ignoreType',
+  children___children___internal___mediaType = 'children.children.internal.mediaType',
+  children___children___internal___owner = 'children.children.internal.owner',
+  children___children___internal___type = 'children.children.internal.type',
+  children___internal___content = 'children.internal.content',
+  children___internal___contentDigest = 'children.internal.contentDigest',
+  children___internal___description = 'children.internal.description',
+  children___internal___fieldOwners = 'children.internal.fieldOwners',
+  children___internal___ignoreType = 'children.internal.ignoreType',
+  children___internal___mediaType = 'children.internal.mediaType',
+  children___internal___owner = 'children.internal.owner',
+  children___internal___type = 'children.internal.type',
+  internal___content = 'internal.content',
+  internal___contentDigest = 'internal.contentDigest',
+  internal___description = 'internal.description',
+  internal___fieldOwners = 'internal.fieldOwners',
+  internal___ignoreType = 'internal.ignoreType',
+  internal___mediaType = 'internal.mediaType',
+  internal___owner = 'internal.owner',
+  internal___type = 'internal.type'
+}
+
+type SanityResourcesFilterInput = {
+  readonly _id: Maybe<StringQueryOperatorInput>;
+  readonly _type: Maybe<StringQueryOperatorInput>;
+  readonly _createdAt: Maybe<DateQueryOperatorInput>;
+  readonly _updatedAt: Maybe<DateQueryOperatorInput>;
+  readonly _rev: Maybe<StringQueryOperatorInput>;
+  readonly _key: Maybe<StringQueryOperatorInput>;
+  readonly title: Maybe<StringQueryOperatorInput>;
+  readonly body: Maybe<SanityBlockFilterListInput>;
+  readonly _rawBody: Maybe<JSONQueryOperatorInput>;
+  readonly id: Maybe<StringQueryOperatorInput>;
+  readonly parent: Maybe<NodeFilterInput>;
+  readonly children: Maybe<NodeFilterListInput>;
+  readonly internal: Maybe<InternalFilterInput>;
+};
+
+type SanityResourcesGroupConnection = {
+  readonly totalCount: Scalars['Int'];
+  readonly edges: ReadonlyArray<SanityResourcesEdge>;
+  readonly nodes: ReadonlyArray<SanityResources>;
+  readonly pageInfo: PageInfo;
+  readonly field: Scalars['String'];
+  readonly fieldValue: Maybe<Scalars['String']>;
+};
+
+type SanityResourcesSortInput = {
+  readonly fields: Maybe<ReadonlyArray<Maybe<SanityResourcesFieldsEnum>>>;
+  readonly order: Maybe<ReadonlyArray<Maybe<SortOrderEnum>>>;
 };
 
 type SanitySiteSettings = SanityDocument & Node & {
@@ -4768,6 +5003,16 @@ type PagesQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 type PagesQueryQuery = { readonly allSitePage: { readonly nodes: ReadonlyArray<Pick<SitePage, 'path'>> } };
 
+type AboutQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type AboutQuery = { readonly allAbout: { readonly edges: ReadonlyArray<{ readonly node: Pick<SanityAbout, 'title' | '_rawBody'> }> } };
+
+type ContactQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type ContactQuery = { readonly allContact: { readonly edges: ReadonlyArray<{ readonly node: Pick<SanityContact, 'title' | '_rawBody'> }> } };
+
 type IndexPageQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -4785,6 +5030,11 @@ type PostTemplateQuery = { readonly post: Maybe<(
     Pick<SanityPost, 'title' | 'subtitle' | 'publishedAt' | '_rawBody'>
     & { readonly categories: Maybe<ReadonlyArray<Maybe<Pick<SanityCategory, '_key' | 'title'>>>>, readonly slug: Maybe<Pick<SanitySlug, 'current'>>, readonly mainImage: Maybe<{ readonly asset: Maybe<{ readonly fluid: Maybe<Pick<SanityImageFluid, 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>> }> }>, readonly authors: Maybe<ReadonlyArray<Maybe<Pick<SanityAuthor, '_key' | 'name'>>>> }
   )> };
+
+type ResourcesQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type ResourcesQuery = { readonly allResources: { readonly edges: ReadonlyArray<{ readonly node: Pick<SanityResources, 'title' | '_rawBody'> }> } };
 
 type SeoQueryVariables = Exact<{ [key: string]: never; }>;
 

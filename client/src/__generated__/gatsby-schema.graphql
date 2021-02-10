@@ -847,6 +847,8 @@ type Query {
   allSanityContact(filter: SanityContactFilterInput, sort: SanityContactSortInput, skip: Int, limit: Int): SanityContactConnection!
   sanityPost(_id: StringQueryOperatorInput, _type: StringQueryOperatorInput, _createdAt: DateQueryOperatorInput, _updatedAt: DateQueryOperatorInput, _rev: StringQueryOperatorInput, _key: StringQueryOperatorInput, title: StringQueryOperatorInput, subtitle: StringQueryOperatorInput, slug: SanitySlugFilterInput, authors: SanityAuthorFilterListInput, mainImage: SanityImageFilterInput, categories: SanityCategoryFilterListInput, publishedAt: DateQueryOperatorInput, body: SanityBlockFilterListInput, _rawSlug: JSONQueryOperatorInput, _rawAuthors: JSONQueryOperatorInput, _rawMainImage: JSONQueryOperatorInput, _rawCategories: JSONQueryOperatorInput, _rawBody: JSONQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): SanityPost
   allSanityPost(filter: SanityPostFilterInput, sort: SanityPostSortInput, skip: Int, limit: Int): SanityPostConnection!
+  sanityResources(_id: StringQueryOperatorInput, _type: StringQueryOperatorInput, _createdAt: DateQueryOperatorInput, _updatedAt: DateQueryOperatorInput, _rev: StringQueryOperatorInput, _key: StringQueryOperatorInput, title: StringQueryOperatorInput, body: SanityBlockFilterListInput, _rawBody: JSONQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): SanityResources
+  allSanityResources(filter: SanityResourcesFilterInput, sort: SanityResourcesSortInput, skip: Int, limit: Int): SanityResourcesConnection!
   sanityFileAsset(_id: StringQueryOperatorInput, _type: StringQueryOperatorInput, _createdAt: DateQueryOperatorInput, _updatedAt: DateQueryOperatorInput, _rev: StringQueryOperatorInput, _key: StringQueryOperatorInput, originalFilename: StringQueryOperatorInput, label: StringQueryOperatorInput, title: StringQueryOperatorInput, description: StringQueryOperatorInput, sha1hash: StringQueryOperatorInput, extension: StringQueryOperatorInput, mimeType: StringQueryOperatorInput, size: FloatQueryOperatorInput, assetId: StringQueryOperatorInput, path: StringQueryOperatorInput, url: StringQueryOperatorInput, source: SanityAssetSourceDataFilterInput, _rawSource: JSONQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): SanityFileAsset
   allSanityFileAsset(filter: SanityFileAssetFilterInput, sort: SanityFileAssetSortInput, skip: Int, limit: Int): SanityFileAssetConnection!
   sanityImageAsset(_id: StringQueryOperatorInput, _type: StringQueryOperatorInput, _createdAt: DateQueryOperatorInput, _updatedAt: DateQueryOperatorInput, _rev: StringQueryOperatorInput, _key: StringQueryOperatorInput, originalFilename: StringQueryOperatorInput, label: StringQueryOperatorInput, title: StringQueryOperatorInput, description: StringQueryOperatorInput, sha1hash: StringQueryOperatorInput, extension: StringQueryOperatorInput, mimeType: StringQueryOperatorInput, size: FloatQueryOperatorInput, assetId: StringQueryOperatorInput, path: StringQueryOperatorInput, url: StringQueryOperatorInput, metadata: SanityImageMetadataFilterInput, source: SanityAssetSourceDataFilterInput, _rawMetadata: JSONQueryOperatorInput, _rawSource: JSONQueryOperatorInput, fixed: SanityImageFixedFilterInput, fluid: SanityImageFluidFilterInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): SanityImageAsset
@@ -2045,6 +2047,12 @@ input SanityGeopointFilterInput {
   alt: FloatQueryOperatorInput
 }
 
+type SanityGoogleDriveVideo {
+  _key: String
+  _type: String
+  id: String
+}
+
 type SanityImage {
   _key: String
   _type: String
@@ -3041,6 +3049,207 @@ input SanityPostSortInput {
 input SanityResolveReferencesConfiguration {
   # Max depth to resolve references to
   maxDepth: Int!
+}
+
+type SanityResources implements SanityDocument & Node {
+  _id: String
+  _type: String
+  _createdAt(
+    # Format the date using Moment.js' date tokens, e.g. `date(formatString: "YYYY
+    # MMMM DD")`. See https://momentjs.com/docs/#/displaying/format/ for
+    # documentation for different tokens.
+    formatString: String
+
+    # Returns a string generated with Moment.js' `fromNow` function
+    fromNow: Boolean
+
+    # Returns the difference between this date and the current time. Defaults to
+    # "milliseconds" but you can also pass in as the measurement "years",
+    # "months", "weeks", "days", "hours", "minutes", and "seconds".
+    difference: String
+
+    # Configures the locale Moment.js will use to format the date.
+    locale: String
+  ): Date
+  _updatedAt(
+    # Format the date using Moment.js' date tokens, e.g. `date(formatString: "YYYY
+    # MMMM DD")`. See https://momentjs.com/docs/#/displaying/format/ for
+    # documentation for different tokens.
+    formatString: String
+
+    # Returns a string generated with Moment.js' `fromNow` function
+    fromNow: Boolean
+
+    # Returns the difference between this date and the current time. Defaults to
+    # "milliseconds" but you can also pass in as the measurement "years",
+    # "months", "weeks", "days", "hours", "minutes", and "seconds".
+    difference: String
+
+    # Configures the locale Moment.js will use to format the date.
+    locale: String
+  ): Date
+  _rev: String
+  _key: String
+  title: String
+  body: [SanityBlock]
+  _rawBody(resolveReferences: SanityResolveReferencesConfiguration): JSON
+  id: ID!
+  parent: Node
+  children: [Node!]!
+  internal: Internal!
+}
+
+type SanityResourcesConnection {
+  totalCount: Int!
+  edges: [SanityResourcesEdge!]!
+  nodes: [SanityResources!]!
+  pageInfo: PageInfo!
+  distinct(field: SanityResourcesFieldsEnum!): [String!]!
+  group(skip: Int, limit: Int, field: SanityResourcesFieldsEnum!): [SanityResourcesGroupConnection!]!
+}
+
+type SanityResourcesEdge {
+  next: SanityResources
+  node: SanityResources!
+  previous: SanityResources
+}
+
+enum SanityResourcesFieldsEnum {
+  _id
+  _type
+  _createdAt
+  _updatedAt
+  _rev
+  _key
+  title
+  body
+  body____key
+  body____type
+  body___children
+  body___children____key
+  body___children____type
+  body___children___marks
+  body___children___text
+  body___style
+  body___list
+  body____rawChildren
+  _rawBody
+  id
+  parent___id
+  parent___parent___id
+  parent___parent___parent___id
+  parent___parent___parent___children
+  parent___parent___children
+  parent___parent___children___id
+  parent___parent___children___children
+  parent___parent___internal___content
+  parent___parent___internal___contentDigest
+  parent___parent___internal___description
+  parent___parent___internal___fieldOwners
+  parent___parent___internal___ignoreType
+  parent___parent___internal___mediaType
+  parent___parent___internal___owner
+  parent___parent___internal___type
+  parent___children
+  parent___children___id
+  parent___children___parent___id
+  parent___children___parent___children
+  parent___children___children
+  parent___children___children___id
+  parent___children___children___children
+  parent___children___internal___content
+  parent___children___internal___contentDigest
+  parent___children___internal___description
+  parent___children___internal___fieldOwners
+  parent___children___internal___ignoreType
+  parent___children___internal___mediaType
+  parent___children___internal___owner
+  parent___children___internal___type
+  parent___internal___content
+  parent___internal___contentDigest
+  parent___internal___description
+  parent___internal___fieldOwners
+  parent___internal___ignoreType
+  parent___internal___mediaType
+  parent___internal___owner
+  parent___internal___type
+  children
+  children___id
+  children___parent___id
+  children___parent___parent___id
+  children___parent___parent___children
+  children___parent___children
+  children___parent___children___id
+  children___parent___children___children
+  children___parent___internal___content
+  children___parent___internal___contentDigest
+  children___parent___internal___description
+  children___parent___internal___fieldOwners
+  children___parent___internal___ignoreType
+  children___parent___internal___mediaType
+  children___parent___internal___owner
+  children___parent___internal___type
+  children___children
+  children___children___id
+  children___children___parent___id
+  children___children___parent___children
+  children___children___children
+  children___children___children___id
+  children___children___children___children
+  children___children___internal___content
+  children___children___internal___contentDigest
+  children___children___internal___description
+  children___children___internal___fieldOwners
+  children___children___internal___ignoreType
+  children___children___internal___mediaType
+  children___children___internal___owner
+  children___children___internal___type
+  children___internal___content
+  children___internal___contentDigest
+  children___internal___description
+  children___internal___fieldOwners
+  children___internal___ignoreType
+  children___internal___mediaType
+  children___internal___owner
+  children___internal___type
+  internal___content
+  internal___contentDigest
+  internal___description
+  internal___fieldOwners
+  internal___ignoreType
+  internal___mediaType
+  internal___owner
+  internal___type
+}
+
+input SanityResourcesFilterInput {
+  _id: StringQueryOperatorInput
+  _type: StringQueryOperatorInput
+  _createdAt: DateQueryOperatorInput
+  _updatedAt: DateQueryOperatorInput
+  _rev: StringQueryOperatorInput
+  _key: StringQueryOperatorInput
+  title: StringQueryOperatorInput
+  body: SanityBlockFilterListInput
+  _rawBody: JSONQueryOperatorInput
+  id: StringQueryOperatorInput
+  parent: NodeFilterInput
+  children: NodeFilterListInput
+  internal: InternalFilterInput
+}
+
+type SanityResourcesGroupConnection {
+  totalCount: Int!
+  edges: [SanityResourcesEdge!]!
+  nodes: [SanityResources!]!
+  pageInfo: PageInfo!
+  field: String!
+  fieldValue: String
+}
+
+input SanityResourcesSortInput {
+  fields: [SanityResourcesFieldsEnum]
+  order: [SortOrderEnum] = [ASC]
 }
 
 type SanitySiteSettings implements SanityDocument & Node {
