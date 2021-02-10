@@ -56,6 +56,9 @@ export const articleContentCss = css`
     margin-inline-end: 0px;
     padding-inline-start: 40px;
   }
+  li {
+    margin-bottom: 0.5rem;
+  }
 
   blockquote {
     font-family: "Playfair Display", serif;
@@ -71,13 +74,16 @@ export const articleContentCss = css`
   }
 
   figure {
-    display: flex;
-    justify-content: center;
     margin: 0;
     margin-block-start: 1em;
     margin-block-end: 1em;
     margin-inline-start: 0;
     margin-inline-end: 0;
+
+    img {
+      display: block;
+      margin: 0 auto;
+    }
   }
 
   code {
