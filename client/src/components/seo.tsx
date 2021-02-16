@@ -7,7 +7,7 @@ export type SeoProps = {
   title?: string;
   description?: string;
   image?: string;
-  author?: string;
+  author?: Pick<GatsbyTypes.SanityAuthor, "name" | "twitterHandle">;
 };
 
 const Seo: React.FC<SeoProps> = props => {
@@ -36,6 +36,8 @@ const Seo: React.FC<SeoProps> = props => {
       : false
     : false;
 
+  const siteTwitterHandle = defaults.twitterHandle;
+
   return (
     <Helmet defaultTitle={defaults.title}>
       <title>{props.title}</title>
@@ -50,7 +52,10 @@ const Seo: React.FC<SeoProps> = props => {
       {image && <meta property="og:image" content={image} />}
 
       <meta name="twitter:card" content="summary_large_image" />
-      {author && <meta name="twitter:creator" content={author} />}
+      {author && <meta name="twitter:creator" content={author.twitterHandle} />}
+      {siteTwitterHandle && (
+        <meta name="twitter:site" content={siteTwitterHandle} />
+      )}
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
       {image && <meta name="twitter:image" content={image} />}

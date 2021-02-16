@@ -22,6 +22,7 @@ const SiteHeader = styled.header`
   z-index: 1;
   pointer-events: none;
   user-select: none;
+  background-color: ${colours.white};
 `;
 const SiteTitle = styled.span`
   font-size: 1.2rem;

@@ -928,6 +928,7 @@ type Query_sanityAuthorArgs = {
   _key: Maybe<StringQueryOperatorInput>;
   name: Maybe<StringQueryOperatorInput>;
   slug: Maybe<SanitySlugFilterInput>;
+  twitterHandle: Maybe<StringQueryOperatorInput>;
   image: Maybe<SanityImageFilterInput>;
   bio: Maybe<SanityBlockFilterListInput>;
   _rawSlug: Maybe<JSONQueryOperatorInput>;
@@ -1139,6 +1140,7 @@ type Query_sanitySiteSettingsArgs = {
   _rev: Maybe<StringQueryOperatorInput>;
   _key: Maybe<StringQueryOperatorInput>;
   siteUrl: Maybe<StringQueryOperatorInput>;
+  twitterHandle: Maybe<StringQueryOperatorInput>;
   title: Maybe<StringQueryOperatorInput>;
   description: Maybe<StringQueryOperatorInput>;
   keywords: Maybe<StringQueryOperatorInput>;
@@ -1427,6 +1429,7 @@ type SanityAuthor = SanityDocument & Node & {
   readonly _key: Maybe<Scalars['String']>;
   readonly name: Maybe<Scalars['String']>;
   readonly slug: Maybe<SanitySlug>;
+  readonly twitterHandle: Maybe<Scalars['String']>;
   readonly image: Maybe<SanityImage>;
   readonly bio: Maybe<ReadonlyArray<Maybe<SanityBlock>>>;
   readonly _rawSlug: Maybe<Scalars['JSON']>;
@@ -1507,6 +1510,7 @@ enum SanityAuthorFieldsEnum {
   slug____key = 'slug._key',
   slug____type = 'slug._type',
   slug___current = 'slug.current',
+  twitterHandle = 'twitterHandle',
   image____key = 'image._key',
   image____type = 'image._type',
   image___asset____id = 'image.asset._id',
@@ -1695,6 +1699,7 @@ type SanityAuthorFilterInput = {
   readonly _key: Maybe<StringQueryOperatorInput>;
   readonly name: Maybe<StringQueryOperatorInput>;
   readonly slug: Maybe<SanitySlugFilterInput>;
+  readonly twitterHandle: Maybe<StringQueryOperatorInput>;
   readonly image: Maybe<SanityImageFilterInput>;
   readonly bio: Maybe<SanityBlockFilterListInput>;
   readonly _rawSlug: Maybe<JSONQueryOperatorInput>;
@@ -1751,7 +1756,7 @@ type SanityBlockFilterListInput = {
   readonly elemMatch: Maybe<SanityBlockFilterInput>;
 };
 
-type SanityBlockOrImageOrTwitterOrYoutube = SanityBlock | SanityImage | SanityTwitter | SanityYoutube;
+type SanityBlockOrGoogleDriveVideoOrImageOrTwitterOrYoutube = SanityBlock | SanityGoogleDriveVideo | SanityImage | SanityTwitter | SanityYoutube;
 
 type SanityCategory = SanityDocument & Node & {
   readonly _id: Maybe<Scalars['String']>;
@@ -3145,6 +3150,7 @@ enum SanityPostFieldsEnum {
   authors___slug____key = 'authors.slug._key',
   authors___slug____type = 'authors.slug._type',
   authors___slug___current = 'authors.slug.current',
+  authors___twitterHandle = 'authors.twitterHandle',
   authors___image____key = 'authors.image._key',
   authors___image____type = 'authors.image._type',
   authors___image___asset____id = 'authors.image.asset._id',
@@ -3719,6 +3725,7 @@ type SanitySiteSettings = SanityDocument & Node & {
   readonly _rev: Maybe<Scalars['String']>;
   readonly _key: Maybe<Scalars['String']>;
   readonly siteUrl: Maybe<Scalars['String']>;
+  readonly twitterHandle: Maybe<Scalars['String']>;
   readonly title: Maybe<Scalars['String']>;
   readonly description: Maybe<Scalars['String']>;
   readonly keywords: Maybe<ReadonlyArray<Maybe<Scalars['String']>>>;
@@ -3786,6 +3793,7 @@ enum SanitySiteSettingsFieldsEnum {
   _rev = '_rev',
   _key = '_key',
   siteUrl = 'siteUrl',
+  twitterHandle = 'twitterHandle',
   title = 'title',
   description = 'description',
   keywords = 'keywords',
@@ -3799,6 +3807,7 @@ enum SanitySiteSettingsFieldsEnum {
   author___slug____key = 'author.slug._key',
   author___slug____type = 'author.slug._type',
   author___slug___current = 'author.slug.current',
+  author___twitterHandle = 'author.twitterHandle',
   author___image____key = 'author.image._key',
   author___image____type = 'author.image._type',
   author___image___asset____id = 'author.image.asset._id',
@@ -3986,6 +3995,7 @@ type SanitySiteSettingsFilterInput = {
   readonly _rev: Maybe<StringQueryOperatorInput>;
   readonly _key: Maybe<StringQueryOperatorInput>;
   readonly siteUrl: Maybe<StringQueryOperatorInput>;
+  readonly twitterHandle: Maybe<StringQueryOperatorInput>;
   readonly title: Maybe<StringQueryOperatorInput>;
   readonly description: Maybe<StringQueryOperatorInput>;
   readonly keywords: Maybe<StringQueryOperatorInput>;
@@ -5003,16 +5013,6 @@ type PagesQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 type PagesQueryQuery = { readonly allSitePage: { readonly nodes: ReadonlyArray<Pick<SitePage, 'path'>> } };
 
-type AboutQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type AboutQuery = { readonly allAbout: { readonly edges: ReadonlyArray<{ readonly node: Pick<SanityAbout, 'title' | '_rawBody'> }> } };
-
-type ContactQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type ContactQuery = { readonly allContact: { readonly edges: ReadonlyArray<{ readonly node: Pick<SanityContact, 'title' | '_rawBody'> }> } };
-
 type IndexPageQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -5028,20 +5028,15 @@ type PostTemplateQueryVariables = Exact<{
 
 type PostTemplateQuery = { readonly post: Maybe<(
     Pick<SanityPost, 'title' | 'subtitle' | 'publishedAt' | '_rawBody'>
-    & { readonly categories: Maybe<ReadonlyArray<Maybe<Pick<SanityCategory, '_key' | 'title'>>>>, readonly slug: Maybe<Pick<SanitySlug, 'current'>>, readonly mainImage: Maybe<{ readonly asset: Maybe<{ readonly fluid: Maybe<Pick<SanityImageFluid, 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>> }> }>, readonly authors: Maybe<ReadonlyArray<Maybe<Pick<SanityAuthor, '_key' | 'name'>>>> }
+    & { readonly categories: Maybe<ReadonlyArray<Maybe<Pick<SanityCategory, '_key' | 'title'>>>>, readonly slug: Maybe<Pick<SanitySlug, 'current'>>, readonly mainImage: Maybe<{ readonly asset: Maybe<{ readonly fluid: Maybe<Pick<SanityImageFluid, 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>> }> }>, readonly authors: Maybe<ReadonlyArray<Maybe<Pick<SanityAuthor, '_key' | 'name' | 'twitterHandle'>>>> }
   )> };
-
-type ResourcesQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type ResourcesQuery = { readonly allResources: { readonly edges: ReadonlyArray<{ readonly node: Pick<SanityResources, 'title' | '_rawBody'> }> } };
 
 type SeoQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 type SeoQuery = { readonly allSiteSettings: { readonly edges: ReadonlyArray<{ readonly node: (
-        Pick<SanitySiteSettings, 'siteUrl' | 'title' | 'description' | 'keywords'>
-        & { readonly author: Maybe<Pick<SanityAuthor, 'name'>> }
+        Pick<SanitySiteSettings, 'siteUrl' | 'twitterHandle' | 'title' | 'description' | 'keywords'>
+        & { readonly author: Maybe<Pick<SanityAuthor, 'name' | 'twitterHandle'>> }
       ) }> } };
 
 type GatsbySanityImageFixedFragment = Pick<SanityImageFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp'>;

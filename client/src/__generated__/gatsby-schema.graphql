@@ -839,7 +839,7 @@ type Query {
   allSitePage(filter: SitePageFilterInput, sort: SitePageSortInput, skip: Int, limit: Int): SitePageConnection!
   sanityAbout(_id: StringQueryOperatorInput, _type: StringQueryOperatorInput, _createdAt: DateQueryOperatorInput, _updatedAt: DateQueryOperatorInput, _rev: StringQueryOperatorInput, _key: StringQueryOperatorInput, title: StringQueryOperatorInput, body: SanityBlockFilterListInput, _rawBody: JSONQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): SanityAbout
   allSanityAbout(filter: SanityAboutFilterInput, sort: SanityAboutSortInput, skip: Int, limit: Int): SanityAboutConnection!
-  sanityAuthor(_id: StringQueryOperatorInput, _type: StringQueryOperatorInput, _createdAt: DateQueryOperatorInput, _updatedAt: DateQueryOperatorInput, _rev: StringQueryOperatorInput, _key: StringQueryOperatorInput, name: StringQueryOperatorInput, slug: SanitySlugFilterInput, image: SanityImageFilterInput, bio: SanityBlockFilterListInput, _rawSlug: JSONQueryOperatorInput, _rawImage: JSONQueryOperatorInput, _rawBio: JSONQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): SanityAuthor
+  sanityAuthor(_id: StringQueryOperatorInput, _type: StringQueryOperatorInput, _createdAt: DateQueryOperatorInput, _updatedAt: DateQueryOperatorInput, _rev: StringQueryOperatorInput, _key: StringQueryOperatorInput, name: StringQueryOperatorInput, slug: SanitySlugFilterInput, twitterHandle: StringQueryOperatorInput, image: SanityImageFilterInput, bio: SanityBlockFilterListInput, _rawSlug: JSONQueryOperatorInput, _rawImage: JSONQueryOperatorInput, _rawBio: JSONQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): SanityAuthor
   allSanityAuthor(filter: SanityAuthorFilterInput, sort: SanityAuthorSortInput, skip: Int, limit: Int): SanityAuthorConnection!
   sanityCategory(_id: StringQueryOperatorInput, _type: StringQueryOperatorInput, _createdAt: DateQueryOperatorInput, _updatedAt: DateQueryOperatorInput, _rev: StringQueryOperatorInput, _key: StringQueryOperatorInput, title: StringQueryOperatorInput, description: StringQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): SanityCategory
   allSanityCategory(filter: SanityCategoryFilterInput, sort: SanityCategorySortInput, skip: Int, limit: Int): SanityCategoryConnection!
@@ -853,7 +853,7 @@ type Query {
   allSanityFileAsset(filter: SanityFileAssetFilterInput, sort: SanityFileAssetSortInput, skip: Int, limit: Int): SanityFileAssetConnection!
   sanityImageAsset(_id: StringQueryOperatorInput, _type: StringQueryOperatorInput, _createdAt: DateQueryOperatorInput, _updatedAt: DateQueryOperatorInput, _rev: StringQueryOperatorInput, _key: StringQueryOperatorInput, originalFilename: StringQueryOperatorInput, label: StringQueryOperatorInput, title: StringQueryOperatorInput, description: StringQueryOperatorInput, sha1hash: StringQueryOperatorInput, extension: StringQueryOperatorInput, mimeType: StringQueryOperatorInput, size: FloatQueryOperatorInput, assetId: StringQueryOperatorInput, path: StringQueryOperatorInput, url: StringQueryOperatorInput, metadata: SanityImageMetadataFilterInput, source: SanityAssetSourceDataFilterInput, _rawMetadata: JSONQueryOperatorInput, _rawSource: JSONQueryOperatorInput, fixed: SanityImageFixedFilterInput, fluid: SanityImageFluidFilterInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): SanityImageAsset
   allSanityImageAsset(filter: SanityImageAssetFilterInput, sort: SanityImageAssetSortInput, skip: Int, limit: Int): SanityImageAssetConnection!
-  sanitySiteSettings(_id: StringQueryOperatorInput, _type: StringQueryOperatorInput, _createdAt: DateQueryOperatorInput, _updatedAt: DateQueryOperatorInput, _rev: StringQueryOperatorInput, _key: StringQueryOperatorInput, siteUrl: StringQueryOperatorInput, title: StringQueryOperatorInput, description: StringQueryOperatorInput, keywords: StringQueryOperatorInput, author: SanityAuthorFilterInput, _rawAuthor: JSONQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): SanitySiteSettings
+  sanitySiteSettings(_id: StringQueryOperatorInput, _type: StringQueryOperatorInput, _createdAt: DateQueryOperatorInput, _updatedAt: DateQueryOperatorInput, _rev: StringQueryOperatorInput, _key: StringQueryOperatorInput, siteUrl: StringQueryOperatorInput, twitterHandle: StringQueryOperatorInput, title: StringQueryOperatorInput, description: StringQueryOperatorInput, keywords: StringQueryOperatorInput, author: SanityAuthorFilterInput, _rawAuthor: JSONQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): SanitySiteSettings
   allSanitySiteSettings(filter: SanitySiteSettingsFilterInput, sort: SanitySiteSettingsSortInput, skip: Int, limit: Int): SanitySiteSettingsConnection!
   siteBuildMetadata(id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput, buildTime: DateQueryOperatorInput): SiteBuildMetadata
   allSiteBuildMetadata(filter: SiteBuildMetadataFilterInput, sort: SiteBuildMetadataSortInput, skip: Int, limit: Int): SiteBuildMetadataConnection!
@@ -1119,6 +1119,7 @@ type SanityAuthor implements SanityDocument & Node {
   _key: String
   name: String
   slug: SanitySlug
+  twitterHandle: String
   image: SanityImage
   bio: [SanityBlock]
   _rawSlug(resolveReferences: SanityResolveReferencesConfiguration): JSON
@@ -1156,6 +1157,7 @@ enum SanityAuthorFieldsEnum {
   slug____key
   slug____type
   slug___current
+  twitterHandle
   image____key
   image____type
   image___asset____id
@@ -1344,6 +1346,7 @@ input SanityAuthorFilterInput {
   _key: StringQueryOperatorInput
   name: StringQueryOperatorInput
   slug: SanitySlugFilterInput
+  twitterHandle: StringQueryOperatorInput
   image: SanityImageFilterInput
   bio: SanityBlockFilterListInput
   _rawSlug: JSONQueryOperatorInput
@@ -1395,7 +1398,7 @@ input SanityBlockFilterListInput {
   elemMatch: SanityBlockFilterInput
 }
 
-union SanityBlockOrImageOrTwitterOrYoutube = SanityBlock | SanityImage | SanityTwitter | SanityYoutube
+union SanityBlockOrGoogleDriveVideoOrImageOrTwitterOrYoutube = SanityBlock | SanityGoogleDriveVideo | SanityImage | SanityTwitter | SanityYoutube
 
 type SanityCategory implements SanityDocument & Node {
   _id: String
@@ -2687,6 +2690,7 @@ enum SanityPostFieldsEnum {
   authors___slug____key
   authors___slug____type
   authors___slug___current
+  authors___twitterHandle
   authors___image____key
   authors___image____type
   authors___image___asset____id
@@ -3292,6 +3296,7 @@ type SanitySiteSettings implements SanityDocument & Node {
   _rev: String
   _key: String
   siteUrl: String
+  twitterHandle: String
   title: String
   description: String
   keywords: [String]
@@ -3326,6 +3331,7 @@ enum SanitySiteSettingsFieldsEnum {
   _rev
   _key
   siteUrl
+  twitterHandle
   title
   description
   keywords
@@ -3339,6 +3345,7 @@ enum SanitySiteSettingsFieldsEnum {
   author___slug____key
   author___slug____type
   author___slug___current
+  author___twitterHandle
   author___image____key
   author___image____type
   author___image___asset____id
@@ -3526,6 +3533,7 @@ input SanitySiteSettingsFilterInput {
   _rev: StringQueryOperatorInput
   _key: StringQueryOperatorInput
   siteUrl: StringQueryOperatorInput
+  twitterHandle: StringQueryOperatorInput
   title: StringQueryOperatorInput
   description: StringQueryOperatorInput
   keywords: StringQueryOperatorInput

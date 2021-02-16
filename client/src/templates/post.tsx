@@ -43,7 +43,7 @@ export const query = graphql`
         #   }
         # }
         name
-        # twitter
+        twitterHandle
       }
     }
   }

@@ -10,6 +10,17 @@ export default {
       title: "Site Url",
     },
     {
+      name: "twitterHandle",
+      title: "Twitter Handle",
+      description:
+        "Should start with '@'.",
+      type: "string",
+      validation: (Rule) =>
+        Rule.optional().custom((handle) =>
+          handle[0] === "@" ? true : "Should start with '@'"
+        ),
+    },
+    {
       name: "title",
       type: "string",
       title: "Title",

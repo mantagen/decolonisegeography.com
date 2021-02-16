@@ -1,39 +1,49 @@
 export default {
-  name: 'author',
-  title: 'Author',
-  type: 'document',
+  name: "author",
+  title: "Author",
+  type: "document",
   fields: [
     {
-      name: 'name',
-      title: 'Name',
-      type: 'string',
+      name: "name",
+      title: "Name",
+      type: "string",
     },
     {
-      name: 'slug',
-      title: 'Slug',
-      type: 'slug',
+      name: "slug",
+      title: "Slug",
+      type: "slug",
       options: {
-        source: 'name',
+        source: "name",
         maxLength: 96,
       },
     },
     {
-      name: 'image',
-      title: 'Image',
-      type: 'image',
+      name: "twitterHandle",
+      title: "Twitter Handle",
+      description: "So that we can link to your twitter account on posts. Should start with '@'.",
+      type: "string",
+      validation: (Rule) =>
+        Rule.optional().custom((handle) =>
+          handle[0] === "@" ? true : "Should start with '@'"
+        ),
+    },
+    {
+      name: "image",
+      title: "Image",
+      type: "image",
       options: {
         hotspot: true,
       },
     },
     {
-      name: 'bio',
-      title: 'Bio',
-      type: 'array',
+      name: "bio",
+      title: "Bio",
+      type: "array",
       of: [
         {
-          title: 'Block',
-          type: 'block',
-          styles: [{title: 'Normal', value: 'normal'}],
+          title: "Block",
+          type: "block",
+          styles: [{ title: "Normal", value: "normal" }],
           lists: [],
         },
       ],
@@ -41,8 +51,8 @@ export default {
   ],
   preview: {
     select: {
-      title: 'name',
-      media: 'image',
+      title: "name",
+      media: "image",
     },
   },
-}
+};

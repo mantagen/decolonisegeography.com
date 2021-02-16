@@ -55,7 +55,7 @@ const Post: React.FC<PostProps> = props => {
         title={title}
         description={subtitle}
         image={mainImage.asset?.fluid?.src}
-        author={authors[0]?.name}
+        author={authors[0]}
       />
       <PostHeader>
         <H1>{title}</H1>

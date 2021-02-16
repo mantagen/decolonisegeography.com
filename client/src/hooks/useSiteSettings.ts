@@ -9,11 +9,13 @@ const useSiteSettings = () => {
         edges {
           node {
             siteUrl
+            twitterHandle
             title
             description
             keywords
             author {
               name
+              twitterHandle
             }
           }
         }
