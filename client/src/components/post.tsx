@@ -63,7 +63,14 @@ const Post: React.FC<PostProps> = props => {
         <ByLineAndSocial>
           <span>
             Written by{" "}
-            <AuthorLink rel="author" to="/about">
+            <AuthorLink
+              rel="author"
+              to={
+                authors[0]?.twitterHandle
+                  ? `https://twitter.com/${authors[0].twitterHandle}`
+                  : "/about"
+              }
+            >
               {authors[0]?.name}
             </AuthorLink>{" "}
             on <PublishedAt>{formatDate(publishedAt)}</PublishedAt>
