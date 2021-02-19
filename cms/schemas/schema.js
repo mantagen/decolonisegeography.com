@@ -12,12 +12,13 @@ import author from "./documents/author";
 import about from "./documents/about";
 import contact from "./documents/contact";
 import resources from "./documents/resources";
+import events from "./documents/events";
 
 // We import object schemas
 import blockContent from "./objects/blockContent";
 import twitter from "./objects/twitter";
-import youtube from './objects/youtube'
-import googleDriveVideo from './objects/googleDriveVideo'
+import youtube from "./objects/youtube";
+import googleDriveVideo from "./objects/googleDriveVideo";
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -32,6 +33,7 @@ export default createSchema({
     post,
     author,
     resources,
+    events,
     category,
     // When added to this list, object types can be used as
     // { type: 'typename' } in other document schemas
