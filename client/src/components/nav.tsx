@@ -113,7 +113,6 @@ const Nav: React.FC = () => {
         <NavInnerWrapper isOpen={isOpen}>
           <NavLink to="/">Decolonise Geography</NavLink>
           <NavLink to="/resources">Resources</NavLink>
-          <NavLink to="/events">Events</NavLink>
           <NavLink to="/about">About</NavLink>
           <NavLink to="/contact">Contact</NavLink>
         </NavInnerWrapper>
