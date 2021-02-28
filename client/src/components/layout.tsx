@@ -57,7 +57,7 @@ const Layout: React.FC = props => {
       <GlobalStyle />
       <SiteHeader>
         <SiteTitle>
-          <Link to="/">Decolonise Geography</Link>
+          <Link to="/">Decolonising Geography</Link>
         </SiteTitle>
         <Nav />
       </SiteHeader>
