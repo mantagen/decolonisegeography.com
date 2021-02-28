@@ -44,7 +44,7 @@ const NavOuterWrapper = styled.div<{ isHidden: boolean }>`
   visibility: ${props => (props.isHidden ? "hidden" : "inherit")};
 
   @media (min-width: ${BREAK_POINT_M_PX}px) {
-    width: 350px;
+    width: 370px;
     bottom: unset;
     left: unset;
     top: unset;
@@ -111,7 +111,7 @@ const Nav: React.FC = () => {
         isHidden={isHidden}
       >
         <NavInnerWrapper isOpen={isOpen}>
-          <NavLink to="/">Decolonise Geography</NavLink>
+          <NavLink to="/">Decolonising Geography</NavLink>
           <NavLink to="/about">About</NavLink>
           <NavLink to="/contact">Contact</NavLink>
         </NavInnerWrapper>
