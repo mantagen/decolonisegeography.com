@@ -11,7 +11,7 @@ import GlobalStyle, { BREAK_POINT_M_PX } from "./global-style";
 import Nav from "./nav";
 import { Link } from "gatsby";
 import { colours } from "../theme";
-import logo from "../../static/images/logo.png";
+import logo from "../../static/images/logo-105x105.png";
 import SrOnly from "./sr-only";
 
 const SiteHeader = styled.header`
@@ -23,7 +23,6 @@ const SiteHeader = styled.header`
   z-index: 1;
   pointer-events: none;
   user-select: none;
-  // background-color: ${colours.white};
   background-color: transparent;
   display: flex;
   align-items: center;
