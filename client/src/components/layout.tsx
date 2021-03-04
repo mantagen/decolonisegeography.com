@@ -10,11 +10,12 @@ import "@fontsource/playfair-display/900.css";
 import GlobalStyle, { BREAK_POINT_M_PX } from "./global-style";
 import Nav from "./nav";
 import { Link } from "gatsby";
-import useFontsReady from "../helpers/use-fonts-ready";
 import { colours } from "../theme";
+import logo from "../../static/images/logo-105x105.png";
+import SrOnly from "./sr-only";
 
 const SiteHeader = styled.header`
-  padding: 1rem;
+  padding: 0 1rem;
   position: fixed;
   top: 0;
   right: 0;
@@ -22,18 +23,30 @@ const SiteHeader = styled.header`
   z-index: 1;
   pointer-events: none;
   user-select: none;
-  background-color: ${colours.white};
+  background-color: transparent;
+  display: flex;
+  align-items: center;
 `;
 const SiteTitle = styled.span`
   font-size: 1.2rem;
-  pointer-events: auto;
 
   @media (min-width: ${BREAK_POINT_M_PX}px) {
     font-size: 2rem;
   }
 `;
+const HomeLink = styled(Link)`
+  display: flex;
+  align-items: center;
+  pointer-events: auto;
+`;
+
+const SiteLogo = styled.img`
+  height: 6rem;
+  padding: 0.5rem 0;
+  margin-right: 1rem;
+`;
 const SiteMain = styled.main`
-  margin: 5rem 1rem;
+  margin: 6rem 1rem;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
@@ -50,15 +63,17 @@ const NoContent = styled.div`
 
 const Layout: React.FC = props => {
   const { children } = props;
-  const fontsReady = useFontsReady();
 
   return (
     <Fragment>
       <GlobalStyle />
       <SiteHeader>
-        <SiteTitle>
-          <Link to="/">Decolonising Geography</Link>
-        </SiteTitle>
+        <HomeLink to="/">
+          <SiteLogo src={logo} />
+          <SiteTitle>
+            <SrOnly>Decolonising Geography</SrOnly>
+          </SiteTitle>
+        </HomeLink>
         <Nav />
       </SiteHeader>
 

@@ -5252,16 +5252,6 @@ type PagesQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 type PagesQueryQuery = { readonly allSitePage: { readonly nodes: ReadonlyArray<Pick<SitePage, 'path'>> } };
 
-type AboutQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type AboutQuery = { readonly allAbout: { readonly edges: ReadonlyArray<{ readonly node: Pick<SanityAbout, 'title' | '_rawBody'> }> } };
-
-type ContactQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type ContactQuery = { readonly allContact: { readonly edges: ReadonlyArray<{ readonly node: Pick<SanityContact, 'title' | '_rawBody'> }> } };
-
 type IndexPageQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -5269,16 +5259,6 @@ type IndexPageQuery = { readonly allSiteSettings: { readonly edges: ReadonlyArra
         Pick<SanityPost, 'id' | 'title' | 'subtitle' | 'publishedAt'>
         & { readonly mainImage: Maybe<{ readonly asset: Maybe<{ readonly fluid: Maybe<Pick<SanityImageFluid, 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>> }> }>, readonly slug: Maybe<Pick<SanitySlug, 'current'>> }
       ) }> } };
-
-type ResourcesQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type ResourcesQuery = { readonly allResources: { readonly edges: ReadonlyArray<{ readonly node: Pick<SanityResources, 'title' | '_rawBody'> }> } };
-
-type EventsQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type EventsQuery = { readonly allEvents: { readonly edges: ReadonlyArray<{ readonly node: Pick<SanityEvents, 'title' | '_rawBody'> }> } };
 
 type SeoQueryVariables = Exact<{ [key: string]: never; }>;
 

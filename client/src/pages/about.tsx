@@ -1,26 +1,10 @@
 import { graphql, useStaticQuery } from "gatsby";
 import React from "react";
-import styled from "styled-components";
 import Layout from "../components/layout";
 import PortableText from "../components/portable-text";
 import PostArticle from "../components/post-article";
 import PostContent from "../components/post-content";
 import Seo from "../components/seo";
-import { IMAGE_MAX_WIDTH_PX } from "../theme";
-// import Page from "../components/page";
-import map from "./map.png";
-
-const MapContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  flex: auto;
-`;
-const MapImg = styled.img`
-  max-width: ${IMAGE_MAX_WIDTH_PX}px;
-  width: 100%;
-`;
 
 const About: React.FC = () => {
   const {
