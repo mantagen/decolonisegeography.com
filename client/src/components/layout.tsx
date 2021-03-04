@@ -11,7 +11,8 @@ import GlobalStyle, { BREAK_POINT_M_PX } from "./global-style";
 import Nav from "./nav";
 import { Link } from "gatsby";
 import { colours } from "../theme";
-import logo from "../../static/images/logo-bw.png";
+import logo from "../../static/images/logo.png";
+import SrOnly from "./sr-only";
 
 const SiteHeader = styled.header`
   padding: 0 1rem;
@@ -29,7 +30,6 @@ const SiteHeader = styled.header`
 `;
 const SiteTitle = styled.span`
   font-size: 1.2rem;
-  pointer-events: auto;
 
   @media (min-width: ${BREAK_POINT_M_PX}px) {
     font-size: 2rem;
@@ -38,6 +38,7 @@ const SiteTitle = styled.span`
 const HomeLink = styled(Link)`
   display: flex;
   align-items: center;
+  pointer-events: auto;
 `;
 
 const SiteLogo = styled.img`
@@ -68,12 +69,12 @@ const Layout: React.FC = props => {
     <Fragment>
       <GlobalStyle />
       <SiteHeader>
-        <SiteTitle>
-          <HomeLink to="/">
-            <SiteLogo src={logo} />
-            <span>Decolonising Geography</span>
-          </HomeLink>
-        </SiteTitle>
+        <HomeLink to="/">
+          <SiteLogo src={logo} />
+          <SiteTitle>
+            <SrOnly>Decolonising Geography</SrOnly>
+          </SiteTitle>
+        </HomeLink>
         <Nav />
       </SiteHeader>
 
