@@ -1,4 +1,3 @@
-import { Link } from "gatsby";
 import React from "react";
 import styled from "styled-components";
 
@@ -21,7 +20,7 @@ const ByLineAndSocial = styled.div`
   justify-content: space-between;
   color: rgba(0, 0, 0, 0.54);
 `;
-const AuthorLink = styled(Link)`
+const AuthorLink = styled.a`
   color: rgb(0, 140, 255);
 `;
 const PublishedAt = styled.span`
@@ -65,7 +64,8 @@ const Post: React.FC<PostProps> = props => {
             Written by{" "}
             <AuthorLink
               rel="author"
-              to={
+              target="_blank"
+              href={
                 authors[0]?.twitterHandle
                   ? `https://twitter.com/${authors[0].twitterHandle}`
                   : "/about"
