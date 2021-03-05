@@ -4806,6 +4806,9 @@ enum SitePageFieldsEnum {
   pluginCreator___pluginOptions___emitSchema___src___generated___gatsby_introspection_json = 'pluginCreator.pluginOptions.emitSchema.src___generated___gatsby_introspection_json',
   pluginCreator___pluginOptions___emitSchema___src___generated___gatsby_schema_graphql = 'pluginCreator.pluginOptions.emitSchema.src___generated___gatsby_schema_graphql',
   pluginCreator___pluginOptions___emitPluginDocuments___src___generated___gatsby_plugin_documents_graphql = 'pluginCreator.pluginOptions.emitPluginDocuments.src___generated___gatsby_plugin_documents_graphql',
+  pluginCreator___pluginOptions___projectId = 'pluginCreator.pluginOptions.projectId',
+  pluginCreator___pluginOptions___dataset = 'pluginCreator.pluginOptions.dataset',
+  pluginCreator___pluginOptions___graphqlTag = 'pluginCreator.pluginOptions.graphqlTag',
   pluginCreator___pluginOptions___isTSX = 'pluginCreator.pluginOptions.isTSX',
   pluginCreator___pluginOptions___jsxPragma = 'pluginCreator.pluginOptions.jsxPragma',
   pluginCreator___pluginOptions___allExtensions = 'pluginCreator.pluginOptions.allExtensions',
@@ -4818,9 +4821,6 @@ enum SitePageFieldsEnum {
   pluginCreator___pluginOptions___createLinkInHead = 'pluginCreator.pluginOptions.createLinkInHead',
   pluginCreator___pluginOptions___path = 'pluginCreator.pluginOptions.path',
   pluginCreator___pluginOptions___pathCheck = 'pluginCreator.pluginOptions.pathCheck',
-  pluginCreator___pluginOptions___projectId = 'pluginCreator.pluginOptions.projectId',
-  pluginCreator___pluginOptions___dataset = 'pluginCreator.pluginOptions.dataset',
-  pluginCreator___pluginOptions___graphqlTag = 'pluginCreator.pluginOptions.graphqlTag',
   pluginCreator___nodeAPIs = 'pluginCreator.nodeAPIs',
   pluginCreator___browserAPIs = 'pluginCreator.browserAPIs',
   pluginCreator___ssrAPIs = 'pluginCreator.ssrAPIs',
@@ -5012,6 +5012,9 @@ enum SitePluginFieldsEnum {
   pluginOptions___emitSchema___src___generated___gatsby_introspection_json = 'pluginOptions.emitSchema.src___generated___gatsby_introspection_json',
   pluginOptions___emitSchema___src___generated___gatsby_schema_graphql = 'pluginOptions.emitSchema.src___generated___gatsby_schema_graphql',
   pluginOptions___emitPluginDocuments___src___generated___gatsby_plugin_documents_graphql = 'pluginOptions.emitPluginDocuments.src___generated___gatsby_plugin_documents_graphql',
+  pluginOptions___projectId = 'pluginOptions.projectId',
+  pluginOptions___dataset = 'pluginOptions.dataset',
+  pluginOptions___graphqlTag = 'pluginOptions.graphqlTag',
   pluginOptions___isTSX = 'pluginOptions.isTSX',
   pluginOptions___jsxPragma = 'pluginOptions.jsxPragma',
   pluginOptions___allExtensions = 'pluginOptions.allExtensions',
@@ -5024,9 +5027,6 @@ enum SitePluginFieldsEnum {
   pluginOptions___createLinkInHead = 'pluginOptions.createLinkInHead',
   pluginOptions___path = 'pluginOptions.path',
   pluginOptions___pathCheck = 'pluginOptions.pathCheck',
-  pluginOptions___projectId = 'pluginOptions.projectId',
-  pluginOptions___dataset = 'pluginOptions.dataset',
-  pluginOptions___graphqlTag = 'pluginOptions.graphqlTag',
   nodeAPIs = 'nodeAPIs',
   browserAPIs = 'browserAPIs',
   ssrAPIs = 'ssrAPIs',
@@ -5143,6 +5143,9 @@ type SitePluginPluginOptions = {
   readonly outputPath: Maybe<Scalars['String']>;
   readonly emitSchema: Maybe<SitePluginPluginOptionsEmitSchema>;
   readonly emitPluginDocuments: Maybe<SitePluginPluginOptionsEmitPluginDocuments>;
+  readonly projectId: Maybe<Scalars['String']>;
+  readonly dataset: Maybe<Scalars['String']>;
+  readonly graphqlTag: Maybe<Scalars['String']>;
   readonly isTSX: Maybe<Scalars['Boolean']>;
   readonly jsxPragma: Maybe<Scalars['String']>;
   readonly allExtensions: Maybe<Scalars['Boolean']>;
@@ -5155,9 +5158,6 @@ type SitePluginPluginOptions = {
   readonly createLinkInHead: Maybe<Scalars['Boolean']>;
   readonly path: Maybe<Scalars['String']>;
   readonly pathCheck: Maybe<Scalars['Boolean']>;
-  readonly projectId: Maybe<Scalars['String']>;
-  readonly dataset: Maybe<Scalars['String']>;
-  readonly graphqlTag: Maybe<Scalars['String']>;
 };
 
 type SitePluginPluginOptionsEmitPluginDocuments = {
@@ -5182,6 +5182,9 @@ type SitePluginPluginOptionsFilterInput = {
   readonly outputPath: Maybe<StringQueryOperatorInput>;
   readonly emitSchema: Maybe<SitePluginPluginOptionsEmitSchemaFilterInput>;
   readonly emitPluginDocuments: Maybe<SitePluginPluginOptionsEmitPluginDocumentsFilterInput>;
+  readonly projectId: Maybe<StringQueryOperatorInput>;
+  readonly dataset: Maybe<StringQueryOperatorInput>;
+  readonly graphqlTag: Maybe<StringQueryOperatorInput>;
   readonly isTSX: Maybe<BooleanQueryOperatorInput>;
   readonly jsxPragma: Maybe<StringQueryOperatorInput>;
   readonly allExtensions: Maybe<BooleanQueryOperatorInput>;
@@ -5194,9 +5197,6 @@ type SitePluginPluginOptionsFilterInput = {
   readonly createLinkInHead: Maybe<BooleanQueryOperatorInput>;
   readonly path: Maybe<StringQueryOperatorInput>;
   readonly pathCheck: Maybe<BooleanQueryOperatorInput>;
-  readonly projectId: Maybe<StringQueryOperatorInput>;
-  readonly dataset: Maybe<StringQueryOperatorInput>;
-  readonly graphqlTag: Maybe<StringQueryOperatorInput>;
 };
 
 type SitePluginSortInput = {
@@ -5252,16 +5252,6 @@ type PagesQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 type PagesQueryQuery = { readonly allSitePage: { readonly nodes: ReadonlyArray<Pick<SitePage, 'path'>> } };
 
-type AboutQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type AboutQuery = { readonly allAbout: { readonly edges: ReadonlyArray<{ readonly node: Pick<SanityAbout, 'title' | '_rawBody'> }> } };
-
-type ContactQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type ContactQuery = { readonly allContact: { readonly edges: ReadonlyArray<{ readonly node: Pick<SanityContact, 'title' | '_rawBody'> }> } };
-
 type IndexPageQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -5269,16 +5259,6 @@ type IndexPageQuery = { readonly allSiteSettings: { readonly edges: ReadonlyArra
         Pick<SanityPost, 'id' | 'title' | 'subtitle' | 'publishedAt'>
         & { readonly mainImage: Maybe<{ readonly asset: Maybe<{ readonly fluid: Maybe<Pick<SanityImageFluid, 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>> }> }>, readonly slug: Maybe<Pick<SanitySlug, 'current'>> }
       ) }> } };
-
-type ResourcesQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type ResourcesQuery = { readonly allResources: { readonly edges: ReadonlyArray<{ readonly node: Pick<SanityResources, 'title' | '_rawBody'> }> } };
-
-type EventsQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type EventsQuery = { readonly allEvents: { readonly edges: ReadonlyArray<{ readonly node: Pick<SanityEvents, 'title' | '_rawBody'> }> } };
 
 type SeoQueryVariables = Exact<{ [key: string]: never; }>;
 
