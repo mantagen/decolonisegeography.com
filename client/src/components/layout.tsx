@@ -42,6 +42,7 @@ const HomeLink = styled(Link)`
 
 const SiteLogo = styled.img`
   height: 6rem;
+  min-width: 0;
   padding: 0.5rem 0;
   margin-right: 1rem;
 `;
@@ -69,7 +70,7 @@ const Layout: React.FC = props => {
       <GlobalStyle />
       <SiteHeader>
         <HomeLink to="/">
-          <SiteLogo src={logo} />
+          <SiteLogo src={logo} alt="Decolonising Geography Logo" />
           <SiteTitle>
             <SrOnly>Decolonising Geography</SrOnly>
           </SiteTitle>
