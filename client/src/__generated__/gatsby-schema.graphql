@@ -4298,6 +4298,9 @@ enum SitePageFieldsEnum {
   pluginCreator___pluginOptions___emitSchema___src___generated___gatsby_introspection_json
   pluginCreator___pluginOptions___emitSchema___src___generated___gatsby_schema_graphql
   pluginCreator___pluginOptions___emitPluginDocuments___src___generated___gatsby_plugin_documents_graphql
+  pluginCreator___pluginOptions___projectId
+  pluginCreator___pluginOptions___dataset
+  pluginCreator___pluginOptions___graphqlTag
   pluginCreator___pluginOptions___isTSX
   pluginCreator___pluginOptions___jsxPragma
   pluginCreator___pluginOptions___allExtensions
@@ -4310,9 +4313,6 @@ enum SitePageFieldsEnum {
   pluginCreator___pluginOptions___createLinkInHead
   pluginCreator___pluginOptions___path
   pluginCreator___pluginOptions___pathCheck
-  pluginCreator___pluginOptions___projectId
-  pluginCreator___pluginOptions___dataset
-  pluginCreator___pluginOptions___graphqlTag
   pluginCreator___nodeAPIs
   pluginCreator___browserAPIs
   pluginCreator___ssrAPIs
@@ -4492,6 +4492,9 @@ enum SitePluginFieldsEnum {
   pluginOptions___emitSchema___src___generated___gatsby_introspection_json
   pluginOptions___emitSchema___src___generated___gatsby_schema_graphql
   pluginOptions___emitPluginDocuments___src___generated___gatsby_plugin_documents_graphql
+  pluginOptions___projectId
+  pluginOptions___dataset
+  pluginOptions___graphqlTag
   pluginOptions___isTSX
   pluginOptions___jsxPragma
   pluginOptions___allExtensions
@@ -4504,9 +4507,6 @@ enum SitePluginFieldsEnum {
   pluginOptions___createLinkInHead
   pluginOptions___path
   pluginOptions___pathCheck
-  pluginOptions___projectId
-  pluginOptions___dataset
-  pluginOptions___graphqlTag
   nodeAPIs
   browserAPIs
   ssrAPIs
@@ -4623,6 +4623,9 @@ type SitePluginPluginOptions {
   outputPath: String
   emitSchema: SitePluginPluginOptionsEmitSchema
   emitPluginDocuments: SitePluginPluginOptionsEmitPluginDocuments
+  projectId: String
+  dataset: String
+  graphqlTag: String
   isTSX: Boolean
   jsxPragma: String
   allExtensions: Boolean
@@ -4635,9 +4638,6 @@ type SitePluginPluginOptions {
   createLinkInHead: Boolean
   path: String
   pathCheck: Boolean
-  projectId: String
-  dataset: String
-  graphqlTag: String
 }
 
 type SitePluginPluginOptionsEmitPluginDocuments {
@@ -4662,6 +4662,9 @@ input SitePluginPluginOptionsFilterInput {
   outputPath: StringQueryOperatorInput
   emitSchema: SitePluginPluginOptionsEmitSchemaFilterInput
   emitPluginDocuments: SitePluginPluginOptionsEmitPluginDocumentsFilterInput
+  projectId: StringQueryOperatorInput
+  dataset: StringQueryOperatorInput
+  graphqlTag: StringQueryOperatorInput
   isTSX: BooleanQueryOperatorInput
   jsxPragma: StringQueryOperatorInput
   allExtensions: BooleanQueryOperatorInput
@@ -4674,9 +4677,6 @@ input SitePluginPluginOptionsFilterInput {
   createLinkInHead: BooleanQueryOperatorInput
   path: StringQueryOperatorInput
   pathCheck: BooleanQueryOperatorInput
-  projectId: StringQueryOperatorInput
-  dataset: StringQueryOperatorInput
-  graphqlTag: StringQueryOperatorInput
 }
 
 input SitePluginSortInput {
