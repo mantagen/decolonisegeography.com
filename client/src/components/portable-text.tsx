@@ -21,8 +21,6 @@ const serializers = {
       );
     },
     internalLink: ({ mark, children }) => {
-      console.log("INTERNAL LINK", mark, children);
-
       if (!mark.reference || mark.reference._type !== "post") {
         console.error("Unsupported internal link");
         return children;
