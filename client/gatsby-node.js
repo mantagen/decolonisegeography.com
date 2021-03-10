@@ -40,7 +40,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   const postEdges = (result.data.allSanityPost || {}).edges || [];
 
   postEdges
-    .filter(edge => !isFuture(new Date(edge.node.publishedAt)))
+    // .filter(edge => !isFuture(new Date(edge.node.publishedAt)))
     .forEach((edge, index) => {
       const { id } = edge.node;
       createPage({

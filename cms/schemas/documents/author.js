@@ -20,12 +20,19 @@ export default {
     {
       name: "twitterHandle",
       title: "Twitter Handle",
-      description: "So that we can link to your twitter account on posts. Should start with '@'.",
+      description:
+        "So that we can link to your twitter account on posts. Should start with '@'.",
       type: "string",
       validation: (Rule) =>
         Rule.optional().custom((handle) =>
           handle[0] === "@" ? true : "Should start with '@'"
         ),
+    },
+    {
+      name: "websiteUrl",
+      title: "Website Address",
+      description: "Author's personal website.",
+      type: "url",
     },
     {
       name: "image",

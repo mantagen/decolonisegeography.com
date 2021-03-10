@@ -839,7 +839,7 @@ type Query {
   allSitePage(filter: SitePageFilterInput, sort: SitePageSortInput, skip: Int, limit: Int): SitePageConnection!
   sanityAbout(_id: StringQueryOperatorInput, _type: StringQueryOperatorInput, _createdAt: DateQueryOperatorInput, _updatedAt: DateQueryOperatorInput, _rev: StringQueryOperatorInput, _key: StringQueryOperatorInput, title: StringQueryOperatorInput, body: SanityBlockFilterListInput, _rawBody: JSONQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): SanityAbout
   allSanityAbout(filter: SanityAboutFilterInput, sort: SanityAboutSortInput, skip: Int, limit: Int): SanityAboutConnection!
-  sanityAuthor(_id: StringQueryOperatorInput, _type: StringQueryOperatorInput, _createdAt: DateQueryOperatorInput, _updatedAt: DateQueryOperatorInput, _rev: StringQueryOperatorInput, _key: StringQueryOperatorInput, name: StringQueryOperatorInput, slug: SanitySlugFilterInput, twitterHandle: StringQueryOperatorInput, image: SanityImageFilterInput, bio: SanityBlockFilterListInput, _rawSlug: JSONQueryOperatorInput, _rawImage: JSONQueryOperatorInput, _rawBio: JSONQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): SanityAuthor
+  sanityAuthor(_id: StringQueryOperatorInput, _type: StringQueryOperatorInput, _createdAt: DateQueryOperatorInput, _updatedAt: DateQueryOperatorInput, _rev: StringQueryOperatorInput, _key: StringQueryOperatorInput, name: StringQueryOperatorInput, slug: SanitySlugFilterInput, twitterHandle: StringQueryOperatorInput, websiteUrl: StringQueryOperatorInput, image: SanityImageFilterInput, bio: SanityBlockFilterListInput, _rawSlug: JSONQueryOperatorInput, _rawImage: JSONQueryOperatorInput, _rawBio: JSONQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): SanityAuthor
   allSanityAuthor(filter: SanityAuthorFilterInput, sort: SanityAuthorSortInput, skip: Int, limit: Int): SanityAuthorConnection!
   sanityCategory(_id: StringQueryOperatorInput, _type: StringQueryOperatorInput, _createdAt: DateQueryOperatorInput, _updatedAt: DateQueryOperatorInput, _rev: StringQueryOperatorInput, _key: StringQueryOperatorInput, title: StringQueryOperatorInput, description: StringQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): SanityCategory
   allSanityCategory(filter: SanityCategoryFilterInput, sort: SanityCategorySortInput, skip: Int, limit: Int): SanityCategoryConnection!
@@ -1122,6 +1122,7 @@ type SanityAuthor implements SanityDocument & Node {
   name: String
   slug: SanitySlug
   twitterHandle: String
+  websiteUrl: String
   image: SanityImage
   bio: [SanityBlock]
   _rawSlug(resolveReferences: SanityResolveReferencesConfiguration): JSON
@@ -1160,6 +1161,7 @@ enum SanityAuthorFieldsEnum {
   slug____type
   slug___current
   twitterHandle
+  websiteUrl
   image____key
   image____type
   image___asset____id
@@ -1349,6 +1351,7 @@ input SanityAuthorFilterInput {
   name: StringQueryOperatorInput
   slug: SanitySlugFilterInput
   twitterHandle: StringQueryOperatorInput
+  websiteUrl: StringQueryOperatorInput
   image: SanityImageFilterInput
   bio: SanityBlockFilterListInput
   _rawSlug: JSONQueryOperatorInput
@@ -2894,6 +2897,7 @@ enum SanityPostFieldsEnum {
   authors___slug____type
   authors___slug___current
   authors___twitterHandle
+  authors___websiteUrl
   authors___image____key
   authors___image____type
   authors___image___asset____id
@@ -3549,6 +3553,7 @@ enum SanitySiteSettingsFieldsEnum {
   author___slug____type
   author___slug___current
   author___twitterHandle
+  author___websiteUrl
   author___image____key
   author___image____type
   author___image___asset____id
@@ -4298,9 +4303,6 @@ enum SitePageFieldsEnum {
   pluginCreator___pluginOptions___emitSchema___src___generated___gatsby_introspection_json
   pluginCreator___pluginOptions___emitSchema___src___generated___gatsby_schema_graphql
   pluginCreator___pluginOptions___emitPluginDocuments___src___generated___gatsby_plugin_documents_graphql
-  pluginCreator___pluginOptions___projectId
-  pluginCreator___pluginOptions___dataset
-  pluginCreator___pluginOptions___graphqlTag
   pluginCreator___pluginOptions___isTSX
   pluginCreator___pluginOptions___jsxPragma
   pluginCreator___pluginOptions___allExtensions
@@ -4313,6 +4315,9 @@ enum SitePageFieldsEnum {
   pluginCreator___pluginOptions___createLinkInHead
   pluginCreator___pluginOptions___path
   pluginCreator___pluginOptions___pathCheck
+  pluginCreator___pluginOptions___projectId
+  pluginCreator___pluginOptions___dataset
+  pluginCreator___pluginOptions___graphqlTag
   pluginCreator___nodeAPIs
   pluginCreator___browserAPIs
   pluginCreator___ssrAPIs
@@ -4492,9 +4497,6 @@ enum SitePluginFieldsEnum {
   pluginOptions___emitSchema___src___generated___gatsby_introspection_json
   pluginOptions___emitSchema___src___generated___gatsby_schema_graphql
   pluginOptions___emitPluginDocuments___src___generated___gatsby_plugin_documents_graphql
-  pluginOptions___projectId
-  pluginOptions___dataset
-  pluginOptions___graphqlTag
   pluginOptions___isTSX
   pluginOptions___jsxPragma
   pluginOptions___allExtensions
@@ -4507,6 +4509,9 @@ enum SitePluginFieldsEnum {
   pluginOptions___createLinkInHead
   pluginOptions___path
   pluginOptions___pathCheck
+  pluginOptions___projectId
+  pluginOptions___dataset
+  pluginOptions___graphqlTag
   nodeAPIs
   browserAPIs
   ssrAPIs
@@ -4623,9 +4628,6 @@ type SitePluginPluginOptions {
   outputPath: String
   emitSchema: SitePluginPluginOptionsEmitSchema
   emitPluginDocuments: SitePluginPluginOptionsEmitPluginDocuments
-  projectId: String
-  dataset: String
-  graphqlTag: String
   isTSX: Boolean
   jsxPragma: String
   allExtensions: Boolean
@@ -4638,6 +4640,9 @@ type SitePluginPluginOptions {
   createLinkInHead: Boolean
   path: String
   pathCheck: Boolean
+  projectId: String
+  dataset: String
+  graphqlTag: String
 }
 
 type SitePluginPluginOptionsEmitPluginDocuments {
@@ -4662,9 +4667,6 @@ input SitePluginPluginOptionsFilterInput {
   outputPath: StringQueryOperatorInput
   emitSchema: SitePluginPluginOptionsEmitSchemaFilterInput
   emitPluginDocuments: SitePluginPluginOptionsEmitPluginDocumentsFilterInput
-  projectId: StringQueryOperatorInput
-  dataset: StringQueryOperatorInput
-  graphqlTag: StringQueryOperatorInput
   isTSX: BooleanQueryOperatorInput
   jsxPragma: StringQueryOperatorInput
   allExtensions: BooleanQueryOperatorInput
@@ -4677,6 +4679,9 @@ input SitePluginPluginOptionsFilterInput {
   createLinkInHead: BooleanQueryOperatorInput
   path: StringQueryOperatorInput
   pathCheck: BooleanQueryOperatorInput
+  projectId: StringQueryOperatorInput
+  dataset: StringQueryOperatorInput
+  graphqlTag: StringQueryOperatorInput
 }
 
 input SitePluginSortInput {

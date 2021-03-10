@@ -44,6 +44,7 @@ export const query = graphql`
         # }
         name
         twitterHandle
+        websiteUrl
       }
     }
   }

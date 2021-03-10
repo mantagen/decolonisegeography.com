@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import styled from "styled-components";
 
 import { PostTemplateData } from "../templates/post";
@@ -38,10 +38,10 @@ const Post: React.FC<PostProps> = props => {
 
   const { siteUrl } = siteSettings;
 
-  const {
+  let {
     title,
     subtitle,
-    authors,
+    authors = [],
     _rawBody,
     mainImage,
     publishedAt,
@@ -62,17 +62,45 @@ const Post: React.FC<PostProps> = props => {
         <ByLineAndSocial>
           <span>
             Written by{" "}
-            <AuthorLink
-              rel="author"
-              target="_blank"
-              href={
-                authors[0]?.twitterHandle
-                  ? `https://twitter.com/${authors[0].twitterHandle}`
-                  : "/about"
+            {authors.map((author, i) => {
+              if (!author) {
+                return null;
               }
-            >
-              {authors[0]?.name}
-            </AuthorLink>{" "}
+
+              const getPunctuation = (index: number, total: number) => {
+                const isLast = i === authors.length - 1;
+                const isPenultimate = i === authors.length - 2;
+                if (isLast) {
+                  return " ";
+                }
+                if (total === 2) {
+                  return " and ";
+                }
+                if (isPenultimate) {
+                  return ", and ";
+                }
+                return ", ";
+              };
+
+              const authorHref = author.twitterHandle
+                ? `https://twitter.com/${author.twitterHandle}`
+                : author.websiteUrl
+                ? author.websiteUrl
+                : "#";
+
+              return (
+                <Fragment>
+                  <AuthorLink
+                    rel="author"
+                    target={authorHref === "#" ? undefined : "_blank"}
+                    href={authorHref}
+                  >
+                    {author.name}
+                  </AuthorLink>
+                  {getPunctuation(i, authors.length)}
+                </Fragment>
+              );
+            })}
             on <PublishedAt>{formatDate(publishedAt)}</PublishedAt>
           </span>
           <SocialLink

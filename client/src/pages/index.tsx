@@ -100,7 +100,7 @@ const IndexPage: React.FC<IndexPageProps> = props => {
   const siteMeta = siteSettingsEdge ? siteSettingsEdge.node : {};
 
   const rows = postEdges
-    .filter(edge => !isFuture(new Date(edge.node.publishedAt)))
+    // .filter(edge => !isFuture(new Date(edge.node.publishedAt)))
     .reduce(
       (groups, edge) => {
         if (groups.length === 0) {
