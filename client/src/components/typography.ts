@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components";
+import { BREAK_POINT_S_PX } from "./global-style";
 
 export const articleContentCss = css`
   h1,
@@ -53,7 +54,11 @@ export const articleContentCss = css`
     margin-block-end: 1em;
     margin-inline-start: 0px;
     margin-inline-end: 0px;
-    padding-inline-start: 40px;
+    padding-inline-start: 20px;
+
+    @media (min-width: ${BREAK_POINT_S_PX}px) {
+      padding-inline-start: 40px;
+    }
   }
   li {
     margin-bottom: 0.5rem;

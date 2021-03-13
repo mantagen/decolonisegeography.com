@@ -735,12 +735,12 @@ type Query = {
   readonly allSanityCategory: SanityCategoryConnection;
   readonly sanityContact: Maybe<SanityContact>;
   readonly allSanityContact: SanityContactConnection;
-  readonly sanityEvents: Maybe<SanityEvents>;
-  readonly allSanityEvents: SanityEventsConnection;
+  readonly sanityMenu: Maybe<SanityMenu>;
+  readonly allSanityMenu: SanityMenuConnection;
+  readonly sanityPage: Maybe<SanityPage>;
+  readonly allSanityPage: SanityPageConnection;
   readonly sanityPost: Maybe<SanityPost>;
   readonly allSanityPost: SanityPostConnection;
-  readonly sanityResources: Maybe<SanityResources>;
-  readonly allSanityResources: SanityResourcesConnection;
   readonly sanityFileAsset: Maybe<SanityFileAsset>;
   readonly allSanityFileAsset: SanityFileAssetConnection;
   readonly sanityImageAsset: Maybe<SanityImageAsset>;
@@ -1001,7 +1001,31 @@ type Query_allSanityContactArgs = {
 };
 
 
-type Query_sanityEventsArgs = {
+type Query_sanityMenuArgs = {
+  _id: Maybe<StringQueryOperatorInput>;
+  _type: Maybe<StringQueryOperatorInput>;
+  _createdAt: Maybe<DateQueryOperatorInput>;
+  _updatedAt: Maybe<DateQueryOperatorInput>;
+  _rev: Maybe<StringQueryOperatorInput>;
+  _key: Maybe<StringQueryOperatorInput>;
+  pages: Maybe<SanityPageFilterListInput>;
+  _rawPages: Maybe<JSONQueryOperatorInput>;
+  id: Maybe<StringQueryOperatorInput>;
+  parent: Maybe<NodeFilterInput>;
+  children: Maybe<NodeFilterListInput>;
+  internal: Maybe<InternalFilterInput>;
+};
+
+
+type Query_allSanityMenuArgs = {
+  filter: Maybe<SanityMenuFilterInput>;
+  sort: Maybe<SanityMenuSortInput>;
+  skip: Maybe<Scalars['Int']>;
+  limit: Maybe<Scalars['Int']>;
+};
+
+
+type Query_sanityPageArgs = {
   _id: Maybe<StringQueryOperatorInput>;
   _type: Maybe<StringQueryOperatorInput>;
   _createdAt: Maybe<DateQueryOperatorInput>;
@@ -1009,7 +1033,9 @@ type Query_sanityEventsArgs = {
   _rev: Maybe<StringQueryOperatorInput>;
   _key: Maybe<StringQueryOperatorInput>;
   title: Maybe<StringQueryOperatorInput>;
+  slug: Maybe<SanitySlugFilterInput>;
   body: Maybe<SanityBlockFilterListInput>;
+  _rawSlug: Maybe<JSONQueryOperatorInput>;
   _rawBody: Maybe<JSONQueryOperatorInput>;
   id: Maybe<StringQueryOperatorInput>;
   parent: Maybe<NodeFilterInput>;
@@ -1018,9 +1044,9 @@ type Query_sanityEventsArgs = {
 };
 
 
-type Query_allSanityEventsArgs = {
-  filter: Maybe<SanityEventsFilterInput>;
-  sort: Maybe<SanityEventsSortInput>;
+type Query_allSanityPageArgs = {
+  filter: Maybe<SanityPageFilterInput>;
+  sort: Maybe<SanityPageSortInput>;
   skip: Maybe<Scalars['Int']>;
   limit: Maybe<Scalars['Int']>;
 };
@@ -1056,31 +1082,6 @@ type Query_sanityPostArgs = {
 type Query_allSanityPostArgs = {
   filter: Maybe<SanityPostFilterInput>;
   sort: Maybe<SanityPostSortInput>;
-  skip: Maybe<Scalars['Int']>;
-  limit: Maybe<Scalars['Int']>;
-};
-
-
-type Query_sanityResourcesArgs = {
-  _id: Maybe<StringQueryOperatorInput>;
-  _type: Maybe<StringQueryOperatorInput>;
-  _createdAt: Maybe<DateQueryOperatorInput>;
-  _updatedAt: Maybe<DateQueryOperatorInput>;
-  _rev: Maybe<StringQueryOperatorInput>;
-  _key: Maybe<StringQueryOperatorInput>;
-  title: Maybe<StringQueryOperatorInput>;
-  body: Maybe<SanityBlockFilterListInput>;
-  _rawBody: Maybe<JSONQueryOperatorInput>;
-  id: Maybe<StringQueryOperatorInput>;
-  parent: Maybe<NodeFilterInput>;
-  children: Maybe<NodeFilterListInput>;
-  internal: Maybe<InternalFilterInput>;
-};
-
-
-type Query_allSanityResourcesArgs = {
-  filter: Maybe<SanityResourcesFilterInput>;
-  sort: Maybe<SanityResourcesSortInput>;
   skip: Maybe<Scalars['Int']>;
   limit: Maybe<Scalars['Int']>;
 };
@@ -2188,208 +2189,6 @@ type SanityDocument = {
   readonly _rev: Maybe<Scalars['String']>;
 };
 
-type SanityEvents = SanityDocument & Node & {
-  readonly _id: Maybe<Scalars['String']>;
-  readonly _type: Maybe<Scalars['String']>;
-  readonly _createdAt: Maybe<Scalars['Date']>;
-  readonly _updatedAt: Maybe<Scalars['Date']>;
-  readonly _rev: Maybe<Scalars['String']>;
-  readonly _key: Maybe<Scalars['String']>;
-  readonly title: Maybe<Scalars['String']>;
-  readonly body: Maybe<ReadonlyArray<Maybe<SanityBlock>>>;
-  readonly _rawBody: Maybe<Scalars['JSON']>;
-  readonly id: Scalars['ID'];
-  readonly parent: Maybe<Node>;
-  readonly children: ReadonlyArray<Node>;
-  readonly internal: Internal;
-};
-
-
-type SanityEvents__createdAtArgs = {
-  formatString: Maybe<Scalars['String']>;
-  fromNow: Maybe<Scalars['Boolean']>;
-  difference: Maybe<Scalars['String']>;
-  locale: Maybe<Scalars['String']>;
-};
-
-
-type SanityEvents__updatedAtArgs = {
-  formatString: Maybe<Scalars['String']>;
-  fromNow: Maybe<Scalars['Boolean']>;
-  difference: Maybe<Scalars['String']>;
-  locale: Maybe<Scalars['String']>;
-};
-
-
-type SanityEvents__rawBodyArgs = {
-  resolveReferences: Maybe<SanityResolveReferencesConfiguration>;
-};
-
-type SanityEventsConnection = {
-  readonly totalCount: Scalars['Int'];
-  readonly edges: ReadonlyArray<SanityEventsEdge>;
-  readonly nodes: ReadonlyArray<SanityEvents>;
-  readonly pageInfo: PageInfo;
-  readonly distinct: ReadonlyArray<Scalars['String']>;
-  readonly group: ReadonlyArray<SanityEventsGroupConnection>;
-};
-
-
-type SanityEventsConnection_distinctArgs = {
-  field: SanityEventsFieldsEnum;
-};
-
-
-type SanityEventsConnection_groupArgs = {
-  skip: Maybe<Scalars['Int']>;
-  limit: Maybe<Scalars['Int']>;
-  field: SanityEventsFieldsEnum;
-};
-
-type SanityEventsEdge = {
-  readonly next: Maybe<SanityEvents>;
-  readonly node: SanityEvents;
-  readonly previous: Maybe<SanityEvents>;
-};
-
-enum SanityEventsFieldsEnum {
-  _id = '_id',
-  _type = '_type',
-  _createdAt = '_createdAt',
-  _updatedAt = '_updatedAt',
-  _rev = '_rev',
-  _key = '_key',
-  title = 'title',
-  body = 'body',
-  body____key = 'body._key',
-  body____type = 'body._type',
-  body___children = 'body.children',
-  body___children____key = 'body.children._key',
-  body___children____type = 'body.children._type',
-  body___children___marks = 'body.children.marks',
-  body___children___text = 'body.children.text',
-  body___style = 'body.style',
-  body___list = 'body.list',
-  body____rawChildren = 'body._rawChildren',
-  _rawBody = '_rawBody',
-  id = 'id',
-  parent___id = 'parent.id',
-  parent___parent___id = 'parent.parent.id',
-  parent___parent___parent___id = 'parent.parent.parent.id',
-  parent___parent___parent___children = 'parent.parent.parent.children',
-  parent___parent___children = 'parent.parent.children',
-  parent___parent___children___id = 'parent.parent.children.id',
-  parent___parent___children___children = 'parent.parent.children.children',
-  parent___parent___internal___content = 'parent.parent.internal.content',
-  parent___parent___internal___contentDigest = 'parent.parent.internal.contentDigest',
-  parent___parent___internal___description = 'parent.parent.internal.description',
-  parent___parent___internal___fieldOwners = 'parent.parent.internal.fieldOwners',
-  parent___parent___internal___ignoreType = 'parent.parent.internal.ignoreType',
-  parent___parent___internal___mediaType = 'parent.parent.internal.mediaType',
-  parent___parent___internal___owner = 'parent.parent.internal.owner',
-  parent___parent___internal___type = 'parent.parent.internal.type',
-  parent___children = 'parent.children',
-  parent___children___id = 'parent.children.id',
-  parent___children___parent___id = 'parent.children.parent.id',
-  parent___children___parent___children = 'parent.children.parent.children',
-  parent___children___children = 'parent.children.children',
-  parent___children___children___id = 'parent.children.children.id',
-  parent___children___children___children = 'parent.children.children.children',
-  parent___children___internal___content = 'parent.children.internal.content',
-  parent___children___internal___contentDigest = 'parent.children.internal.contentDigest',
-  parent___children___internal___description = 'parent.children.internal.description',
-  parent___children___internal___fieldOwners = 'parent.children.internal.fieldOwners',
-  parent___children___internal___ignoreType = 'parent.children.internal.ignoreType',
-  parent___children___internal___mediaType = 'parent.children.internal.mediaType',
-  parent___children___internal___owner = 'parent.children.internal.owner',
-  parent___children___internal___type = 'parent.children.internal.type',
-  parent___internal___content = 'parent.internal.content',
-  parent___internal___contentDigest = 'parent.internal.contentDigest',
-  parent___internal___description = 'parent.internal.description',
-  parent___internal___fieldOwners = 'parent.internal.fieldOwners',
-  parent___internal___ignoreType = 'parent.internal.ignoreType',
-  parent___internal___mediaType = 'parent.internal.mediaType',
-  parent___internal___owner = 'parent.internal.owner',
-  parent___internal___type = 'parent.internal.type',
-  children = 'children',
-  children___id = 'children.id',
-  children___parent___id = 'children.parent.id',
-  children___parent___parent___id = 'children.parent.parent.id',
-  children___parent___parent___children = 'children.parent.parent.children',
-  children___parent___children = 'children.parent.children',
-  children___parent___children___id = 'children.parent.children.id',
-  children___parent___children___children = 'children.parent.children.children',
-  children___parent___internal___content = 'children.parent.internal.content',
-  children___parent___internal___contentDigest = 'children.parent.internal.contentDigest',
-  children___parent___internal___description = 'children.parent.internal.description',
-  children___parent___internal___fieldOwners = 'children.parent.internal.fieldOwners',
-  children___parent___internal___ignoreType = 'children.parent.internal.ignoreType',
-  children___parent___internal___mediaType = 'children.parent.internal.mediaType',
-  children___parent___internal___owner = 'children.parent.internal.owner',
-  children___parent___internal___type = 'children.parent.internal.type',
-  children___children = 'children.children',
-  children___children___id = 'children.children.id',
-  children___children___parent___id = 'children.children.parent.id',
-  children___children___parent___children = 'children.children.parent.children',
-  children___children___children = 'children.children.children',
-  children___children___children___id = 'children.children.children.id',
-  children___children___children___children = 'children.children.children.children',
-  children___children___internal___content = 'children.children.internal.content',
-  children___children___internal___contentDigest = 'children.children.internal.contentDigest',
-  children___children___internal___description = 'children.children.internal.description',
-  children___children___internal___fieldOwners = 'children.children.internal.fieldOwners',
-  children___children___internal___ignoreType = 'children.children.internal.ignoreType',
-  children___children___internal___mediaType = 'children.children.internal.mediaType',
-  children___children___internal___owner = 'children.children.internal.owner',
-  children___children___internal___type = 'children.children.internal.type',
-  children___internal___content = 'children.internal.content',
-  children___internal___contentDigest = 'children.internal.contentDigest',
-  children___internal___description = 'children.internal.description',
-  children___internal___fieldOwners = 'children.internal.fieldOwners',
-  children___internal___ignoreType = 'children.internal.ignoreType',
-  children___internal___mediaType = 'children.internal.mediaType',
-  children___internal___owner = 'children.internal.owner',
-  children___internal___type = 'children.internal.type',
-  internal___content = 'internal.content',
-  internal___contentDigest = 'internal.contentDigest',
-  internal___description = 'internal.description',
-  internal___fieldOwners = 'internal.fieldOwners',
-  internal___ignoreType = 'internal.ignoreType',
-  internal___mediaType = 'internal.mediaType',
-  internal___owner = 'internal.owner',
-  internal___type = 'internal.type'
-}
-
-type SanityEventsFilterInput = {
-  readonly _id: Maybe<StringQueryOperatorInput>;
-  readonly _type: Maybe<StringQueryOperatorInput>;
-  readonly _createdAt: Maybe<DateQueryOperatorInput>;
-  readonly _updatedAt: Maybe<DateQueryOperatorInput>;
-  readonly _rev: Maybe<StringQueryOperatorInput>;
-  readonly _key: Maybe<StringQueryOperatorInput>;
-  readonly title: Maybe<StringQueryOperatorInput>;
-  readonly body: Maybe<SanityBlockFilterListInput>;
-  readonly _rawBody: Maybe<JSONQueryOperatorInput>;
-  readonly id: Maybe<StringQueryOperatorInput>;
-  readonly parent: Maybe<NodeFilterInput>;
-  readonly children: Maybe<NodeFilterListInput>;
-  readonly internal: Maybe<InternalFilterInput>;
-};
-
-type SanityEventsGroupConnection = {
-  readonly totalCount: Scalars['Int'];
-  readonly edges: ReadonlyArray<SanityEventsEdge>;
-  readonly nodes: ReadonlyArray<SanityEvents>;
-  readonly pageInfo: PageInfo;
-  readonly field: Scalars['String'];
-  readonly fieldValue: Maybe<Scalars['String']>;
-};
-
-type SanityEventsSortInput = {
-  readonly fields: Maybe<ReadonlyArray<Maybe<SanityEventsFieldsEnum>>>;
-  readonly order: Maybe<ReadonlyArray<Maybe<SortOrderEnum>>>;
-};
-
 type SanityFile = {
   readonly _key: Maybe<Scalars['String']>;
   readonly _type: Maybe<Scalars['String']>;
@@ -3258,6 +3057,475 @@ type SanityImagePaletteSwatchFilterInput = {
   readonly title: Maybe<StringQueryOperatorInput>;
 };
 
+type SanityMenu = SanityDocument & Node & {
+  readonly _id: Maybe<Scalars['String']>;
+  readonly _type: Maybe<Scalars['String']>;
+  readonly _createdAt: Maybe<Scalars['Date']>;
+  readonly _updatedAt: Maybe<Scalars['Date']>;
+  readonly _rev: Maybe<Scalars['String']>;
+  readonly _key: Maybe<Scalars['String']>;
+  readonly pages: Maybe<ReadonlyArray<Maybe<SanityPage>>>;
+  readonly _rawPages: Maybe<Scalars['JSON']>;
+  readonly id: Scalars['ID'];
+  readonly parent: Maybe<Node>;
+  readonly children: ReadonlyArray<Node>;
+  readonly internal: Internal;
+};
+
+
+type SanityMenu__createdAtArgs = {
+  formatString: Maybe<Scalars['String']>;
+  fromNow: Maybe<Scalars['Boolean']>;
+  difference: Maybe<Scalars['String']>;
+  locale: Maybe<Scalars['String']>;
+};
+
+
+type SanityMenu__updatedAtArgs = {
+  formatString: Maybe<Scalars['String']>;
+  fromNow: Maybe<Scalars['Boolean']>;
+  difference: Maybe<Scalars['String']>;
+  locale: Maybe<Scalars['String']>;
+};
+
+
+type SanityMenu__rawPagesArgs = {
+  resolveReferences: Maybe<SanityResolveReferencesConfiguration>;
+};
+
+type SanityMenuConnection = {
+  readonly totalCount: Scalars['Int'];
+  readonly edges: ReadonlyArray<SanityMenuEdge>;
+  readonly nodes: ReadonlyArray<SanityMenu>;
+  readonly pageInfo: PageInfo;
+  readonly distinct: ReadonlyArray<Scalars['String']>;
+  readonly group: ReadonlyArray<SanityMenuGroupConnection>;
+};
+
+
+type SanityMenuConnection_distinctArgs = {
+  field: SanityMenuFieldsEnum;
+};
+
+
+type SanityMenuConnection_groupArgs = {
+  skip: Maybe<Scalars['Int']>;
+  limit: Maybe<Scalars['Int']>;
+  field: SanityMenuFieldsEnum;
+};
+
+type SanityMenuEdge = {
+  readonly next: Maybe<SanityMenu>;
+  readonly node: SanityMenu;
+  readonly previous: Maybe<SanityMenu>;
+};
+
+enum SanityMenuFieldsEnum {
+  _id = '_id',
+  _type = '_type',
+  _createdAt = '_createdAt',
+  _updatedAt = '_updatedAt',
+  _rev = '_rev',
+  _key = '_key',
+  pages = 'pages',
+  pages____id = 'pages._id',
+  pages____type = 'pages._type',
+  pages____createdAt = 'pages._createdAt',
+  pages____updatedAt = 'pages._updatedAt',
+  pages____rev = 'pages._rev',
+  pages____key = 'pages._key',
+  pages___title = 'pages.title',
+  pages___slug____key = 'pages.slug._key',
+  pages___slug____type = 'pages.slug._type',
+  pages___slug___current = 'pages.slug.current',
+  pages___body = 'pages.body',
+  pages___body____key = 'pages.body._key',
+  pages___body____type = 'pages.body._type',
+  pages___body___children = 'pages.body.children',
+  pages___body___children____key = 'pages.body.children._key',
+  pages___body___children____type = 'pages.body.children._type',
+  pages___body___children___marks = 'pages.body.children.marks',
+  pages___body___children___text = 'pages.body.children.text',
+  pages___body___style = 'pages.body.style',
+  pages___body___list = 'pages.body.list',
+  pages___body____rawChildren = 'pages.body._rawChildren',
+  pages____rawSlug = 'pages._rawSlug',
+  pages____rawBody = 'pages._rawBody',
+  pages___id = 'pages.id',
+  pages___parent___id = 'pages.parent.id',
+  pages___parent___parent___id = 'pages.parent.parent.id',
+  pages___parent___parent___children = 'pages.parent.parent.children',
+  pages___parent___children = 'pages.parent.children',
+  pages___parent___children___id = 'pages.parent.children.id',
+  pages___parent___children___children = 'pages.parent.children.children',
+  pages___parent___internal___content = 'pages.parent.internal.content',
+  pages___parent___internal___contentDigest = 'pages.parent.internal.contentDigest',
+  pages___parent___internal___description = 'pages.parent.internal.description',
+  pages___parent___internal___fieldOwners = 'pages.parent.internal.fieldOwners',
+  pages___parent___internal___ignoreType = 'pages.parent.internal.ignoreType',
+  pages___parent___internal___mediaType = 'pages.parent.internal.mediaType',
+  pages___parent___internal___owner = 'pages.parent.internal.owner',
+  pages___parent___internal___type = 'pages.parent.internal.type',
+  pages___children = 'pages.children',
+  pages___children___id = 'pages.children.id',
+  pages___children___parent___id = 'pages.children.parent.id',
+  pages___children___parent___children = 'pages.children.parent.children',
+  pages___children___children = 'pages.children.children',
+  pages___children___children___id = 'pages.children.children.id',
+  pages___children___children___children = 'pages.children.children.children',
+  pages___children___internal___content = 'pages.children.internal.content',
+  pages___children___internal___contentDigest = 'pages.children.internal.contentDigest',
+  pages___children___internal___description = 'pages.children.internal.description',
+  pages___children___internal___fieldOwners = 'pages.children.internal.fieldOwners',
+  pages___children___internal___ignoreType = 'pages.children.internal.ignoreType',
+  pages___children___internal___mediaType = 'pages.children.internal.mediaType',
+  pages___children___internal___owner = 'pages.children.internal.owner',
+  pages___children___internal___type = 'pages.children.internal.type',
+  pages___internal___content = 'pages.internal.content',
+  pages___internal___contentDigest = 'pages.internal.contentDigest',
+  pages___internal___description = 'pages.internal.description',
+  pages___internal___fieldOwners = 'pages.internal.fieldOwners',
+  pages___internal___ignoreType = 'pages.internal.ignoreType',
+  pages___internal___mediaType = 'pages.internal.mediaType',
+  pages___internal___owner = 'pages.internal.owner',
+  pages___internal___type = 'pages.internal.type',
+  _rawPages = '_rawPages',
+  id = 'id',
+  parent___id = 'parent.id',
+  parent___parent___id = 'parent.parent.id',
+  parent___parent___parent___id = 'parent.parent.parent.id',
+  parent___parent___parent___children = 'parent.parent.parent.children',
+  parent___parent___children = 'parent.parent.children',
+  parent___parent___children___id = 'parent.parent.children.id',
+  parent___parent___children___children = 'parent.parent.children.children',
+  parent___parent___internal___content = 'parent.parent.internal.content',
+  parent___parent___internal___contentDigest = 'parent.parent.internal.contentDigest',
+  parent___parent___internal___description = 'parent.parent.internal.description',
+  parent___parent___internal___fieldOwners = 'parent.parent.internal.fieldOwners',
+  parent___parent___internal___ignoreType = 'parent.parent.internal.ignoreType',
+  parent___parent___internal___mediaType = 'parent.parent.internal.mediaType',
+  parent___parent___internal___owner = 'parent.parent.internal.owner',
+  parent___parent___internal___type = 'parent.parent.internal.type',
+  parent___children = 'parent.children',
+  parent___children___id = 'parent.children.id',
+  parent___children___parent___id = 'parent.children.parent.id',
+  parent___children___parent___children = 'parent.children.parent.children',
+  parent___children___children = 'parent.children.children',
+  parent___children___children___id = 'parent.children.children.id',
+  parent___children___children___children = 'parent.children.children.children',
+  parent___children___internal___content = 'parent.children.internal.content',
+  parent___children___internal___contentDigest = 'parent.children.internal.contentDigest',
+  parent___children___internal___description = 'parent.children.internal.description',
+  parent___children___internal___fieldOwners = 'parent.children.internal.fieldOwners',
+  parent___children___internal___ignoreType = 'parent.children.internal.ignoreType',
+  parent___children___internal___mediaType = 'parent.children.internal.mediaType',
+  parent___children___internal___owner = 'parent.children.internal.owner',
+  parent___children___internal___type = 'parent.children.internal.type',
+  parent___internal___content = 'parent.internal.content',
+  parent___internal___contentDigest = 'parent.internal.contentDigest',
+  parent___internal___description = 'parent.internal.description',
+  parent___internal___fieldOwners = 'parent.internal.fieldOwners',
+  parent___internal___ignoreType = 'parent.internal.ignoreType',
+  parent___internal___mediaType = 'parent.internal.mediaType',
+  parent___internal___owner = 'parent.internal.owner',
+  parent___internal___type = 'parent.internal.type',
+  children = 'children',
+  children___id = 'children.id',
+  children___parent___id = 'children.parent.id',
+  children___parent___parent___id = 'children.parent.parent.id',
+  children___parent___parent___children = 'children.parent.parent.children',
+  children___parent___children = 'children.parent.children',
+  children___parent___children___id = 'children.parent.children.id',
+  children___parent___children___children = 'children.parent.children.children',
+  children___parent___internal___content = 'children.parent.internal.content',
+  children___parent___internal___contentDigest = 'children.parent.internal.contentDigest',
+  children___parent___internal___description = 'children.parent.internal.description',
+  children___parent___internal___fieldOwners = 'children.parent.internal.fieldOwners',
+  children___parent___internal___ignoreType = 'children.parent.internal.ignoreType',
+  children___parent___internal___mediaType = 'children.parent.internal.mediaType',
+  children___parent___internal___owner = 'children.parent.internal.owner',
+  children___parent___internal___type = 'children.parent.internal.type',
+  children___children = 'children.children',
+  children___children___id = 'children.children.id',
+  children___children___parent___id = 'children.children.parent.id',
+  children___children___parent___children = 'children.children.parent.children',
+  children___children___children = 'children.children.children',
+  children___children___children___id = 'children.children.children.id',
+  children___children___children___children = 'children.children.children.children',
+  children___children___internal___content = 'children.children.internal.content',
+  children___children___internal___contentDigest = 'children.children.internal.contentDigest',
+  children___children___internal___description = 'children.children.internal.description',
+  children___children___internal___fieldOwners = 'children.children.internal.fieldOwners',
+  children___children___internal___ignoreType = 'children.children.internal.ignoreType',
+  children___children___internal___mediaType = 'children.children.internal.mediaType',
+  children___children___internal___owner = 'children.children.internal.owner',
+  children___children___internal___type = 'children.children.internal.type',
+  children___internal___content = 'children.internal.content',
+  children___internal___contentDigest = 'children.internal.contentDigest',
+  children___internal___description = 'children.internal.description',
+  children___internal___fieldOwners = 'children.internal.fieldOwners',
+  children___internal___ignoreType = 'children.internal.ignoreType',
+  children___internal___mediaType = 'children.internal.mediaType',
+  children___internal___owner = 'children.internal.owner',
+  children___internal___type = 'children.internal.type',
+  internal___content = 'internal.content',
+  internal___contentDigest = 'internal.contentDigest',
+  internal___description = 'internal.description',
+  internal___fieldOwners = 'internal.fieldOwners',
+  internal___ignoreType = 'internal.ignoreType',
+  internal___mediaType = 'internal.mediaType',
+  internal___owner = 'internal.owner',
+  internal___type = 'internal.type'
+}
+
+type SanityMenuFilterInput = {
+  readonly _id: Maybe<StringQueryOperatorInput>;
+  readonly _type: Maybe<StringQueryOperatorInput>;
+  readonly _createdAt: Maybe<DateQueryOperatorInput>;
+  readonly _updatedAt: Maybe<DateQueryOperatorInput>;
+  readonly _rev: Maybe<StringQueryOperatorInput>;
+  readonly _key: Maybe<StringQueryOperatorInput>;
+  readonly pages: Maybe<SanityPageFilterListInput>;
+  readonly _rawPages: Maybe<JSONQueryOperatorInput>;
+  readonly id: Maybe<StringQueryOperatorInput>;
+  readonly parent: Maybe<NodeFilterInput>;
+  readonly children: Maybe<NodeFilterListInput>;
+  readonly internal: Maybe<InternalFilterInput>;
+};
+
+type SanityMenuGroupConnection = {
+  readonly totalCount: Scalars['Int'];
+  readonly edges: ReadonlyArray<SanityMenuEdge>;
+  readonly nodes: ReadonlyArray<SanityMenu>;
+  readonly pageInfo: PageInfo;
+  readonly field: Scalars['String'];
+  readonly fieldValue: Maybe<Scalars['String']>;
+};
+
+type SanityMenuSortInput = {
+  readonly fields: Maybe<ReadonlyArray<Maybe<SanityMenuFieldsEnum>>>;
+  readonly order: Maybe<ReadonlyArray<Maybe<SortOrderEnum>>>;
+};
+
+type SanityPage = SanityDocument & Node & {
+  readonly _id: Maybe<Scalars['String']>;
+  readonly _type: Maybe<Scalars['String']>;
+  readonly _createdAt: Maybe<Scalars['Date']>;
+  readonly _updatedAt: Maybe<Scalars['Date']>;
+  readonly _rev: Maybe<Scalars['String']>;
+  readonly _key: Maybe<Scalars['String']>;
+  readonly title: Maybe<Scalars['String']>;
+  readonly slug: Maybe<SanitySlug>;
+  readonly body: Maybe<ReadonlyArray<Maybe<SanityBlock>>>;
+  readonly _rawSlug: Maybe<Scalars['JSON']>;
+  readonly _rawBody: Maybe<Scalars['JSON']>;
+  readonly id: Scalars['ID'];
+  readonly parent: Maybe<Node>;
+  readonly children: ReadonlyArray<Node>;
+  readonly internal: Internal;
+};
+
+
+type SanityPage__createdAtArgs = {
+  formatString: Maybe<Scalars['String']>;
+  fromNow: Maybe<Scalars['Boolean']>;
+  difference: Maybe<Scalars['String']>;
+  locale: Maybe<Scalars['String']>;
+};
+
+
+type SanityPage__updatedAtArgs = {
+  formatString: Maybe<Scalars['String']>;
+  fromNow: Maybe<Scalars['Boolean']>;
+  difference: Maybe<Scalars['String']>;
+  locale: Maybe<Scalars['String']>;
+};
+
+
+type SanityPage__rawSlugArgs = {
+  resolveReferences: Maybe<SanityResolveReferencesConfiguration>;
+};
+
+
+type SanityPage__rawBodyArgs = {
+  resolveReferences: Maybe<SanityResolveReferencesConfiguration>;
+};
+
+type SanityPageConnection = {
+  readonly totalCount: Scalars['Int'];
+  readonly edges: ReadonlyArray<SanityPageEdge>;
+  readonly nodes: ReadonlyArray<SanityPage>;
+  readonly pageInfo: PageInfo;
+  readonly distinct: ReadonlyArray<Scalars['String']>;
+  readonly group: ReadonlyArray<SanityPageGroupConnection>;
+};
+
+
+type SanityPageConnection_distinctArgs = {
+  field: SanityPageFieldsEnum;
+};
+
+
+type SanityPageConnection_groupArgs = {
+  skip: Maybe<Scalars['Int']>;
+  limit: Maybe<Scalars['Int']>;
+  field: SanityPageFieldsEnum;
+};
+
+type SanityPageEdge = {
+  readonly next: Maybe<SanityPage>;
+  readonly node: SanityPage;
+  readonly previous: Maybe<SanityPage>;
+};
+
+enum SanityPageFieldsEnum {
+  _id = '_id',
+  _type = '_type',
+  _createdAt = '_createdAt',
+  _updatedAt = '_updatedAt',
+  _rev = '_rev',
+  _key = '_key',
+  title = 'title',
+  slug____key = 'slug._key',
+  slug____type = 'slug._type',
+  slug___current = 'slug.current',
+  body = 'body',
+  body____key = 'body._key',
+  body____type = 'body._type',
+  body___children = 'body.children',
+  body___children____key = 'body.children._key',
+  body___children____type = 'body.children._type',
+  body___children___marks = 'body.children.marks',
+  body___children___text = 'body.children.text',
+  body___style = 'body.style',
+  body___list = 'body.list',
+  body____rawChildren = 'body._rawChildren',
+  _rawSlug = '_rawSlug',
+  _rawBody = '_rawBody',
+  id = 'id',
+  parent___id = 'parent.id',
+  parent___parent___id = 'parent.parent.id',
+  parent___parent___parent___id = 'parent.parent.parent.id',
+  parent___parent___parent___children = 'parent.parent.parent.children',
+  parent___parent___children = 'parent.parent.children',
+  parent___parent___children___id = 'parent.parent.children.id',
+  parent___parent___children___children = 'parent.parent.children.children',
+  parent___parent___internal___content = 'parent.parent.internal.content',
+  parent___parent___internal___contentDigest = 'parent.parent.internal.contentDigest',
+  parent___parent___internal___description = 'parent.parent.internal.description',
+  parent___parent___internal___fieldOwners = 'parent.parent.internal.fieldOwners',
+  parent___parent___internal___ignoreType = 'parent.parent.internal.ignoreType',
+  parent___parent___internal___mediaType = 'parent.parent.internal.mediaType',
+  parent___parent___internal___owner = 'parent.parent.internal.owner',
+  parent___parent___internal___type = 'parent.parent.internal.type',
+  parent___children = 'parent.children',
+  parent___children___id = 'parent.children.id',
+  parent___children___parent___id = 'parent.children.parent.id',
+  parent___children___parent___children = 'parent.children.parent.children',
+  parent___children___children = 'parent.children.children',
+  parent___children___children___id = 'parent.children.children.id',
+  parent___children___children___children = 'parent.children.children.children',
+  parent___children___internal___content = 'parent.children.internal.content',
+  parent___children___internal___contentDigest = 'parent.children.internal.contentDigest',
+  parent___children___internal___description = 'parent.children.internal.description',
+  parent___children___internal___fieldOwners = 'parent.children.internal.fieldOwners',
+  parent___children___internal___ignoreType = 'parent.children.internal.ignoreType',
+  parent___children___internal___mediaType = 'parent.children.internal.mediaType',
+  parent___children___internal___owner = 'parent.children.internal.owner',
+  parent___children___internal___type = 'parent.children.internal.type',
+  parent___internal___content = 'parent.internal.content',
+  parent___internal___contentDigest = 'parent.internal.contentDigest',
+  parent___internal___description = 'parent.internal.description',
+  parent___internal___fieldOwners = 'parent.internal.fieldOwners',
+  parent___internal___ignoreType = 'parent.internal.ignoreType',
+  parent___internal___mediaType = 'parent.internal.mediaType',
+  parent___internal___owner = 'parent.internal.owner',
+  parent___internal___type = 'parent.internal.type',
+  children = 'children',
+  children___id = 'children.id',
+  children___parent___id = 'children.parent.id',
+  children___parent___parent___id = 'children.parent.parent.id',
+  children___parent___parent___children = 'children.parent.parent.children',
+  children___parent___children = 'children.parent.children',
+  children___parent___children___id = 'children.parent.children.id',
+  children___parent___children___children = 'children.parent.children.children',
+  children___parent___internal___content = 'children.parent.internal.content',
+  children___parent___internal___contentDigest = 'children.parent.internal.contentDigest',
+  children___parent___internal___description = 'children.parent.internal.description',
+  children___parent___internal___fieldOwners = 'children.parent.internal.fieldOwners',
+  children___parent___internal___ignoreType = 'children.parent.internal.ignoreType',
+  children___parent___internal___mediaType = 'children.parent.internal.mediaType',
+  children___parent___internal___owner = 'children.parent.internal.owner',
+  children___parent___internal___type = 'children.parent.internal.type',
+  children___children = 'children.children',
+  children___children___id = 'children.children.id',
+  children___children___parent___id = 'children.children.parent.id',
+  children___children___parent___children = 'children.children.parent.children',
+  children___children___children = 'children.children.children',
+  children___children___children___id = 'children.children.children.id',
+  children___children___children___children = 'children.children.children.children',
+  children___children___internal___content = 'children.children.internal.content',
+  children___children___internal___contentDigest = 'children.children.internal.contentDigest',
+  children___children___internal___description = 'children.children.internal.description',
+  children___children___internal___fieldOwners = 'children.children.internal.fieldOwners',
+  children___children___internal___ignoreType = 'children.children.internal.ignoreType',
+  children___children___internal___mediaType = 'children.children.internal.mediaType',
+  children___children___internal___owner = 'children.children.internal.owner',
+  children___children___internal___type = 'children.children.internal.type',
+  children___internal___content = 'children.internal.content',
+  children___internal___contentDigest = 'children.internal.contentDigest',
+  children___internal___description = 'children.internal.description',
+  children___internal___fieldOwners = 'children.internal.fieldOwners',
+  children___internal___ignoreType = 'children.internal.ignoreType',
+  children___internal___mediaType = 'children.internal.mediaType',
+  children___internal___owner = 'children.internal.owner',
+  children___internal___type = 'children.internal.type',
+  internal___content = 'internal.content',
+  internal___contentDigest = 'internal.contentDigest',
+  internal___description = 'internal.description',
+  internal___fieldOwners = 'internal.fieldOwners',
+  internal___ignoreType = 'internal.ignoreType',
+  internal___mediaType = 'internal.mediaType',
+  internal___owner = 'internal.owner',
+  internal___type = 'internal.type'
+}
+
+type SanityPageFilterInput = {
+  readonly _id: Maybe<StringQueryOperatorInput>;
+  readonly _type: Maybe<StringQueryOperatorInput>;
+  readonly _createdAt: Maybe<DateQueryOperatorInput>;
+  readonly _updatedAt: Maybe<DateQueryOperatorInput>;
+  readonly _rev: Maybe<StringQueryOperatorInput>;
+  readonly _key: Maybe<StringQueryOperatorInput>;
+  readonly title: Maybe<StringQueryOperatorInput>;
+  readonly slug: Maybe<SanitySlugFilterInput>;
+  readonly body: Maybe<SanityBlockFilterListInput>;
+  readonly _rawSlug: Maybe<JSONQueryOperatorInput>;
+  readonly _rawBody: Maybe<JSONQueryOperatorInput>;
+  readonly id: Maybe<StringQueryOperatorInput>;
+  readonly parent: Maybe<NodeFilterInput>;
+  readonly children: Maybe<NodeFilterListInput>;
+  readonly internal: Maybe<InternalFilterInput>;
+};
+
+type SanityPageFilterListInput = {
+  readonly elemMatch: Maybe<SanityPageFilterInput>;
+};
+
+type SanityPageGroupConnection = {
+  readonly totalCount: Scalars['Int'];
+  readonly edges: ReadonlyArray<SanityPageEdge>;
+  readonly nodes: ReadonlyArray<SanityPage>;
+  readonly pageInfo: PageInfo;
+  readonly field: Scalars['String'];
+  readonly fieldValue: Maybe<Scalars['String']>;
+};
+
+type SanityPageSortInput = {
+  readonly fields: Maybe<ReadonlyArray<Maybe<SanityPageFieldsEnum>>>;
+  readonly order: Maybe<ReadonlyArray<Maybe<SortOrderEnum>>>;
+};
+
 type SanityPost = SanityDocument & Node & {
   readonly _id: Maybe<Scalars['String']>;
   readonly _type: Maybe<Scalars['String']>;
@@ -3747,208 +4015,6 @@ type SanityPostSortInput = {
 type SanityResolveReferencesConfiguration = {
   /** Max depth to resolve references to */
   readonly maxDepth: Scalars['Int'];
-};
-
-type SanityResources = SanityDocument & Node & {
-  readonly _id: Maybe<Scalars['String']>;
-  readonly _type: Maybe<Scalars['String']>;
-  readonly _createdAt: Maybe<Scalars['Date']>;
-  readonly _updatedAt: Maybe<Scalars['Date']>;
-  readonly _rev: Maybe<Scalars['String']>;
-  readonly _key: Maybe<Scalars['String']>;
-  readonly title: Maybe<Scalars['String']>;
-  readonly body: Maybe<ReadonlyArray<Maybe<SanityBlock>>>;
-  readonly _rawBody: Maybe<Scalars['JSON']>;
-  readonly id: Scalars['ID'];
-  readonly parent: Maybe<Node>;
-  readonly children: ReadonlyArray<Node>;
-  readonly internal: Internal;
-};
-
-
-type SanityResources__createdAtArgs = {
-  formatString: Maybe<Scalars['String']>;
-  fromNow: Maybe<Scalars['Boolean']>;
-  difference: Maybe<Scalars['String']>;
-  locale: Maybe<Scalars['String']>;
-};
-
-
-type SanityResources__updatedAtArgs = {
-  formatString: Maybe<Scalars['String']>;
-  fromNow: Maybe<Scalars['Boolean']>;
-  difference: Maybe<Scalars['String']>;
-  locale: Maybe<Scalars['String']>;
-};
-
-
-type SanityResources__rawBodyArgs = {
-  resolveReferences: Maybe<SanityResolveReferencesConfiguration>;
-};
-
-type SanityResourcesConnection = {
-  readonly totalCount: Scalars['Int'];
-  readonly edges: ReadonlyArray<SanityResourcesEdge>;
-  readonly nodes: ReadonlyArray<SanityResources>;
-  readonly pageInfo: PageInfo;
-  readonly distinct: ReadonlyArray<Scalars['String']>;
-  readonly group: ReadonlyArray<SanityResourcesGroupConnection>;
-};
-
-
-type SanityResourcesConnection_distinctArgs = {
-  field: SanityResourcesFieldsEnum;
-};
-
-
-type SanityResourcesConnection_groupArgs = {
-  skip: Maybe<Scalars['Int']>;
-  limit: Maybe<Scalars['Int']>;
-  field: SanityResourcesFieldsEnum;
-};
-
-type SanityResourcesEdge = {
-  readonly next: Maybe<SanityResources>;
-  readonly node: SanityResources;
-  readonly previous: Maybe<SanityResources>;
-};
-
-enum SanityResourcesFieldsEnum {
-  _id = '_id',
-  _type = '_type',
-  _createdAt = '_createdAt',
-  _updatedAt = '_updatedAt',
-  _rev = '_rev',
-  _key = '_key',
-  title = 'title',
-  body = 'body',
-  body____key = 'body._key',
-  body____type = 'body._type',
-  body___children = 'body.children',
-  body___children____key = 'body.children._key',
-  body___children____type = 'body.children._type',
-  body___children___marks = 'body.children.marks',
-  body___children___text = 'body.children.text',
-  body___style = 'body.style',
-  body___list = 'body.list',
-  body____rawChildren = 'body._rawChildren',
-  _rawBody = '_rawBody',
-  id = 'id',
-  parent___id = 'parent.id',
-  parent___parent___id = 'parent.parent.id',
-  parent___parent___parent___id = 'parent.parent.parent.id',
-  parent___parent___parent___children = 'parent.parent.parent.children',
-  parent___parent___children = 'parent.parent.children',
-  parent___parent___children___id = 'parent.parent.children.id',
-  parent___parent___children___children = 'parent.parent.children.children',
-  parent___parent___internal___content = 'parent.parent.internal.content',
-  parent___parent___internal___contentDigest = 'parent.parent.internal.contentDigest',
-  parent___parent___internal___description = 'parent.parent.internal.description',
-  parent___parent___internal___fieldOwners = 'parent.parent.internal.fieldOwners',
-  parent___parent___internal___ignoreType = 'parent.parent.internal.ignoreType',
-  parent___parent___internal___mediaType = 'parent.parent.internal.mediaType',
-  parent___parent___internal___owner = 'parent.parent.internal.owner',
-  parent___parent___internal___type = 'parent.parent.internal.type',
-  parent___children = 'parent.children',
-  parent___children___id = 'parent.children.id',
-  parent___children___parent___id = 'parent.children.parent.id',
-  parent___children___parent___children = 'parent.children.parent.children',
-  parent___children___children = 'parent.children.children',
-  parent___children___children___id = 'parent.children.children.id',
-  parent___children___children___children = 'parent.children.children.children',
-  parent___children___internal___content = 'parent.children.internal.content',
-  parent___children___internal___contentDigest = 'parent.children.internal.contentDigest',
-  parent___children___internal___description = 'parent.children.internal.description',
-  parent___children___internal___fieldOwners = 'parent.children.internal.fieldOwners',
-  parent___children___internal___ignoreType = 'parent.children.internal.ignoreType',
-  parent___children___internal___mediaType = 'parent.children.internal.mediaType',
-  parent___children___internal___owner = 'parent.children.internal.owner',
-  parent___children___internal___type = 'parent.children.internal.type',
-  parent___internal___content = 'parent.internal.content',
-  parent___internal___contentDigest = 'parent.internal.contentDigest',
-  parent___internal___description = 'parent.internal.description',
-  parent___internal___fieldOwners = 'parent.internal.fieldOwners',
-  parent___internal___ignoreType = 'parent.internal.ignoreType',
-  parent___internal___mediaType = 'parent.internal.mediaType',
-  parent___internal___owner = 'parent.internal.owner',
-  parent___internal___type = 'parent.internal.type',
-  children = 'children',
-  children___id = 'children.id',
-  children___parent___id = 'children.parent.id',
-  children___parent___parent___id = 'children.parent.parent.id',
-  children___parent___parent___children = 'children.parent.parent.children',
-  children___parent___children = 'children.parent.children',
-  children___parent___children___id = 'children.parent.children.id',
-  children___parent___children___children = 'children.parent.children.children',
-  children___parent___internal___content = 'children.parent.internal.content',
-  children___parent___internal___contentDigest = 'children.parent.internal.contentDigest',
-  children___parent___internal___description = 'children.parent.internal.description',
-  children___parent___internal___fieldOwners = 'children.parent.internal.fieldOwners',
-  children___parent___internal___ignoreType = 'children.parent.internal.ignoreType',
-  children___parent___internal___mediaType = 'children.parent.internal.mediaType',
-  children___parent___internal___owner = 'children.parent.internal.owner',
-  children___parent___internal___type = 'children.parent.internal.type',
-  children___children = 'children.children',
-  children___children___id = 'children.children.id',
-  children___children___parent___id = 'children.children.parent.id',
-  children___children___parent___children = 'children.children.parent.children',
-  children___children___children = 'children.children.children',
-  children___children___children___id = 'children.children.children.id',
-  children___children___children___children = 'children.children.children.children',
-  children___children___internal___content = 'children.children.internal.content',
-  children___children___internal___contentDigest = 'children.children.internal.contentDigest',
-  children___children___internal___description = 'children.children.internal.description',
-  children___children___internal___fieldOwners = 'children.children.internal.fieldOwners',
-  children___children___internal___ignoreType = 'children.children.internal.ignoreType',
-  children___children___internal___mediaType = 'children.children.internal.mediaType',
-  children___children___internal___owner = 'children.children.internal.owner',
-  children___children___internal___type = 'children.children.internal.type',
-  children___internal___content = 'children.internal.content',
-  children___internal___contentDigest = 'children.internal.contentDigest',
-  children___internal___description = 'children.internal.description',
-  children___internal___fieldOwners = 'children.internal.fieldOwners',
-  children___internal___ignoreType = 'children.internal.ignoreType',
-  children___internal___mediaType = 'children.internal.mediaType',
-  children___internal___owner = 'children.internal.owner',
-  children___internal___type = 'children.internal.type',
-  internal___content = 'internal.content',
-  internal___contentDigest = 'internal.contentDigest',
-  internal___description = 'internal.description',
-  internal___fieldOwners = 'internal.fieldOwners',
-  internal___ignoreType = 'internal.ignoreType',
-  internal___mediaType = 'internal.mediaType',
-  internal___owner = 'internal.owner',
-  internal___type = 'internal.type'
-}
-
-type SanityResourcesFilterInput = {
-  readonly _id: Maybe<StringQueryOperatorInput>;
-  readonly _type: Maybe<StringQueryOperatorInput>;
-  readonly _createdAt: Maybe<DateQueryOperatorInput>;
-  readonly _updatedAt: Maybe<DateQueryOperatorInput>;
-  readonly _rev: Maybe<StringQueryOperatorInput>;
-  readonly _key: Maybe<StringQueryOperatorInput>;
-  readonly title: Maybe<StringQueryOperatorInput>;
-  readonly body: Maybe<SanityBlockFilterListInput>;
-  readonly _rawBody: Maybe<JSONQueryOperatorInput>;
-  readonly id: Maybe<StringQueryOperatorInput>;
-  readonly parent: Maybe<NodeFilterInput>;
-  readonly children: Maybe<NodeFilterListInput>;
-  readonly internal: Maybe<InternalFilterInput>;
-};
-
-type SanityResourcesGroupConnection = {
-  readonly totalCount: Scalars['Int'];
-  readonly edges: ReadonlyArray<SanityResourcesEdge>;
-  readonly nodes: ReadonlyArray<SanityResources>;
-  readonly pageInfo: PageInfo;
-  readonly field: Scalars['String'];
-  readonly fieldValue: Maybe<Scalars['String']>;
-};
-
-type SanityResourcesSortInput = {
-  readonly fields: Maybe<ReadonlyArray<Maybe<SanityResourcesFieldsEnum>>>;
-  readonly order: Maybe<ReadonlyArray<Maybe<SortOrderEnum>>>;
 };
 
 type SanitySiteSettings = SanityDocument & Node & {
@@ -4661,10 +4727,72 @@ type SitePageConnection_groupArgs = {
 
 type SitePageContext = {
   readonly id: Maybe<Scalars['String']>;
+  readonly _rawBody: Maybe<ReadonlyArray<Maybe<SitePageContext_rawBody>>>;
+};
+
+type SitePageContext_rawBody = {
+  readonly _key: Maybe<Scalars['String']>;
+  readonly _type: Maybe<Scalars['String']>;
+  readonly children: Maybe<ReadonlyArray<Maybe<SitePageContext_rawBodyChildren>>>;
+  readonly markDefs: Maybe<ReadonlyArray<Maybe<SitePageContext_rawBodyMarkDefs>>>;
+  readonly style: Maybe<Scalars['String']>;
+  readonly level: Maybe<Scalars['Int']>;
+  readonly listItem: Maybe<Scalars['String']>;
+};
+
+type SitePageContext_rawBodyChildren = {
+  readonly _key: Maybe<Scalars['String']>;
+  readonly _type: Maybe<Scalars['String']>;
+  readonly marks: Maybe<ReadonlyArray<Maybe<Scalars['String']>>>;
+  readonly text: Maybe<Scalars['String']>;
+};
+
+type SitePageContext_rawBodyChildrenFilterInput = {
+  readonly _key: Maybe<StringQueryOperatorInput>;
+  readonly _type: Maybe<StringQueryOperatorInput>;
+  readonly marks: Maybe<StringQueryOperatorInput>;
+  readonly text: Maybe<StringQueryOperatorInput>;
+};
+
+type SitePageContext_rawBodyChildrenFilterListInput = {
+  readonly elemMatch: Maybe<SitePageContext_rawBodyChildrenFilterInput>;
+};
+
+type SitePageContext_rawBodyFilterInput = {
+  readonly _key: Maybe<StringQueryOperatorInput>;
+  readonly _type: Maybe<StringQueryOperatorInput>;
+  readonly children: Maybe<SitePageContext_rawBodyChildrenFilterListInput>;
+  readonly markDefs: Maybe<SitePageContext_rawBodyMarkDefsFilterListInput>;
+  readonly style: Maybe<StringQueryOperatorInput>;
+  readonly level: Maybe<IntQueryOperatorInput>;
+  readonly listItem: Maybe<StringQueryOperatorInput>;
+};
+
+type SitePageContext_rawBodyFilterListInput = {
+  readonly elemMatch: Maybe<SitePageContext_rawBodyFilterInput>;
+};
+
+type SitePageContext_rawBodyMarkDefs = {
+  readonly _key: Maybe<Scalars['String']>;
+  readonly _type: Maybe<Scalars['String']>;
+  readonly blank: Maybe<Scalars['Boolean']>;
+  readonly href: Maybe<Scalars['String']>;
+};
+
+type SitePageContext_rawBodyMarkDefsFilterInput = {
+  readonly _key: Maybe<StringQueryOperatorInput>;
+  readonly _type: Maybe<StringQueryOperatorInput>;
+  readonly blank: Maybe<BooleanQueryOperatorInput>;
+  readonly href: Maybe<StringQueryOperatorInput>;
+};
+
+type SitePageContext_rawBodyMarkDefsFilterListInput = {
+  readonly elemMatch: Maybe<SitePageContext_rawBodyMarkDefsFilterInput>;
 };
 
 type SitePageContextFilterInput = {
   readonly id: Maybe<StringQueryOperatorInput>;
+  readonly _rawBody: Maybe<SitePageContext_rawBodyFilterListInput>;
 };
 
 type SitePageEdge = {
@@ -4767,6 +4895,22 @@ enum SitePageFieldsEnum {
   internal___type = 'internal.type',
   isCreatedByStatefulCreatePages = 'isCreatedByStatefulCreatePages',
   context___id = 'context.id',
+  context____rawBody = 'context._rawBody',
+  context____rawBody____key = 'context._rawBody._key',
+  context____rawBody____type = 'context._rawBody._type',
+  context____rawBody___children = 'context._rawBody.children',
+  context____rawBody___children____key = 'context._rawBody.children._key',
+  context____rawBody___children____type = 'context._rawBody.children._type',
+  context____rawBody___children___marks = 'context._rawBody.children.marks',
+  context____rawBody___children___text = 'context._rawBody.children.text',
+  context____rawBody___markDefs = 'context._rawBody.markDefs',
+  context____rawBody___markDefs____key = 'context._rawBody.markDefs._key',
+  context____rawBody___markDefs____type = 'context._rawBody.markDefs._type',
+  context____rawBody___markDefs___blank = 'context._rawBody.markDefs.blank',
+  context____rawBody___markDefs___href = 'context._rawBody.markDefs.href',
+  context____rawBody___style = 'context._rawBody.style',
+  context____rawBody___level = 'context._rawBody.level',
+  context____rawBody___listItem = 'context._rawBody.listItem',
   pluginCreator___id = 'pluginCreator.id',
   pluginCreator___parent___id = 'pluginCreator.parent.id',
   pluginCreator___parent___parent___id = 'pluginCreator.parent.parent.id',
@@ -4812,6 +4956,9 @@ enum SitePageFieldsEnum {
   pluginCreator___pluginOptions___emitSchema___src___generated___gatsby_introspection_json = 'pluginCreator.pluginOptions.emitSchema.src___generated___gatsby_introspection_json',
   pluginCreator___pluginOptions___emitSchema___src___generated___gatsby_schema_graphql = 'pluginCreator.pluginOptions.emitSchema.src___generated___gatsby_schema_graphql',
   pluginCreator___pluginOptions___emitPluginDocuments___src___generated___gatsby_plugin_documents_graphql = 'pluginCreator.pluginOptions.emitPluginDocuments.src___generated___gatsby_plugin_documents_graphql',
+  pluginCreator___pluginOptions___projectId = 'pluginCreator.pluginOptions.projectId',
+  pluginCreator___pluginOptions___dataset = 'pluginCreator.pluginOptions.dataset',
+  pluginCreator___pluginOptions___graphqlTag = 'pluginCreator.pluginOptions.graphqlTag',
   pluginCreator___pluginOptions___isTSX = 'pluginCreator.pluginOptions.isTSX',
   pluginCreator___pluginOptions___jsxPragma = 'pluginCreator.pluginOptions.jsxPragma',
   pluginCreator___pluginOptions___allExtensions = 'pluginCreator.pluginOptions.allExtensions',
@@ -4824,9 +4971,6 @@ enum SitePageFieldsEnum {
   pluginCreator___pluginOptions___createLinkInHead = 'pluginCreator.pluginOptions.createLinkInHead',
   pluginCreator___pluginOptions___path = 'pluginCreator.pluginOptions.path',
   pluginCreator___pluginOptions___pathCheck = 'pluginCreator.pluginOptions.pathCheck',
-  pluginCreator___pluginOptions___projectId = 'pluginCreator.pluginOptions.projectId',
-  pluginCreator___pluginOptions___dataset = 'pluginCreator.pluginOptions.dataset',
-  pluginCreator___pluginOptions___graphqlTag = 'pluginCreator.pluginOptions.graphqlTag',
   pluginCreator___nodeAPIs = 'pluginCreator.nodeAPIs',
   pluginCreator___browserAPIs = 'pluginCreator.browserAPIs',
   pluginCreator___ssrAPIs = 'pluginCreator.ssrAPIs',
@@ -5018,6 +5162,9 @@ enum SitePluginFieldsEnum {
   pluginOptions___emitSchema___src___generated___gatsby_introspection_json = 'pluginOptions.emitSchema.src___generated___gatsby_introspection_json',
   pluginOptions___emitSchema___src___generated___gatsby_schema_graphql = 'pluginOptions.emitSchema.src___generated___gatsby_schema_graphql',
   pluginOptions___emitPluginDocuments___src___generated___gatsby_plugin_documents_graphql = 'pluginOptions.emitPluginDocuments.src___generated___gatsby_plugin_documents_graphql',
+  pluginOptions___projectId = 'pluginOptions.projectId',
+  pluginOptions___dataset = 'pluginOptions.dataset',
+  pluginOptions___graphqlTag = 'pluginOptions.graphqlTag',
   pluginOptions___isTSX = 'pluginOptions.isTSX',
   pluginOptions___jsxPragma = 'pluginOptions.jsxPragma',
   pluginOptions___allExtensions = 'pluginOptions.allExtensions',
@@ -5030,9 +5177,6 @@ enum SitePluginFieldsEnum {
   pluginOptions___createLinkInHead = 'pluginOptions.createLinkInHead',
   pluginOptions___path = 'pluginOptions.path',
   pluginOptions___pathCheck = 'pluginOptions.pathCheck',
-  pluginOptions___projectId = 'pluginOptions.projectId',
-  pluginOptions___dataset = 'pluginOptions.dataset',
-  pluginOptions___graphqlTag = 'pluginOptions.graphqlTag',
   nodeAPIs = 'nodeAPIs',
   browserAPIs = 'browserAPIs',
   ssrAPIs = 'ssrAPIs',
@@ -5149,6 +5293,9 @@ type SitePluginPluginOptions = {
   readonly outputPath: Maybe<Scalars['String']>;
   readonly emitSchema: Maybe<SitePluginPluginOptionsEmitSchema>;
   readonly emitPluginDocuments: Maybe<SitePluginPluginOptionsEmitPluginDocuments>;
+  readonly projectId: Maybe<Scalars['String']>;
+  readonly dataset: Maybe<Scalars['String']>;
+  readonly graphqlTag: Maybe<Scalars['String']>;
   readonly isTSX: Maybe<Scalars['Boolean']>;
   readonly jsxPragma: Maybe<Scalars['String']>;
   readonly allExtensions: Maybe<Scalars['Boolean']>;
@@ -5161,9 +5308,6 @@ type SitePluginPluginOptions = {
   readonly createLinkInHead: Maybe<Scalars['Boolean']>;
   readonly path: Maybe<Scalars['String']>;
   readonly pathCheck: Maybe<Scalars['Boolean']>;
-  readonly projectId: Maybe<Scalars['String']>;
-  readonly dataset: Maybe<Scalars['String']>;
-  readonly graphqlTag: Maybe<Scalars['String']>;
 };
 
 type SitePluginPluginOptionsEmitPluginDocuments = {
@@ -5188,6 +5332,9 @@ type SitePluginPluginOptionsFilterInput = {
   readonly outputPath: Maybe<StringQueryOperatorInput>;
   readonly emitSchema: Maybe<SitePluginPluginOptionsEmitSchemaFilterInput>;
   readonly emitPluginDocuments: Maybe<SitePluginPluginOptionsEmitPluginDocumentsFilterInput>;
+  readonly projectId: Maybe<StringQueryOperatorInput>;
+  readonly dataset: Maybe<StringQueryOperatorInput>;
+  readonly graphqlTag: Maybe<StringQueryOperatorInput>;
   readonly isTSX: Maybe<BooleanQueryOperatorInput>;
   readonly jsxPragma: Maybe<StringQueryOperatorInput>;
   readonly allExtensions: Maybe<BooleanQueryOperatorInput>;
@@ -5200,9 +5347,6 @@ type SitePluginPluginOptionsFilterInput = {
   readonly createLinkInHead: Maybe<BooleanQueryOperatorInput>;
   readonly path: Maybe<StringQueryOperatorInput>;
   readonly pathCheck: Maybe<BooleanQueryOperatorInput>;
-  readonly projectId: Maybe<StringQueryOperatorInput>;
-  readonly dataset: Maybe<StringQueryOperatorInput>;
-  readonly graphqlTag: Maybe<StringQueryOperatorInput>;
 };
 
 type SitePluginSortInput = {
@@ -5258,21 +5402,6 @@ type PagesQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 type PagesQueryQuery = { readonly allSitePage: { readonly nodes: ReadonlyArray<Pick<SitePage, 'path'>> } };
 
-type AboutQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type AboutQuery = { readonly allAbout: { readonly edges: ReadonlyArray<{ readonly node: Pick<SanityAbout, 'title' | '_rawBody'> }> } };
-
-type ContactQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type ContactQuery = { readonly allContact: { readonly edges: ReadonlyArray<{ readonly node: Pick<SanityContact, 'title' | '_rawBody'> }> } };
-
-type EventsQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type EventsQuery = { readonly allEvents: { readonly edges: ReadonlyArray<{ readonly node: Pick<SanityEvents, 'title' | '_rawBody'> }> } };
-
 type IndexPageQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -5281,10 +5410,13 @@ type IndexPageQuery = { readonly allSiteSettings: { readonly edges: ReadonlyArra
         & { readonly mainImage: Maybe<{ readonly asset: Maybe<{ readonly fluid: Maybe<Pick<SanityImageFluid, 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>> }> }>, readonly slug: Maybe<Pick<SanitySlug, 'current'>> }
       ) }> } };
 
-type ResourcesQueryVariables = Exact<{ [key: string]: never; }>;
+type MenuQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type ResourcesQuery = { readonly allResources: { readonly edges: ReadonlyArray<{ readonly node: Pick<SanityResources, 'title' | '_rawBody'> }> } };
+type MenuQuery = { readonly allMenu: { readonly edges: ReadonlyArray<{ readonly node: { readonly pages: Maybe<ReadonlyArray<Maybe<(
+          Pick<SanityPage, '_id' | 'title'>
+          & { readonly slug: Maybe<Pick<SanitySlug, 'current'>> }
+        )>>> } }> } };
 
 type SeoQueryVariables = Exact<{ [key: string]: never; }>;
 

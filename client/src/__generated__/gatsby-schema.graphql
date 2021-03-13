@@ -845,12 +845,12 @@ type Query {
   allSanityCategory(filter: SanityCategoryFilterInput, sort: SanityCategorySortInput, skip: Int, limit: Int): SanityCategoryConnection!
   sanityContact(_id: StringQueryOperatorInput, _type: StringQueryOperatorInput, _createdAt: DateQueryOperatorInput, _updatedAt: DateQueryOperatorInput, _rev: StringQueryOperatorInput, _key: StringQueryOperatorInput, title: StringQueryOperatorInput, body: SanityBlockFilterListInput, _rawBody: JSONQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): SanityContact
   allSanityContact(filter: SanityContactFilterInput, sort: SanityContactSortInput, skip: Int, limit: Int): SanityContactConnection!
-  sanityEvents(_id: StringQueryOperatorInput, _type: StringQueryOperatorInput, _createdAt: DateQueryOperatorInput, _updatedAt: DateQueryOperatorInput, _rev: StringQueryOperatorInput, _key: StringQueryOperatorInput, title: StringQueryOperatorInput, body: SanityBlockFilterListInput, _rawBody: JSONQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): SanityEvents
-  allSanityEvents(filter: SanityEventsFilterInput, sort: SanityEventsSortInput, skip: Int, limit: Int): SanityEventsConnection!
+  sanityMenu(_id: StringQueryOperatorInput, _type: StringQueryOperatorInput, _createdAt: DateQueryOperatorInput, _updatedAt: DateQueryOperatorInput, _rev: StringQueryOperatorInput, _key: StringQueryOperatorInput, pages: SanityPageFilterListInput, _rawPages: JSONQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): SanityMenu
+  allSanityMenu(filter: SanityMenuFilterInput, sort: SanityMenuSortInput, skip: Int, limit: Int): SanityMenuConnection!
+  sanityPage(_id: StringQueryOperatorInput, _type: StringQueryOperatorInput, _createdAt: DateQueryOperatorInput, _updatedAt: DateQueryOperatorInput, _rev: StringQueryOperatorInput, _key: StringQueryOperatorInput, title: StringQueryOperatorInput, slug: SanitySlugFilterInput, body: SanityBlockFilterListInput, _rawSlug: JSONQueryOperatorInput, _rawBody: JSONQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): SanityPage
+  allSanityPage(filter: SanityPageFilterInput, sort: SanityPageSortInput, skip: Int, limit: Int): SanityPageConnection!
   sanityPost(_id: StringQueryOperatorInput, _type: StringQueryOperatorInput, _createdAt: DateQueryOperatorInput, _updatedAt: DateQueryOperatorInput, _rev: StringQueryOperatorInput, _key: StringQueryOperatorInput, title: StringQueryOperatorInput, subtitle: StringQueryOperatorInput, slug: SanitySlugFilterInput, authors: SanityAuthorFilterListInput, mainImage: SanityImageFilterInput, categories: SanityCategoryFilterListInput, publishedAt: DateQueryOperatorInput, body: SanityBlockFilterListInput, _rawSlug: JSONQueryOperatorInput, _rawAuthors: JSONQueryOperatorInput, _rawMainImage: JSONQueryOperatorInput, _rawCategories: JSONQueryOperatorInput, _rawBody: JSONQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): SanityPost
   allSanityPost(filter: SanityPostFilterInput, sort: SanityPostSortInput, skip: Int, limit: Int): SanityPostConnection!
-  sanityResources(_id: StringQueryOperatorInput, _type: StringQueryOperatorInput, _createdAt: DateQueryOperatorInput, _updatedAt: DateQueryOperatorInput, _rev: StringQueryOperatorInput, _key: StringQueryOperatorInput, title: StringQueryOperatorInput, body: SanityBlockFilterListInput, _rawBody: JSONQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): SanityResources
-  allSanityResources(filter: SanityResourcesFilterInput, sort: SanityResourcesSortInput, skip: Int, limit: Int): SanityResourcesConnection!
   sanityFileAsset(_id: StringQueryOperatorInput, _type: StringQueryOperatorInput, _createdAt: DateQueryOperatorInput, _updatedAt: DateQueryOperatorInput, _rev: StringQueryOperatorInput, _key: StringQueryOperatorInput, originalFilename: StringQueryOperatorInput, label: StringQueryOperatorInput, title: StringQueryOperatorInput, description: StringQueryOperatorInput, sha1hash: StringQueryOperatorInput, extension: StringQueryOperatorInput, mimeType: StringQueryOperatorInput, size: FloatQueryOperatorInput, assetId: StringQueryOperatorInput, path: StringQueryOperatorInput, url: StringQueryOperatorInput, source: SanityAssetSourceDataFilterInput, _rawSource: JSONQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): SanityFileAsset
   allSanityFileAsset(filter: SanityFileAssetFilterInput, sort: SanityFileAssetSortInput, skip: Int, limit: Int): SanityFileAssetConnection!
   sanityImageAsset(_id: StringQueryOperatorInput, _type: StringQueryOperatorInput, _createdAt: DateQueryOperatorInput, _updatedAt: DateQueryOperatorInput, _rev: StringQueryOperatorInput, _key: StringQueryOperatorInput, originalFilename: StringQueryOperatorInput, label: StringQueryOperatorInput, title: StringQueryOperatorInput, description: StringQueryOperatorInput, sha1hash: StringQueryOperatorInput, extension: StringQueryOperatorInput, mimeType: StringQueryOperatorInput, size: FloatQueryOperatorInput, assetId: StringQueryOperatorInput, path: StringQueryOperatorInput, url: StringQueryOperatorInput, metadata: SanityImageMetadataFilterInput, source: SanityAssetSourceDataFilterInput, _rawMetadata: JSONQueryOperatorInput, _rawSource: JSONQueryOperatorInput, fixed: SanityImageFixedFilterInput, fluid: SanityImageFluidFilterInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): SanityImageAsset
@@ -1807,207 +1807,6 @@ interface SanityDocument {
   _rev: String
 }
 
-type SanityEvents implements SanityDocument & Node {
-  _id: String
-  _type: String
-  _createdAt(
-    # Format the date using Moment.js' date tokens, e.g. `date(formatString: "YYYY
-    # MMMM DD")`. See https://momentjs.com/docs/#/displaying/format/ for
-    # documentation for different tokens.
-    formatString: String
-
-    # Returns a string generated with Moment.js' `fromNow` function
-    fromNow: Boolean
-
-    # Returns the difference between this date and the current time. Defaults to
-    # "milliseconds" but you can also pass in as the measurement "years",
-    # "months", "weeks", "days", "hours", "minutes", and "seconds".
-    difference: String
-
-    # Configures the locale Moment.js will use to format the date.
-    locale: String
-  ): Date
-  _updatedAt(
-    # Format the date using Moment.js' date tokens, e.g. `date(formatString: "YYYY
-    # MMMM DD")`. See https://momentjs.com/docs/#/displaying/format/ for
-    # documentation for different tokens.
-    formatString: String
-
-    # Returns a string generated with Moment.js' `fromNow` function
-    fromNow: Boolean
-
-    # Returns the difference between this date and the current time. Defaults to
-    # "milliseconds" but you can also pass in as the measurement "years",
-    # "months", "weeks", "days", "hours", "minutes", and "seconds".
-    difference: String
-
-    # Configures the locale Moment.js will use to format the date.
-    locale: String
-  ): Date
-  _rev: String
-  _key: String
-  title: String
-  body: [SanityBlock]
-  _rawBody(resolveReferences: SanityResolveReferencesConfiguration): JSON
-  id: ID!
-  parent: Node
-  children: [Node!]!
-  internal: Internal!
-}
-
-type SanityEventsConnection {
-  totalCount: Int!
-  edges: [SanityEventsEdge!]!
-  nodes: [SanityEvents!]!
-  pageInfo: PageInfo!
-  distinct(field: SanityEventsFieldsEnum!): [String!]!
-  group(skip: Int, limit: Int, field: SanityEventsFieldsEnum!): [SanityEventsGroupConnection!]!
-}
-
-type SanityEventsEdge {
-  next: SanityEvents
-  node: SanityEvents!
-  previous: SanityEvents
-}
-
-enum SanityEventsFieldsEnum {
-  _id
-  _type
-  _createdAt
-  _updatedAt
-  _rev
-  _key
-  title
-  body
-  body____key
-  body____type
-  body___children
-  body___children____key
-  body___children____type
-  body___children___marks
-  body___children___text
-  body___style
-  body___list
-  body____rawChildren
-  _rawBody
-  id
-  parent___id
-  parent___parent___id
-  parent___parent___parent___id
-  parent___parent___parent___children
-  parent___parent___children
-  parent___parent___children___id
-  parent___parent___children___children
-  parent___parent___internal___content
-  parent___parent___internal___contentDigest
-  parent___parent___internal___description
-  parent___parent___internal___fieldOwners
-  parent___parent___internal___ignoreType
-  parent___parent___internal___mediaType
-  parent___parent___internal___owner
-  parent___parent___internal___type
-  parent___children
-  parent___children___id
-  parent___children___parent___id
-  parent___children___parent___children
-  parent___children___children
-  parent___children___children___id
-  parent___children___children___children
-  parent___children___internal___content
-  parent___children___internal___contentDigest
-  parent___children___internal___description
-  parent___children___internal___fieldOwners
-  parent___children___internal___ignoreType
-  parent___children___internal___mediaType
-  parent___children___internal___owner
-  parent___children___internal___type
-  parent___internal___content
-  parent___internal___contentDigest
-  parent___internal___description
-  parent___internal___fieldOwners
-  parent___internal___ignoreType
-  parent___internal___mediaType
-  parent___internal___owner
-  parent___internal___type
-  children
-  children___id
-  children___parent___id
-  children___parent___parent___id
-  children___parent___parent___children
-  children___parent___children
-  children___parent___children___id
-  children___parent___children___children
-  children___parent___internal___content
-  children___parent___internal___contentDigest
-  children___parent___internal___description
-  children___parent___internal___fieldOwners
-  children___parent___internal___ignoreType
-  children___parent___internal___mediaType
-  children___parent___internal___owner
-  children___parent___internal___type
-  children___children
-  children___children___id
-  children___children___parent___id
-  children___children___parent___children
-  children___children___children
-  children___children___children___id
-  children___children___children___children
-  children___children___internal___content
-  children___children___internal___contentDigest
-  children___children___internal___description
-  children___children___internal___fieldOwners
-  children___children___internal___ignoreType
-  children___children___internal___mediaType
-  children___children___internal___owner
-  children___children___internal___type
-  children___internal___content
-  children___internal___contentDigest
-  children___internal___description
-  children___internal___fieldOwners
-  children___internal___ignoreType
-  children___internal___mediaType
-  children___internal___owner
-  children___internal___type
-  internal___content
-  internal___contentDigest
-  internal___description
-  internal___fieldOwners
-  internal___ignoreType
-  internal___mediaType
-  internal___owner
-  internal___type
-}
-
-input SanityEventsFilterInput {
-  _id: StringQueryOperatorInput
-  _type: StringQueryOperatorInput
-  _createdAt: DateQueryOperatorInput
-  _updatedAt: DateQueryOperatorInput
-  _rev: StringQueryOperatorInput
-  _key: StringQueryOperatorInput
-  title: StringQueryOperatorInput
-  body: SanityBlockFilterListInput
-  _rawBody: JSONQueryOperatorInput
-  id: StringQueryOperatorInput
-  parent: NodeFilterInput
-  children: NodeFilterListInput
-  internal: InternalFilterInput
-}
-
-type SanityEventsGroupConnection {
-  totalCount: Int!
-  edges: [SanityEventsEdge!]!
-  nodes: [SanityEvents!]!
-  pageInfo: PageInfo!
-  field: String!
-  fieldValue: String
-}
-
-input SanityEventsSortInput {
-  fields: [SanityEventsFieldsEnum]
-  order: [SortOrderEnum] = [ASC]
-}
-
 type SanityFile {
   _key: String
   _type: String
@@ -2784,6 +2583,468 @@ input SanityImagePaletteSwatchFilterInput {
   title: StringQueryOperatorInput
 }
 
+type SanityMenu implements SanityDocument & Node {
+  _id: String
+  _type: String
+  _createdAt(
+    # Format the date using Moment.js' date tokens, e.g. `date(formatString: "YYYY
+    # MMMM DD")`. See https://momentjs.com/docs/#/displaying/format/ for
+    # documentation for different tokens.
+    formatString: String
+
+    # Returns a string generated with Moment.js' `fromNow` function
+    fromNow: Boolean
+
+    # Returns the difference between this date and the current time. Defaults to
+    # "milliseconds" but you can also pass in as the measurement "years",
+    # "months", "weeks", "days", "hours", "minutes", and "seconds".
+    difference: String
+
+    # Configures the locale Moment.js will use to format the date.
+    locale: String
+  ): Date
+  _updatedAt(
+    # Format the date using Moment.js' date tokens, e.g. `date(formatString: "YYYY
+    # MMMM DD")`. See https://momentjs.com/docs/#/displaying/format/ for
+    # documentation for different tokens.
+    formatString: String
+
+    # Returns a string generated with Moment.js' `fromNow` function
+    fromNow: Boolean
+
+    # Returns the difference between this date and the current time. Defaults to
+    # "milliseconds" but you can also pass in as the measurement "years",
+    # "months", "weeks", "days", "hours", "minutes", and "seconds".
+    difference: String
+
+    # Configures the locale Moment.js will use to format the date.
+    locale: String
+  ): Date
+  _rev: String
+  _key: String
+  pages: [SanityPage]
+  _rawPages(resolveReferences: SanityResolveReferencesConfiguration): JSON
+  id: ID!
+  parent: Node
+  children: [Node!]!
+  internal: Internal!
+}
+
+type SanityMenuConnection {
+  totalCount: Int!
+  edges: [SanityMenuEdge!]!
+  nodes: [SanityMenu!]!
+  pageInfo: PageInfo!
+  distinct(field: SanityMenuFieldsEnum!): [String!]!
+  group(skip: Int, limit: Int, field: SanityMenuFieldsEnum!): [SanityMenuGroupConnection!]!
+}
+
+type SanityMenuEdge {
+  next: SanityMenu
+  node: SanityMenu!
+  previous: SanityMenu
+}
+
+enum SanityMenuFieldsEnum {
+  _id
+  _type
+  _createdAt
+  _updatedAt
+  _rev
+  _key
+  pages
+  pages____id
+  pages____type
+  pages____createdAt
+  pages____updatedAt
+  pages____rev
+  pages____key
+  pages___title
+  pages___slug____key
+  pages___slug____type
+  pages___slug___current
+  pages___body
+  pages___body____key
+  pages___body____type
+  pages___body___children
+  pages___body___children____key
+  pages___body___children____type
+  pages___body___children___marks
+  pages___body___children___text
+  pages___body___style
+  pages___body___list
+  pages___body____rawChildren
+  pages____rawSlug
+  pages____rawBody
+  pages___id
+  pages___parent___id
+  pages___parent___parent___id
+  pages___parent___parent___children
+  pages___parent___children
+  pages___parent___children___id
+  pages___parent___children___children
+  pages___parent___internal___content
+  pages___parent___internal___contentDigest
+  pages___parent___internal___description
+  pages___parent___internal___fieldOwners
+  pages___parent___internal___ignoreType
+  pages___parent___internal___mediaType
+  pages___parent___internal___owner
+  pages___parent___internal___type
+  pages___children
+  pages___children___id
+  pages___children___parent___id
+  pages___children___parent___children
+  pages___children___children
+  pages___children___children___id
+  pages___children___children___children
+  pages___children___internal___content
+  pages___children___internal___contentDigest
+  pages___children___internal___description
+  pages___children___internal___fieldOwners
+  pages___children___internal___ignoreType
+  pages___children___internal___mediaType
+  pages___children___internal___owner
+  pages___children___internal___type
+  pages___internal___content
+  pages___internal___contentDigest
+  pages___internal___description
+  pages___internal___fieldOwners
+  pages___internal___ignoreType
+  pages___internal___mediaType
+  pages___internal___owner
+  pages___internal___type
+  _rawPages
+  id
+  parent___id
+  parent___parent___id
+  parent___parent___parent___id
+  parent___parent___parent___children
+  parent___parent___children
+  parent___parent___children___id
+  parent___parent___children___children
+  parent___parent___internal___content
+  parent___parent___internal___contentDigest
+  parent___parent___internal___description
+  parent___parent___internal___fieldOwners
+  parent___parent___internal___ignoreType
+  parent___parent___internal___mediaType
+  parent___parent___internal___owner
+  parent___parent___internal___type
+  parent___children
+  parent___children___id
+  parent___children___parent___id
+  parent___children___parent___children
+  parent___children___children
+  parent___children___children___id
+  parent___children___children___children
+  parent___children___internal___content
+  parent___children___internal___contentDigest
+  parent___children___internal___description
+  parent___children___internal___fieldOwners
+  parent___children___internal___ignoreType
+  parent___children___internal___mediaType
+  parent___children___internal___owner
+  parent___children___internal___type
+  parent___internal___content
+  parent___internal___contentDigest
+  parent___internal___description
+  parent___internal___fieldOwners
+  parent___internal___ignoreType
+  parent___internal___mediaType
+  parent___internal___owner
+  parent___internal___type
+  children
+  children___id
+  children___parent___id
+  children___parent___parent___id
+  children___parent___parent___children
+  children___parent___children
+  children___parent___children___id
+  children___parent___children___children
+  children___parent___internal___content
+  children___parent___internal___contentDigest
+  children___parent___internal___description
+  children___parent___internal___fieldOwners
+  children___parent___internal___ignoreType
+  children___parent___internal___mediaType
+  children___parent___internal___owner
+  children___parent___internal___type
+  children___children
+  children___children___id
+  children___children___parent___id
+  children___children___parent___children
+  children___children___children
+  children___children___children___id
+  children___children___children___children
+  children___children___internal___content
+  children___children___internal___contentDigest
+  children___children___internal___description
+  children___children___internal___fieldOwners
+  children___children___internal___ignoreType
+  children___children___internal___mediaType
+  children___children___internal___owner
+  children___children___internal___type
+  children___internal___content
+  children___internal___contentDigest
+  children___internal___description
+  children___internal___fieldOwners
+  children___internal___ignoreType
+  children___internal___mediaType
+  children___internal___owner
+  children___internal___type
+  internal___content
+  internal___contentDigest
+  internal___description
+  internal___fieldOwners
+  internal___ignoreType
+  internal___mediaType
+  internal___owner
+  internal___type
+}
+
+input SanityMenuFilterInput {
+  _id: StringQueryOperatorInput
+  _type: StringQueryOperatorInput
+  _createdAt: DateQueryOperatorInput
+  _updatedAt: DateQueryOperatorInput
+  _rev: StringQueryOperatorInput
+  _key: StringQueryOperatorInput
+  pages: SanityPageFilterListInput
+  _rawPages: JSONQueryOperatorInput
+  id: StringQueryOperatorInput
+  parent: NodeFilterInput
+  children: NodeFilterListInput
+  internal: InternalFilterInput
+}
+
+type SanityMenuGroupConnection {
+  totalCount: Int!
+  edges: [SanityMenuEdge!]!
+  nodes: [SanityMenu!]!
+  pageInfo: PageInfo!
+  field: String!
+  fieldValue: String
+}
+
+input SanityMenuSortInput {
+  fields: [SanityMenuFieldsEnum]
+  order: [SortOrderEnum] = [ASC]
+}
+
+type SanityPage implements SanityDocument & Node {
+  _id: String
+  _type: String
+  _createdAt(
+    # Format the date using Moment.js' date tokens, e.g. `date(formatString: "YYYY
+    # MMMM DD")`. See https://momentjs.com/docs/#/displaying/format/ for
+    # documentation for different tokens.
+    formatString: String
+
+    # Returns a string generated with Moment.js' `fromNow` function
+    fromNow: Boolean
+
+    # Returns the difference between this date and the current time. Defaults to
+    # "milliseconds" but you can also pass in as the measurement "years",
+    # "months", "weeks", "days", "hours", "minutes", and "seconds".
+    difference: String
+
+    # Configures the locale Moment.js will use to format the date.
+    locale: String
+  ): Date
+  _updatedAt(
+    # Format the date using Moment.js' date tokens, e.g. `date(formatString: "YYYY
+    # MMMM DD")`. See https://momentjs.com/docs/#/displaying/format/ for
+    # documentation for different tokens.
+    formatString: String
+
+    # Returns a string generated with Moment.js' `fromNow` function
+    fromNow: Boolean
+
+    # Returns the difference between this date and the current time. Defaults to
+    # "milliseconds" but you can also pass in as the measurement "years",
+    # "months", "weeks", "days", "hours", "minutes", and "seconds".
+    difference: String
+
+    # Configures the locale Moment.js will use to format the date.
+    locale: String
+  ): Date
+  _rev: String
+  _key: String
+  title: String
+  slug: SanitySlug
+  body: [SanityBlock]
+  _rawSlug(resolveReferences: SanityResolveReferencesConfiguration): JSON
+  _rawBody(resolveReferences: SanityResolveReferencesConfiguration): JSON
+  id: ID!
+  parent: Node
+  children: [Node!]!
+  internal: Internal!
+}
+
+type SanityPageConnection {
+  totalCount: Int!
+  edges: [SanityPageEdge!]!
+  nodes: [SanityPage!]!
+  pageInfo: PageInfo!
+  distinct(field: SanityPageFieldsEnum!): [String!]!
+  group(skip: Int, limit: Int, field: SanityPageFieldsEnum!): [SanityPageGroupConnection!]!
+}
+
+type SanityPageEdge {
+  next: SanityPage
+  node: SanityPage!
+  previous: SanityPage
+}
+
+enum SanityPageFieldsEnum {
+  _id
+  _type
+  _createdAt
+  _updatedAt
+  _rev
+  _key
+  title
+  slug____key
+  slug____type
+  slug___current
+  body
+  body____key
+  body____type
+  body___children
+  body___children____key
+  body___children____type
+  body___children___marks
+  body___children___text
+  body___style
+  body___list
+  body____rawChildren
+  _rawSlug
+  _rawBody
+  id
+  parent___id
+  parent___parent___id
+  parent___parent___parent___id
+  parent___parent___parent___children
+  parent___parent___children
+  parent___parent___children___id
+  parent___parent___children___children
+  parent___parent___internal___content
+  parent___parent___internal___contentDigest
+  parent___parent___internal___description
+  parent___parent___internal___fieldOwners
+  parent___parent___internal___ignoreType
+  parent___parent___internal___mediaType
+  parent___parent___internal___owner
+  parent___parent___internal___type
+  parent___children
+  parent___children___id
+  parent___children___parent___id
+  parent___children___parent___children
+  parent___children___children
+  parent___children___children___id
+  parent___children___children___children
+  parent___children___internal___content
+  parent___children___internal___contentDigest
+  parent___children___internal___description
+  parent___children___internal___fieldOwners
+  parent___children___internal___ignoreType
+  parent___children___internal___mediaType
+  parent___children___internal___owner
+  parent___children___internal___type
+  parent___internal___content
+  parent___internal___contentDigest
+  parent___internal___description
+  parent___internal___fieldOwners
+  parent___internal___ignoreType
+  parent___internal___mediaType
+  parent___internal___owner
+  parent___internal___type
+  children
+  children___id
+  children___parent___id
+  children___parent___parent___id
+  children___parent___parent___children
+  children___parent___children
+  children___parent___children___id
+  children___parent___children___children
+  children___parent___internal___content
+  children___parent___internal___contentDigest
+  children___parent___internal___description
+  children___parent___internal___fieldOwners
+  children___parent___internal___ignoreType
+  children___parent___internal___mediaType
+  children___parent___internal___owner
+  children___parent___internal___type
+  children___children
+  children___children___id
+  children___children___parent___id
+  children___children___parent___children
+  children___children___children
+  children___children___children___id
+  children___children___children___children
+  children___children___internal___content
+  children___children___internal___contentDigest
+  children___children___internal___description
+  children___children___internal___fieldOwners
+  children___children___internal___ignoreType
+  children___children___internal___mediaType
+  children___children___internal___owner
+  children___children___internal___type
+  children___internal___content
+  children___internal___contentDigest
+  children___internal___description
+  children___internal___fieldOwners
+  children___internal___ignoreType
+  children___internal___mediaType
+  children___internal___owner
+  children___internal___type
+  internal___content
+  internal___contentDigest
+  internal___description
+  internal___fieldOwners
+  internal___ignoreType
+  internal___mediaType
+  internal___owner
+  internal___type
+}
+
+input SanityPageFilterInput {
+  _id: StringQueryOperatorInput
+  _type: StringQueryOperatorInput
+  _createdAt: DateQueryOperatorInput
+  _updatedAt: DateQueryOperatorInput
+  _rev: StringQueryOperatorInput
+  _key: StringQueryOperatorInput
+  title: StringQueryOperatorInput
+  slug: SanitySlugFilterInput
+  body: SanityBlockFilterListInput
+  _rawSlug: JSONQueryOperatorInput
+  _rawBody: JSONQueryOperatorInput
+  id: StringQueryOperatorInput
+  parent: NodeFilterInput
+  children: NodeFilterListInput
+  internal: InternalFilterInput
+}
+
+input SanityPageFilterListInput {
+  elemMatch: SanityPageFilterInput
+}
+
+type SanityPageGroupConnection {
+  totalCount: Int!
+  edges: [SanityPageEdge!]!
+  nodes: [SanityPage!]!
+  pageInfo: PageInfo!
+  field: String!
+  fieldValue: String
+}
+
+input SanityPageSortInput {
+  fields: [SanityPageFieldsEnum]
+  order: [SortOrderEnum] = [ASC]
+}
+
 type SanityPost implements SanityDocument & Node {
   _id: String
   _type: String
@@ -3260,207 +3521,6 @@ input SanityPostSortInput {
 input SanityResolveReferencesConfiguration {
   # Max depth to resolve references to
   maxDepth: Int!
-}
-
-type SanityResources implements SanityDocument & Node {
-  _id: String
-  _type: String
-  _createdAt(
-    # Format the date using Moment.js' date tokens, e.g. `date(formatString: "YYYY
-    # MMMM DD")`. See https://momentjs.com/docs/#/displaying/format/ for
-    # documentation for different tokens.
-    formatString: String
-
-    # Returns a string generated with Moment.js' `fromNow` function
-    fromNow: Boolean
-
-    # Returns the difference between this date and the current time. Defaults to
-    # "milliseconds" but you can also pass in as the measurement "years",
-    # "months", "weeks", "days", "hours", "minutes", and "seconds".
-    difference: String
-
-    # Configures the locale Moment.js will use to format the date.
-    locale: String
-  ): Date
-  _updatedAt(
-    # Format the date using Moment.js' date tokens, e.g. `date(formatString: "YYYY
-    # MMMM DD")`. See https://momentjs.com/docs/#/displaying/format/ for
-    # documentation for different tokens.
-    formatString: String
-
-    # Returns a string generated with Moment.js' `fromNow` function
-    fromNow: Boolean
-
-    # Returns the difference between this date and the current time. Defaults to
-    # "milliseconds" but you can also pass in as the measurement "years",
-    # "months", "weeks", "days", "hours", "minutes", and "seconds".
-    difference: String
-
-    # Configures the locale Moment.js will use to format the date.
-    locale: String
-  ): Date
-  _rev: String
-  _key: String
-  title: String
-  body: [SanityBlock]
-  _rawBody(resolveReferences: SanityResolveReferencesConfiguration): JSON
-  id: ID!
-  parent: Node
-  children: [Node!]!
-  internal: Internal!
-}
-
-type SanityResourcesConnection {
-  totalCount: Int!
-  edges: [SanityResourcesEdge!]!
-  nodes: [SanityResources!]!
-  pageInfo: PageInfo!
-  distinct(field: SanityResourcesFieldsEnum!): [String!]!
-  group(skip: Int, limit: Int, field: SanityResourcesFieldsEnum!): [SanityResourcesGroupConnection!]!
-}
-
-type SanityResourcesEdge {
-  next: SanityResources
-  node: SanityResources!
-  previous: SanityResources
-}
-
-enum SanityResourcesFieldsEnum {
-  _id
-  _type
-  _createdAt
-  _updatedAt
-  _rev
-  _key
-  title
-  body
-  body____key
-  body____type
-  body___children
-  body___children____key
-  body___children____type
-  body___children___marks
-  body___children___text
-  body___style
-  body___list
-  body____rawChildren
-  _rawBody
-  id
-  parent___id
-  parent___parent___id
-  parent___parent___parent___id
-  parent___parent___parent___children
-  parent___parent___children
-  parent___parent___children___id
-  parent___parent___children___children
-  parent___parent___internal___content
-  parent___parent___internal___contentDigest
-  parent___parent___internal___description
-  parent___parent___internal___fieldOwners
-  parent___parent___internal___ignoreType
-  parent___parent___internal___mediaType
-  parent___parent___internal___owner
-  parent___parent___internal___type
-  parent___children
-  parent___children___id
-  parent___children___parent___id
-  parent___children___parent___children
-  parent___children___children
-  parent___children___children___id
-  parent___children___children___children
-  parent___children___internal___content
-  parent___children___internal___contentDigest
-  parent___children___internal___description
-  parent___children___internal___fieldOwners
-  parent___children___internal___ignoreType
-  parent___children___internal___mediaType
-  parent___children___internal___owner
-  parent___children___internal___type
-  parent___internal___content
-  parent___internal___contentDigest
-  parent___internal___description
-  parent___internal___fieldOwners
-  parent___internal___ignoreType
-  parent___internal___mediaType
-  parent___internal___owner
-  parent___internal___type
-  children
-  children___id
-  children___parent___id
-  children___parent___parent___id
-  children___parent___parent___children
-  children___parent___children
-  children___parent___children___id
-  children___parent___children___children
-  children___parent___internal___content
-  children___parent___internal___contentDigest
-  children___parent___internal___description
-  children___parent___internal___fieldOwners
-  children___parent___internal___ignoreType
-  children___parent___internal___mediaType
-  children___parent___internal___owner
-  children___parent___internal___type
-  children___children
-  children___children___id
-  children___children___parent___id
-  children___children___parent___children
-  children___children___children
-  children___children___children___id
-  children___children___children___children
-  children___children___internal___content
-  children___children___internal___contentDigest
-  children___children___internal___description
-  children___children___internal___fieldOwners
-  children___children___internal___ignoreType
-  children___children___internal___mediaType
-  children___children___internal___owner
-  children___children___internal___type
-  children___internal___content
-  children___internal___contentDigest
-  children___internal___description
-  children___internal___fieldOwners
-  children___internal___ignoreType
-  children___internal___mediaType
-  children___internal___owner
-  children___internal___type
-  internal___content
-  internal___contentDigest
-  internal___description
-  internal___fieldOwners
-  internal___ignoreType
-  internal___mediaType
-  internal___owner
-  internal___type
-}
-
-input SanityResourcesFilterInput {
-  _id: StringQueryOperatorInput
-  _type: StringQueryOperatorInput
-  _createdAt: DateQueryOperatorInput
-  _updatedAt: DateQueryOperatorInput
-  _rev: StringQueryOperatorInput
-  _key: StringQueryOperatorInput
-  title: StringQueryOperatorInput
-  body: SanityBlockFilterListInput
-  _rawBody: JSONQueryOperatorInput
-  id: StringQueryOperatorInput
-  parent: NodeFilterInput
-  children: NodeFilterListInput
-  internal: InternalFilterInput
-}
-
-type SanityResourcesGroupConnection {
-  totalCount: Int!
-  edges: [SanityResourcesEdge!]!
-  nodes: [SanityResources!]!
-  pageInfo: PageInfo!
-  field: String!
-  fieldValue: String
-}
-
-input SanityResourcesSortInput {
-  fields: [SanityResourcesFieldsEnum]
-  order: [SortOrderEnum] = [ASC]
 }
 
 type SanitySiteSettings implements SanityDocument & Node {
@@ -4152,10 +4212,72 @@ type SitePageConnection {
 
 type SitePageContext {
   id: String
+  _rawBody: [SitePageContext_rawBody]
+}
+
+type SitePageContext_rawBody {
+  _key: String
+  _type: String
+  children: [SitePageContext_rawBodyChildren]
+  markDefs: [SitePageContext_rawBodyMarkDefs]
+  style: String
+  level: Int
+  listItem: String
+}
+
+type SitePageContext_rawBodyChildren {
+  _key: String
+  _type: String
+  marks: [String]
+  text: String
+}
+
+input SitePageContext_rawBodyChildrenFilterInput {
+  _key: StringQueryOperatorInput
+  _type: StringQueryOperatorInput
+  marks: StringQueryOperatorInput
+  text: StringQueryOperatorInput
+}
+
+input SitePageContext_rawBodyChildrenFilterListInput {
+  elemMatch: SitePageContext_rawBodyChildrenFilterInput
+}
+
+input SitePageContext_rawBodyFilterInput {
+  _key: StringQueryOperatorInput
+  _type: StringQueryOperatorInput
+  children: SitePageContext_rawBodyChildrenFilterListInput
+  markDefs: SitePageContext_rawBodyMarkDefsFilterListInput
+  style: StringQueryOperatorInput
+  level: IntQueryOperatorInput
+  listItem: StringQueryOperatorInput
+}
+
+input SitePageContext_rawBodyFilterListInput {
+  elemMatch: SitePageContext_rawBodyFilterInput
+}
+
+type SitePageContext_rawBodyMarkDefs {
+  _key: String
+  _type: String
+  blank: Boolean
+  href: String
+}
+
+input SitePageContext_rawBodyMarkDefsFilterInput {
+  _key: StringQueryOperatorInput
+  _type: StringQueryOperatorInput
+  blank: BooleanQueryOperatorInput
+  href: StringQueryOperatorInput
+}
+
+input SitePageContext_rawBodyMarkDefsFilterListInput {
+  elemMatch: SitePageContext_rawBodyMarkDefsFilterInput
 }
 
 input SitePageContextFilterInput {
   id: StringQueryOperatorInput
+  _rawBody: SitePageContext_rawBodyFilterListInput
 }
 
 type SitePageEdge {
@@ -4258,6 +4380,22 @@ enum SitePageFieldsEnum {
   internal___type
   isCreatedByStatefulCreatePages
   context___id
+  context____rawBody
+  context____rawBody____key
+  context____rawBody____type
+  context____rawBody___children
+  context____rawBody___children____key
+  context____rawBody___children____type
+  context____rawBody___children___marks
+  context____rawBody___children___text
+  context____rawBody___markDefs
+  context____rawBody___markDefs____key
+  context____rawBody___markDefs____type
+  context____rawBody___markDefs___blank
+  context____rawBody___markDefs___href
+  context____rawBody___style
+  context____rawBody___level
+  context____rawBody___listItem
   pluginCreator___id
   pluginCreator___parent___id
   pluginCreator___parent___parent___id
@@ -4303,6 +4441,9 @@ enum SitePageFieldsEnum {
   pluginCreator___pluginOptions___emitSchema___src___generated___gatsby_introspection_json
   pluginCreator___pluginOptions___emitSchema___src___generated___gatsby_schema_graphql
   pluginCreator___pluginOptions___emitPluginDocuments___src___generated___gatsby_plugin_documents_graphql
+  pluginCreator___pluginOptions___projectId
+  pluginCreator___pluginOptions___dataset
+  pluginCreator___pluginOptions___graphqlTag
   pluginCreator___pluginOptions___isTSX
   pluginCreator___pluginOptions___jsxPragma
   pluginCreator___pluginOptions___allExtensions
@@ -4315,9 +4456,6 @@ enum SitePageFieldsEnum {
   pluginCreator___pluginOptions___createLinkInHead
   pluginCreator___pluginOptions___path
   pluginCreator___pluginOptions___pathCheck
-  pluginCreator___pluginOptions___projectId
-  pluginCreator___pluginOptions___dataset
-  pluginCreator___pluginOptions___graphqlTag
   pluginCreator___nodeAPIs
   pluginCreator___browserAPIs
   pluginCreator___ssrAPIs
@@ -4497,6 +4635,9 @@ enum SitePluginFieldsEnum {
   pluginOptions___emitSchema___src___generated___gatsby_introspection_json
   pluginOptions___emitSchema___src___generated___gatsby_schema_graphql
   pluginOptions___emitPluginDocuments___src___generated___gatsby_plugin_documents_graphql
+  pluginOptions___projectId
+  pluginOptions___dataset
+  pluginOptions___graphqlTag
   pluginOptions___isTSX
   pluginOptions___jsxPragma
   pluginOptions___allExtensions
@@ -4509,9 +4650,6 @@ enum SitePluginFieldsEnum {
   pluginOptions___createLinkInHead
   pluginOptions___path
   pluginOptions___pathCheck
-  pluginOptions___projectId
-  pluginOptions___dataset
-  pluginOptions___graphqlTag
   nodeAPIs
   browserAPIs
   ssrAPIs
@@ -4628,6 +4766,9 @@ type SitePluginPluginOptions {
   outputPath: String
   emitSchema: SitePluginPluginOptionsEmitSchema
   emitPluginDocuments: SitePluginPluginOptionsEmitPluginDocuments
+  projectId: String
+  dataset: String
+  graphqlTag: String
   isTSX: Boolean
   jsxPragma: String
   allExtensions: Boolean
@@ -4640,9 +4781,6 @@ type SitePluginPluginOptions {
   createLinkInHead: Boolean
   path: String
   pathCheck: Boolean
-  projectId: String
-  dataset: String
-  graphqlTag: String
 }
 
 type SitePluginPluginOptionsEmitPluginDocuments {
@@ -4667,6 +4805,9 @@ input SitePluginPluginOptionsFilterInput {
   outputPath: StringQueryOperatorInput
   emitSchema: SitePluginPluginOptionsEmitSchemaFilterInput
   emitPluginDocuments: SitePluginPluginOptionsEmitPluginDocumentsFilterInput
+  projectId: StringQueryOperatorInput
+  dataset: StringQueryOperatorInput
+  graphqlTag: StringQueryOperatorInput
   isTSX: BooleanQueryOperatorInput
   jsxPragma: StringQueryOperatorInput
   allExtensions: BooleanQueryOperatorInput
@@ -4679,9 +4820,6 @@ input SitePluginPluginOptionsFilterInput {
   createLinkInHead: BooleanQueryOperatorInput
   path: StringQueryOperatorInput
   pathCheck: BooleanQueryOperatorInput
-  projectId: StringQueryOperatorInput
-  dataset: StringQueryOperatorInput
-  graphqlTag: StringQueryOperatorInput
 }
 
 input SitePluginSortInput {

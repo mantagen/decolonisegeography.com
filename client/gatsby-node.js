@@ -14,7 +14,7 @@ function getBlogPostPath({ publishedAt, slug }) {
 
 exports.createPages = async ({ graphql, actions, reporter }) => {
   const { createPage } = actions;
-  const result = await graphql(`
+  const postsResult = await graphql(`
     {
       allSanityPost(
         filter: { slug: { current: { ne: null } }, publishedAt: { ne: null } }
@@ -32,12 +32,13 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     }
   `);
 
-  if (result.errors) {
-    reporter.panicOnBuild(`Error while running GraphQL query.`);
+  if (postsResult.errors) {
+    console.log(postsResult.errors);
+    reporter.panicOnBuild(`Error while running posts GraphQL query.`);
     return;
   }
 
-  const postEdges = (result.data.allSanityPost || {}).edges || [];
+  const postEdges = (postsResult.data.allSanityPost || {}).edges || [];
 
   postEdges
     .filter(edge => !isFuture(new Date(edge.node.publishedAt)))
@@ -49,4 +50,39 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
         context: { id },
       });
     });
+
+  const pagesResult = await graphql(`
+    {
+      allSanityPage(filter: { slug: { current: { ne: null } } }) {
+        edges {
+          node {
+            id
+            slug {
+              current
+            }
+            _rawBody
+            title
+          }
+        }
+      }
+    }
+  `);
+
+  if (pagesResult.errors) {
+    console.log(pagesResult.errors);
+    reporter.panicOnBuild(`Error while running pages GraphQL query.`);
+    return;
+  }
+
+  const pageEdges = (pagesResult.data.allSanityPage || {}).edges || [];
+
+  pageEdges.forEach((edge, index) => {
+    console.log(edge.node);
+    const { id, _rawBody, title } = edge.node;
+    createPage({
+      path: edge.node.slug.current,
+      component: require.resolve("./src/templates/page.tsx"),
+      context: { id, _rawBody, title },
+    });
+  });
 };

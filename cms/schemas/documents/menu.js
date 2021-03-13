@@ -1,6 +1,6 @@
 export default {
-  name: "resources",
-  title: "Resources",
+  name: "menu",
+  title: "Menu",
   type: "document",
   fields: [
     {
@@ -10,9 +10,10 @@ export default {
       validation: (Rule) => Rule.required(),
     },
     {
-      name: "body",
-      title: "Body",
-      type: "blockContent",
+      name: "pages",
+      title: "Pages",
+      type: "array",
+      of: [{ type: "reference", to: { type: "page" } }],
       validation: (Rule) => Rule.required(),
     },
   ],

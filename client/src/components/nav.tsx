@@ -1,7 +1,7 @@
 // Using this guide for accessibility:
 // https://a11y-style-guide.com/style-guide/section-navigation.html#kssref-navigation-navigation-mobile
 
-import { Link } from "gatsby";
+import { graphql, Link, useStaticQuery } from "gatsby";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { colours } from "../theme";
@@ -88,6 +88,30 @@ const Nav: React.FC = () => {
   // This is to allow the transition to take place.
   const [isHidden, setIsHidden] = useState(true);
 
+  const { allMenu } = useStaticQuery<GatsbyTypes.MenuQuery>(graphql`
+    query Menu {
+      allMenu: allSanityMenu {
+        edges {
+          node {
+            pages {
+              _id
+              slug {
+                current
+              }
+              title
+            }
+          }
+        }
+      }
+    }
+  `);
+  console.log(allMenu);
+  const [menu] = allMenu.edges;
+
+  if (!menu) {
+    throw new Error("No menu");
+  }
+
   useEffect(() => {
     if (isOpen) {
       return setIsHidden(false);
@@ -112,6 +136,11 @@ const Nav: React.FC = () => {
       >
         <NavInnerWrapper isOpen={isOpen}>
           <NavLink to="/">Decolonising Geography</NavLink>
+          {menu.node.pages.map(({ _id, slug, title }) => (
+            <NavLink key={_id} to={`/${slug.current}`}>
+              {title}
+            </NavLink>
+          ))}
           <NavLink to="/about">About</NavLink>
           <NavLink to="/contact">Contact</NavLink>
         </NavInnerWrapper>

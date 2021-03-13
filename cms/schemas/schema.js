@@ -11,8 +11,8 @@ import post from "./documents/post";
 import author from "./documents/author";
 import about from "./documents/about";
 import contact from "./documents/contact";
-import resources from "./documents/resources";
-import events from "./documents/events";
+import menu from "./documents/menu";
+import page from "./documents/page";
 
 // We import object schemas
 import blockContent from "./objects/blockContent";
@@ -32,9 +32,9 @@ export default createSchema({
     siteSettings,
     post,
     author,
-    resources,
-    events,
     category,
+    menu,
+    page,
     // When added to this list, object types can be used as
     // { type: 'typename' } in other document schemas
     blockContent,

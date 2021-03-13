@@ -28,6 +28,7 @@ const GlobalStyle = createGlobalStyle`
     color: ${colours.black};
 
     font-size: 100%;
+    overflow-wrap: break-word;
 
     @media(min-width: ${BREAK_POINT_S_PX}px) {
       font-size: 131.25%;
