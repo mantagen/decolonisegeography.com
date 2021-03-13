@@ -47,7 +47,6 @@ export const articleContentCss = css`
   }
 
   ul {
-    font-size: 1.2rem;
     display: block;
     list-style-type: disc;
     margin-block-start: 1em;
