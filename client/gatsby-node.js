@@ -77,7 +77,6 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   const pageEdges = (pagesResult.data.allSanityPage || {}).edges || [];
 
   pageEdges.forEach((edge, index) => {
-    console.log(edge.node);
     const { id, _rawBody, title } = edge.node;
     createPage({
       path: edge.node.slug.current,

@@ -1008,6 +1008,7 @@ type Query_sanityMenuArgs = {
   _updatedAt: Maybe<DateQueryOperatorInput>;
   _rev: Maybe<StringQueryOperatorInput>;
   _key: Maybe<StringQueryOperatorInput>;
+  title: Maybe<StringQueryOperatorInput>;
   pages: Maybe<SanityPageFilterListInput>;
   _rawPages: Maybe<JSONQueryOperatorInput>;
   id: Maybe<StringQueryOperatorInput>;
@@ -3064,6 +3065,7 @@ type SanityMenu = SanityDocument & Node & {
   readonly _updatedAt: Maybe<Scalars['Date']>;
   readonly _rev: Maybe<Scalars['String']>;
   readonly _key: Maybe<Scalars['String']>;
+  readonly title: Maybe<Scalars['String']>;
   readonly pages: Maybe<ReadonlyArray<Maybe<SanityPage>>>;
   readonly _rawPages: Maybe<Scalars['JSON']>;
   readonly id: Scalars['ID'];
@@ -3127,6 +3129,7 @@ enum SanityMenuFieldsEnum {
   _updatedAt = '_updatedAt',
   _rev = '_rev',
   _key = '_key',
+  title = 'title',
   pages = 'pages',
   pages____id = 'pages._id',
   pages____type = 'pages._type',
@@ -3285,6 +3288,7 @@ type SanityMenuFilterInput = {
   readonly _updatedAt: Maybe<DateQueryOperatorInput>;
   readonly _rev: Maybe<StringQueryOperatorInput>;
   readonly _key: Maybe<StringQueryOperatorInput>;
+  readonly title: Maybe<StringQueryOperatorInput>;
   readonly pages: Maybe<SanityPageFilterListInput>;
   readonly _rawPages: Maybe<JSONQueryOperatorInput>;
   readonly id: Maybe<StringQueryOperatorInput>;
@@ -4728,6 +4732,7 @@ type SitePageConnection_groupArgs = {
 type SitePageContext = {
   readonly id: Maybe<Scalars['String']>;
   readonly _rawBody: Maybe<ReadonlyArray<Maybe<SitePageContext_rawBody>>>;
+  readonly title: Maybe<Scalars['String']>;
 };
 
 type SitePageContext_rawBody = {
@@ -4736,8 +4741,6 @@ type SitePageContext_rawBody = {
   readonly children: Maybe<ReadonlyArray<Maybe<SitePageContext_rawBodyChildren>>>;
   readonly markDefs: Maybe<ReadonlyArray<Maybe<SitePageContext_rawBodyMarkDefs>>>;
   readonly style: Maybe<Scalars['String']>;
-  readonly level: Maybe<Scalars['Int']>;
-  readonly listItem: Maybe<Scalars['String']>;
 };
 
 type SitePageContext_rawBodyChildren = {
@@ -4764,8 +4767,6 @@ type SitePageContext_rawBodyFilterInput = {
   readonly children: Maybe<SitePageContext_rawBodyChildrenFilterListInput>;
   readonly markDefs: Maybe<SitePageContext_rawBodyMarkDefsFilterListInput>;
   readonly style: Maybe<StringQueryOperatorInput>;
-  readonly level: Maybe<IntQueryOperatorInput>;
-  readonly listItem: Maybe<StringQueryOperatorInput>;
 };
 
 type SitePageContext_rawBodyFilterListInput = {
@@ -4775,15 +4776,15 @@ type SitePageContext_rawBodyFilterListInput = {
 type SitePageContext_rawBodyMarkDefs = {
   readonly _key: Maybe<Scalars['String']>;
   readonly _type: Maybe<Scalars['String']>;
-  readonly blank: Maybe<Scalars['Boolean']>;
   readonly href: Maybe<Scalars['String']>;
+  readonly blank: Maybe<Scalars['Boolean']>;
 };
 
 type SitePageContext_rawBodyMarkDefsFilterInput = {
   readonly _key: Maybe<StringQueryOperatorInput>;
   readonly _type: Maybe<StringQueryOperatorInput>;
-  readonly blank: Maybe<BooleanQueryOperatorInput>;
   readonly href: Maybe<StringQueryOperatorInput>;
+  readonly blank: Maybe<BooleanQueryOperatorInput>;
 };
 
 type SitePageContext_rawBodyMarkDefsFilterListInput = {
@@ -4793,6 +4794,7 @@ type SitePageContext_rawBodyMarkDefsFilterListInput = {
 type SitePageContextFilterInput = {
   readonly id: Maybe<StringQueryOperatorInput>;
   readonly _rawBody: Maybe<SitePageContext_rawBodyFilterListInput>;
+  readonly title: Maybe<StringQueryOperatorInput>;
 };
 
 type SitePageEdge = {
@@ -4906,11 +4908,10 @@ enum SitePageFieldsEnum {
   context____rawBody___markDefs = 'context._rawBody.markDefs',
   context____rawBody___markDefs____key = 'context._rawBody.markDefs._key',
   context____rawBody___markDefs____type = 'context._rawBody.markDefs._type',
-  context____rawBody___markDefs___blank = 'context._rawBody.markDefs.blank',
   context____rawBody___markDefs___href = 'context._rawBody.markDefs.href',
+  context____rawBody___markDefs___blank = 'context._rawBody.markDefs.blank',
   context____rawBody___style = 'context._rawBody.style',
-  context____rawBody___level = 'context._rawBody.level',
-  context____rawBody___listItem = 'context._rawBody.listItem',
+  context___title = 'context.title',
   pluginCreator___id = 'pluginCreator.id',
   pluginCreator___parent___id = 'pluginCreator.parent.id',
   pluginCreator___parent___parent___id = 'pluginCreator.parent.parent.id',

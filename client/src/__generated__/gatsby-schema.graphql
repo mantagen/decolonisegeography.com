@@ -845,7 +845,7 @@ type Query {
   allSanityCategory(filter: SanityCategoryFilterInput, sort: SanityCategorySortInput, skip: Int, limit: Int): SanityCategoryConnection!
   sanityContact(_id: StringQueryOperatorInput, _type: StringQueryOperatorInput, _createdAt: DateQueryOperatorInput, _updatedAt: DateQueryOperatorInput, _rev: StringQueryOperatorInput, _key: StringQueryOperatorInput, title: StringQueryOperatorInput, body: SanityBlockFilterListInput, _rawBody: JSONQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): SanityContact
   allSanityContact(filter: SanityContactFilterInput, sort: SanityContactSortInput, skip: Int, limit: Int): SanityContactConnection!
-  sanityMenu(_id: StringQueryOperatorInput, _type: StringQueryOperatorInput, _createdAt: DateQueryOperatorInput, _updatedAt: DateQueryOperatorInput, _rev: StringQueryOperatorInput, _key: StringQueryOperatorInput, pages: SanityPageFilterListInput, _rawPages: JSONQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): SanityMenu
+  sanityMenu(_id: StringQueryOperatorInput, _type: StringQueryOperatorInput, _createdAt: DateQueryOperatorInput, _updatedAt: DateQueryOperatorInput, _rev: StringQueryOperatorInput, _key: StringQueryOperatorInput, title: StringQueryOperatorInput, pages: SanityPageFilterListInput, _rawPages: JSONQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): SanityMenu
   allSanityMenu(filter: SanityMenuFilterInput, sort: SanityMenuSortInput, skip: Int, limit: Int): SanityMenuConnection!
   sanityPage(_id: StringQueryOperatorInput, _type: StringQueryOperatorInput, _createdAt: DateQueryOperatorInput, _updatedAt: DateQueryOperatorInput, _rev: StringQueryOperatorInput, _key: StringQueryOperatorInput, title: StringQueryOperatorInput, slug: SanitySlugFilterInput, body: SanityBlockFilterListInput, _rawSlug: JSONQueryOperatorInput, _rawBody: JSONQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): SanityPage
   allSanityPage(filter: SanityPageFilterInput, sort: SanityPageSortInput, skip: Int, limit: Int): SanityPageConnection!
@@ -2622,6 +2622,7 @@ type SanityMenu implements SanityDocument & Node {
   ): Date
   _rev: String
   _key: String
+  title: String
   pages: [SanityPage]
   _rawPages(resolveReferences: SanityResolveReferencesConfiguration): JSON
   id: ID!
@@ -2652,6 +2653,7 @@ enum SanityMenuFieldsEnum {
   _updatedAt
   _rev
   _key
+  title
   pages
   pages____id
   pages____type
@@ -2810,6 +2812,7 @@ input SanityMenuFilterInput {
   _updatedAt: DateQueryOperatorInput
   _rev: StringQueryOperatorInput
   _key: StringQueryOperatorInput
+  title: StringQueryOperatorInput
   pages: SanityPageFilterListInput
   _rawPages: JSONQueryOperatorInput
   id: StringQueryOperatorInput
@@ -4213,6 +4216,7 @@ type SitePageConnection {
 type SitePageContext {
   id: String
   _rawBody: [SitePageContext_rawBody]
+  title: String
 }
 
 type SitePageContext_rawBody {
@@ -4221,8 +4225,6 @@ type SitePageContext_rawBody {
   children: [SitePageContext_rawBodyChildren]
   markDefs: [SitePageContext_rawBodyMarkDefs]
   style: String
-  level: Int
-  listItem: String
 }
 
 type SitePageContext_rawBodyChildren {
@@ -4249,8 +4251,6 @@ input SitePageContext_rawBodyFilterInput {
   children: SitePageContext_rawBodyChildrenFilterListInput
   markDefs: SitePageContext_rawBodyMarkDefsFilterListInput
   style: StringQueryOperatorInput
-  level: IntQueryOperatorInput
-  listItem: StringQueryOperatorInput
 }
 
 input SitePageContext_rawBodyFilterListInput {
@@ -4260,15 +4260,15 @@ input SitePageContext_rawBodyFilterListInput {
 type SitePageContext_rawBodyMarkDefs {
   _key: String
   _type: String
-  blank: Boolean
   href: String
+  blank: Boolean
 }
 
 input SitePageContext_rawBodyMarkDefsFilterInput {
   _key: StringQueryOperatorInput
   _type: StringQueryOperatorInput
-  blank: BooleanQueryOperatorInput
   href: StringQueryOperatorInput
+  blank: BooleanQueryOperatorInput
 }
 
 input SitePageContext_rawBodyMarkDefsFilterListInput {
@@ -4278,6 +4278,7 @@ input SitePageContext_rawBodyMarkDefsFilterListInput {
 input SitePageContextFilterInput {
   id: StringQueryOperatorInput
   _rawBody: SitePageContext_rawBodyFilterListInput
+  title: StringQueryOperatorInput
 }
 
 type SitePageEdge {
@@ -4391,11 +4392,10 @@ enum SitePageFieldsEnum {
   context____rawBody___markDefs
   context____rawBody___markDefs____key
   context____rawBody___markDefs____type
-  context____rawBody___markDefs___blank
   context____rawBody___markDefs___href
+  context____rawBody___markDefs___blank
   context____rawBody___style
-  context____rawBody___level
-  context____rawBody___listItem
+  context___title
   pluginCreator___id
   pluginCreator___parent___id
   pluginCreator___parent___parent___id
