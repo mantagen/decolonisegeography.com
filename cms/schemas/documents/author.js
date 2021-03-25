@@ -7,6 +7,7 @@ export default {
       name: "name",
       title: "Name",
       type: "string",
+      validation: (Rule) => Rule.required(),
     },
     {
       name: "slug",
@@ -15,6 +16,7 @@ export default {
       options: {
         source: "name",
         maxLength: 96,
+        validation: (Rule) => Rule.required(),
       },
     },
     {
@@ -35,14 +37,6 @@ export default {
       type: "url",
     },
     {
-      name: "image",
-      title: "Image",
-      type: "image",
-      options: {
-        hotspot: true,
-      },
-    },
-    {
       name: "bio",
       title: "Bio",
       type: "array",
@@ -54,6 +48,14 @@ export default {
           lists: [],
         },
       ],
+    },
+    {
+      name: "image",
+      title: "Image",
+      type: "image",
+      options: {
+        hotspot: true,
+      },
     },
   ],
   preview: {
