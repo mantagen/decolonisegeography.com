@@ -11,8 +11,8 @@ import GlobalStyle, { BREAK_POINT_M_PX } from "./global-style";
 import Nav from "./nav";
 import { Link } from "gatsby";
 import { colours } from "../theme";
-import logo from "../../static/images/logo-105x105.png";
 import SrOnly from "./sr-only";
+import SiteLogo from "./site-logo";
 
 const SiteHeader = styled.header`
   padding: 0 1rem;
@@ -40,12 +40,6 @@ const HomeLink = styled(Link)`
   pointer-events: auto;
 `;
 
-const SiteLogo = styled.img`
-  height: 6rem;
-  min-width: 0;
-  padding: 0.5rem 0;
-  margin-right: 1rem;
-`;
 const SiteMain = styled.main`
   margin: 6rem 1rem;
   display: flex;
@@ -70,7 +64,7 @@ const Layout: React.FC = props => {
       <GlobalStyle />
       <SiteHeader>
         <HomeLink to="/">
-          <SiteLogo src={logo} alt="Decolonising Geography Logo" />
+          <SiteLogo />
           <SiteTitle>
             <SrOnly>Decolonising Geography</SrOnly>
           </SiteTitle>

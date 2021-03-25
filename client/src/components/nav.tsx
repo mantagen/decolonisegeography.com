@@ -8,6 +8,7 @@ import { colours } from "../theme";
 
 import { BREAK_POINT_M_PX } from "./global-style";
 import NavButton from "./nav-button";
+import SiteLogo from "./site-logo";
 
 const DURATION_MS = 300;
 
@@ -53,7 +54,7 @@ const NavOuterWrapper = styled.div<{ isHidden: boolean }>`
 const NavInnerWrapper = styled.div<{ isOpen: boolean }>`
   width: 100%;
   height: 100%;
-  padding: 1rem;
+  padding: 0 1rem;
   background-color: ${colours.black};
   color: #fff;
   opacity: ${props => (props.isOpen ? 1 : 0)};
@@ -68,6 +69,12 @@ const NavInnerWrapper = styled.div<{ isOpen: boolean }>`
   @media (min-width: ${BREAK_POINT_M_PX}px) {
     transform: translateY(${props => (props.isOpen ? 0 : "0.4rem")});
     padding: 0.7rem 1rem;
+  }
+`;
+
+const NavLogo = styled(SiteLogo)`
+  @media (min-width: ${BREAK_POINT_M_PX}px) {
+    display: none;
   }
 `;
 const NavLink = styled(Link)`
@@ -105,7 +112,7 @@ const Nav: React.FC = () => {
       }
     }
   `);
-  console.log(allMenu);
+
   const [menu] = allMenu.edges;
 
   if (!menu) {
@@ -135,6 +142,7 @@ const Nav: React.FC = () => {
         isHidden={isHidden}
       >
         <NavInnerWrapper isOpen={isOpen}>
+          <NavLogo />
           <NavLink to="/">Decolonising Geography</NavLink>
           {menu.node.pages.map(({ _id, slug, title }) => (
             <NavLink key={_id} to={`/${slug.current}`}>
