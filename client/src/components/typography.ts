@@ -126,9 +126,9 @@ export const H2 = styled.h2`
   font-size: 1.2381rem; //26px
   font-weight: 700;
   padding: 0;
-  margin: 2.15385em 0 -0.5em -0.072423em;
+  // margin: 2.15385em 0 -0.5em -0.072423em;
   text-align: left;
-  line-height: 0.7536em;
+  // line-height: 0.7536em;
   letter-spacing: -0.01731em;
 `;
 
@@ -136,7 +136,6 @@ export const Subtitle = styled.span`
   font-family: "Lato", sans-serif;
   color: rgba(0, 0, 0, 0.54);
   font-size: 1rem;
-  margin: 0 0 1.14286em 0;
   line-height: 1.3em;
 `;
 

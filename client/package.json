@@ -6,7 +6,7 @@
   "license": "0BSD",
   "scripts": {
     "build": "gatsby build",
-    "develop": "gatsby develop",
+    "develop": "gatsby develop -H 0.0.0.0 -p 8000",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
     "start": "npm run develop",
     "serve": "gatsby serve",
@@ -21,6 +21,7 @@
     "@types/react-helmet": "^6.1.0",
     "babel-plugin-styled-components": "^1.12.0",
     "dotenv": "^8.2.0",
+    "fuse.js": "^6.4.6",
     "gatsby": "^2.26.1",
     "gatsby-image": "^2.9.0",
     "gatsby-plugin-google-gtag": "^2.8.0",
@@ -28,18 +29,20 @@
     "gatsby-plugin-robots-txt": "^1.5.5",
     "gatsby-plugin-sitemap": "^2.12.0",
     "gatsby-plugin-styled-components": "^3.8.0",
-    "gatsby-plugin-typegen": "^2.2.2",
+    "gatsby-plugin-typegen": "^2.2.4",
     "gatsby-source-sanity": "^6.0.4",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-helmet": "^6.1.0",
     "react-twitter-embed": "^3.0.3",
     "styled-components": "^5.2.1",
+    "throttle-debounce": "^3.0.1",
     "ts-graphql-plugin": "^2.1.2"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "^1.20.0",
     "@types/styled-components": "^5.1.7",
+    "@types/throttle-debounce": "^2.1.0",
     "get-youtube-id": "^1.0.1",
     "prettier": "2.2.1",
     "react-youtube": "^7.13.1"

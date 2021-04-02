@@ -71,7 +71,12 @@ const GlobalStyle = createGlobalStyle`
   }
 
   ::selection {
-    background-color: lavender;
+    background-color: ${colours.lavendar};
+  }
+  
+  mark {
+    background-color: ${colours.yellow};
+    color: ${colours.textGrey}; 
   }
 
   // Ensure full-height flex in React-land

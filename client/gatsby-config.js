@@ -13,7 +13,7 @@ module.exports = {
   /* Your site config here */
   siteMetadata: {
     title: `Decolonise Geography`,
-    author: `Nona Andersion`,
+    author: `Nona Anderson`,
     description: `A blog about decolonising the geography curriculum in schools`,
     siteUrl: `https://decolonisegeography.co.uk`,
   },

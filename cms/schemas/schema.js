@@ -13,6 +13,9 @@ import about from "./documents/about";
 import contact from "./documents/contact";
 import menu from "./documents/menu";
 import page from "./documents/page";
+import resource from "./documents/resource";
+import topic from "./documents/topic";
+import unit from "./documents/unit";
 
 // We import object schemas
 import blockContent from "./objects/blockContent";
@@ -30,11 +33,14 @@ export default createSchema({
     // The following are document types which will appear
     // in the studio.
     siteSettings,
-    post,
-    author,
-    category,
     menu,
+    post,
     page,
+    author,
+    resource,
+    topic,
+    category,
+    unit,
     // When added to this list, object types can be used as
     // { type: 'typename' } in other document schemas
     blockContent,

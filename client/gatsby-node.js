@@ -41,7 +41,11 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   const postEdges = (postsResult.data.allSanityPost || {}).edges || [];
 
   postEdges
-    .filter(edge => !isFuture(new Date(edge.node.publishedAt)))
+    // TODO: we can't filter here because it's build time filter, so when the publish date
+    // becomes past, we will need to trigger a build in order for this page to exist.
+    // Therefore, even with 'future' published article, they will still be accessible,
+    // just not visible on the home page
+    // .filter(edge => !isFuture(new Date(edge.node.publishedAt)))
     .forEach((edge, index) => {
       const { id } = edge.node;
       createPage({

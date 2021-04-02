@@ -6,4 +6,6 @@ export const colours = {
   white: "#fff",
   textGrey: "rgba(0, 0, 0, 0.54)",
   backgroundGrey: "#efefef",
+  yellow: "yellow",
+  lavendar: "lavender",
 };

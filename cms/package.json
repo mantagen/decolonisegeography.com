@@ -8,8 +8,9 @@
   "license": "UNLICENSED",
   "scripts": {
     "start": "sanity start",
-    "graphql-dev": "sanity graphql deploy --dataset=development",
-    "graphql-prod": "sanity graphql deploy",
+    "graphql-dev": "SANITY_STUDIO_API_PROJECT_ID=7wjnhkz7 sanity graphql deploy --dataset=development",
+    "graphql-staging": "sanity graphql deploy --dataset=staging",
+    "graphql-prod": "SANITY_ACTIVE_ENV=production sanity graphql deploy",
     "test": "sanity check",
     "build": "sanity build public -y"
   },
@@ -32,6 +33,6 @@
     "react-youtube": "^7.13.1"
   },
   "devDependencies": {
-    "@sanity/cli": "^2.2.6"
+    "@sanity/cli": "^2.7.1"
   }
 }
