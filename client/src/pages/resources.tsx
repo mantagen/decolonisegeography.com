@@ -218,7 +218,7 @@ const Resources: React.FC = () => {
     // findAllMatches: false,
     // minMatchCharLength: 1,
     // location: 0,
-    // threshold: 0.6,
+    // threshold: 1,
     // distance: 100,
     // useExtendedSearch: false,
     // ignoreLocation: false,
@@ -280,29 +280,45 @@ const Resources: React.FC = () => {
         <ResultsRow>
           {filteredAndSearchedResults.map(hit => (
             <Result key={`resources__resource--${hit.item?.id}`}>
-              <ResultImage {...hit.item?.image} />
-              <ResultTitle>
-                <ResourceResourceUrl
-                  href={hit.item?.resourceUrl}
-                  target="_blank"
-                >
-                  <FuseHighlight hit={hit} attribute="title" />
-                </ResourceResourceUrl>
-              </ResultTitle>
-              <ResultResourceType>
-                📝 {getResourceType(hit.item?.resourceType)?.title}
-              </ResultResourceType>
-              <ResultKeyStage>
-                🧑‍🎓 {getKeyStage(hit.item?.keyStage)?.title}
-              </ResultKeyStage>
-              <ResultTags>
-                🏷️
-                {hit.item?.tags.map(tag => (
-                  <ResultTag key={`resources__resource-tag--${tag}`}>
-                    {tag}
-                  </ResultTag>
-                ))}
-              </ResultTags>
+              <ResultContent>
+                <ResultImageWrapper>
+                  <ResultImage {...hit.item?.image} />
+                  <ResultImageShadow />
+                </ResultImageWrapper>
+                <ResultTextWrapper>
+                  <ResultTitle>
+                    <ResourceResourceUrl
+                      href={hit.item?.resourceUrl}
+                      target="_blank"
+                    >
+                      <FuseHighlight
+                        hit={hit}
+                        fallback={hit.item.title}
+                        isMatch={m => m.key === "title"}
+                      />
+                    </ResourceResourceUrl>
+                  </ResultTitle>
+                  <ResultResourceType>
+                    📝 {getResourceType(hit.item?.resourceType)?.title}
+                  </ResultResourceType>
+                  <ResultKeyStage>
+                    🎓 {getKeyStage(hit.item?.keyStage)?.title}
+                  </ResultKeyStage>
+                  <ResultTags>
+                    🏷️
+                    {hit.item?.tags?.map((tag, i) => (
+                      <ResultTag key={`resources__resource-tag--${tag}`}>
+                        {/* {tag} */}
+                        <FuseHighlight
+                          hit={hit}
+                          fallback={tag}
+                          isMatch={m => m.key === "tags" && m.refIndex === i}
+                        />
+                      </ResultTag>
+                    ))}
+                  </ResultTags>
+                </ResultTextWrapper>
+              </ResultContent>
             </Result>
           ))}
         </ResultsRow>
