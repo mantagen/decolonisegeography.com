@@ -9,6 +9,11 @@ export const keyStages = [
   { title: "KS4", value: "ks4" },
   { title: "KS5", value: "ks5" },
 ];
+export const examBoards = [
+  { title: "AQA", value: "aqa" },
+  { title: "Edexcel", value: "edexcel" },
+  { title: "OCR", value: "ocr" },
+];
 
 export default {
   name: "resource",
@@ -50,6 +55,15 @@ export default {
       type: "string",
       options: {
         list: keyStages,
+        layout: "dropdown",
+      },
+    },
+    {
+      name: "examBoard",
+      title: "Exam Board",
+      type: "string",
+      options: {
+        list: examBoards,
         layout: "dropdown",
       },
     },

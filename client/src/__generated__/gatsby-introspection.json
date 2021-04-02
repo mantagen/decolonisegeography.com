@@ -2866,16 +2866,6 @@
                 "defaultValue": null
               },
               {
-                "name": "resourceUrl",
-                "description": "",
-                "type": {
-                  "kind": "INPUT_OBJECT",
-                  "name": "StringQueryOperatorInput",
-                  "ofType": null
-                },
-                "defaultValue": null
-              },
-              {
                 "name": "description",
                 "description": "",
                 "type": {
@@ -2896,7 +2886,27 @@
                 "defaultValue": null
               },
               {
+                "name": "resourceUrl",
+                "description": "",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "StringQueryOperatorInput",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
                 "name": "keyStage",
+                "description": "",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "StringQueryOperatorInput",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "examBoard",
                 "description": "",
                 "type": {
                   "kind": "INPUT_OBJECT",
@@ -32269,18 +32279,6 @@
             "deprecationReason": null
           },
           {
-            "name": "resourceUrl",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "description",
             "description": null,
             "args": [],
@@ -32305,7 +32303,31 @@
             "deprecationReason": null
           },
           {
+            "name": "resourceUrl",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "keyStage",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "examBoard",
             "description": null,
             "args": [],
             "type": {
@@ -32929,16 +32951,6 @@
             "defaultValue": null
           },
           {
-            "name": "resourceUrl",
-            "description": "",
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "StringQueryOperatorInput",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
             "name": "description",
             "description": "",
             "type": {
@@ -32959,7 +32971,27 @@
             "defaultValue": null
           },
           {
+            "name": "resourceUrl",
+            "description": "",
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "StringQueryOperatorInput",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
             "name": "keyStage",
+            "description": "",
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "StringQueryOperatorInput",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "examBoard",
             "description": "",
             "type": {
               "kind": "INPUT_OBJECT",
@@ -33173,12 +33205,6 @@
             "deprecationReason": null
           },
           {
-            "name": "resourceUrl",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "description",
             "description": null,
             "isDeprecated": false,
@@ -33203,7 +33229,19 @@
             "deprecationReason": null
           },
           {
+            "name": "resourceUrl",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "keyStage",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "examBoard",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
