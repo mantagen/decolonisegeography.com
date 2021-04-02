@@ -63,16 +63,23 @@ const NavInnerWrapper = styled.div<{ isOpen: boolean }>`
   box-shadow: 0 20px 70px 0 rgba(0, 0, 0, 0.2);
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
   will-change: opacity, transform;
+  justify-content: center;
+  align-items: center;
+  position: relative;
 
   @media (min-width: ${BREAK_POINT_M_PX}px) {
     transform: translateY(${props => (props.isOpen ? 0 : "0.4rem")});
     padding: 0.7rem 1rem;
+    align-items: flex-start;
+    justify-content: flex-start;
   }
 `;
 
 const NavLogo = styled(SiteLogo)`
+  position: absolute;
+  top: 0;
+  left: 1rem;
   @media (min-width: ${BREAK_POINT_M_PX}px) {
     display: none;
   }
@@ -144,9 +151,10 @@ const Nav: React.FC = () => {
         <NavInnerWrapper isOpen={isOpen}>
           <NavLogo />
           <NavLink to="/">Decolonising Geography</NavLink>
-          {menu.node.pages.map(({ _id, slug, title }) => (
-            <NavLink key={_id} to={`/${slug.current}`}>
-              {title}
+          <NavLink to="/resources">Resources</NavLink>
+          {menu.node?.pages?.map(page => (
+            <NavLink key={page?._id} to={`/${page?.slug?.current}`}>
+              {page?.title}
             </NavLink>
           ))}
           <NavLink to="/about">About</NavLink>

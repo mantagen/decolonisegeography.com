@@ -27,6 +27,10 @@ const PublishedAt = styled.span`
   color: rgba(0, 0, 0, 0.84);
 `;
 
+const PostSubtitle = styled(Subtitle)`
+  margin: 0 0 1.14286em 0;
+`;
+
 const SocialLink = styled.a``;
 
 interface PostProps extends PostTemplateData {
@@ -58,7 +62,7 @@ const Post: React.FC<PostProps> = props => {
       />
       <PostHeader>
         <H1>{title}</H1>
-        <Subtitle as="p">{subtitle}</Subtitle>
+        <PostSubtitle as="p">{subtitle}</PostSubtitle>
         <ByLineAndSocial>
           <span>
             Written by{" "}

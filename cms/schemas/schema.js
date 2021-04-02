@@ -13,7 +13,6 @@ import about from "./documents/about";
 import contact from "./documents/contact";
 import menu from "./documents/menu";
 import page from "./documents/page";
-import keyStage from "./documents/keyStage";
 import resource from "./documents/resource";
 import topic from "./documents/topic";
 import unit from "./documents/unit";
@@ -38,9 +37,7 @@ export default createSchema({
     post,
     page,
     author,
-    lesson,
     resource,
-    keyStage,
     topic,
     category,
     unit,

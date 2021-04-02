@@ -1,11 +1,11 @@
 {
   "root": true,
+  "api": {
+    "projectId": "7wjnhkz7",
+    "dataset": "development"
+  },
   "project": {
     "name": "decolonisegeography.com"
-  },
-  "api": {
-    "projectId": "62mi8gkm",
-    "dataset": "production"
   },
   "plugins": [
     "@sanity/base",
@@ -17,9 +17,30 @@
   "env": {
     "development": {
       "api": {
+        "projectId": "7wjnhkz7",
         "dataset": "development"
       },
-      "plugins": ["@sanity/vision"]
+      "plugins": [
+        "@sanity/vision"
+      ]
+    },
+    "production": {
+      "api": {
+        "projectId": "62mi8gkm",
+        "dataset": "production"
+      },
+      "plugins": [
+        "@sanity/vision"
+      ]
+    },
+    "staging": {
+      "api": {
+        "projectId": "62mi8gkm",
+        "dataset": "development"
+      },
+      "plugins": [
+        "@sanity/vision"
+      ]
     }
   },
   "parts": [
