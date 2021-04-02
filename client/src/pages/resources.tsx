@@ -14,6 +14,7 @@ import FuseHighlight from "../components/fuse-highlight";
 import {
   keyStages,
   resourceTypes,
+  examBoards,
 } from "../../../cms/schemas/documents/resource";
 
 const getKeyStage = (value: string | undefined) => {
@@ -28,6 +29,16 @@ const Container = styled.ul`
   max-width: ${IMAGE_MAX_WIDTH_PX}px;
   width: 100%;
   margin: 0 auto;
+  flex: auto;
+  display: flex;
+  flex-direction: column;
+`;
+
+const NoResults = styled(Subtitle)`
+  flex: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 const ResultsRow = styled.div`
@@ -39,8 +50,6 @@ const ResultsRow = styled.div`
 `;
 
 const Result = styled.div`
-  display: flex;
-  flex-direction: column;
   position: relative;
   margin-top: 30px;
   padding: 0 0.5rem;
@@ -57,6 +66,28 @@ const Result = styled.div`
     min-width: 33.33333%;
   }
 `;
+const ResultContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 4px, rgba(0, 0, 0, 0.16) 0px 4px 12px;
+`;
+
+const ResultImageWrapper = styled.div`
+  position: relative;
+`;
+const ResultImageShadow = styled.div`
+  word-break: break-word;
+  max-width: 100%;
+  align-items: flex-end;
+  display: flex;
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  height: 48px;
+  padding: 8px;
+  background: linear-gradient(rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.6) 100%);
+`;
 const ResultImage = styled(PostImage)`
   width: 100%;
   height: 150px;
@@ -66,6 +97,9 @@ const ResultImage = styled(PostImage)`
   }
 `;
 
+const ResultTextWrapper = styled.div`
+  padding: 1rem;
+`;
 const ResourceResourceUrl = styled.a`
   &:after {
     content: "";
@@ -77,18 +111,16 @@ const ResourceResourceUrl = styled.a`
     left: 0;
   }
 `;
-const ResultTitle = styled(H2)``;
-const ResultDescription = styled(Subtitle)``;
+const ResultTitle = styled(H2)`
+  margin-bottom: 0.5rem;
+`;
 const ResultResourceType = styled.div`
   font-family: "Lato", sans-serif;
-  //   font-family: "Playfair Display", serif;
-  margin-bottom: 0.2rem;
+  margin-bottom: 0.5rem;
 `;
 const ResultKeyStage = styled.div`
   font-family: "Lato", sans-serif;
-
-  //   font-family: "Playfair Display", serif;
-  margin-bottom: 0.2rem;
+  margin-bottom: 0.5rem;
 `;
 const ResultTags = styled.div`
   display: flex;
@@ -162,6 +194,7 @@ const Resources: React.FC = () => {
             resourceUrl
             keyStage
             resourceType
+            examBoard
             topics {
               slug {
                 current
@@ -194,6 +227,7 @@ const Resources: React.FC = () => {
 
   const [keyStage, setKeyStage] = useState("");
   const [resourceType, setResourceType] = useState("");
+  const [examBoard, setExamBoard] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
 
   const filteredResults = edges
@@ -204,6 +238,10 @@ const Resources: React.FC = () => {
       }
 
       if (resourceType && result.resourceType !== resourceType) {
+        return false;
+      }
+
+      if (examBoard && result.examBoard !== examBoard) {
         return false;
       }
 
@@ -276,7 +314,23 @@ const Resources: React.FC = () => {
               );
             })}
           </Select>
+          <Select
+            onChange={e => setExamBoard(e.target.value)}
+            value={examBoard}
+          >
+            <option value="">Exam Board</option>
+            {examBoards.map(({ value, title }) => {
+              return (
+                <option key={`resources__exam-board--${value}`} value={value}>
+                  {title}
+                </option>
+              );
+            })}
+          </Select>
         </Filters>
+        {filteredAndSearchedResults.length === 0 && (
+          <NoResults>🤷🏽 We couldn't find any results!</NoResults>
+        )}
         <ResultsRow>
           {filteredAndSearchedResults.map(hit => (
             <Result key={`resources__resource--${hit.item?.id}`}>
