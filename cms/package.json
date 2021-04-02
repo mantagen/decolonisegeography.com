@@ -8,8 +8,8 @@
   "license": "UNLICENSED",
   "scripts": {
     "start": "sanity start",
-    "graphql-dev": "SANITY_STUDIO_API_PROJECT_ID=7wjnhkz7 sanity graphql deploy --dataset=development",
-    "graphql-staging": "sanity graphql deploy --dataset=staging",
+    "graphql-dev": "SANITY_ACTIVE_ENV=development sanity graphql deploy --dataset=development",
+    "graphql-staging": "SANITY_ACTIVE_ENV=staging sanity graphql deploy --dataset=staging",
     "graphql-prod": "SANITY_ACTIVE_ENV=production sanity graphql deploy",
     "test": "sanity check",
     "build": "sanity build public -y"

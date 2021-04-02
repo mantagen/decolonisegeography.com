@@ -1099,10 +1099,11 @@ type Query_sanityResourceArgs = {
   _rev: Maybe<StringQueryOperatorInput>;
   _key: Maybe<StringQueryOperatorInput>;
   title: Maybe<StringQueryOperatorInput>;
-  resourceUrl: Maybe<StringQueryOperatorInput>;
   description: Maybe<StringQueryOperatorInput>;
   slug: Maybe<SanitySlugFilterInput>;
+  resourceUrl: Maybe<StringQueryOperatorInput>;
   keyStage: Maybe<StringQueryOperatorInput>;
+  examBoard: Maybe<StringQueryOperatorInput>;
   resourceType: Maybe<StringQueryOperatorInput>;
   topics: Maybe<SanityTopicFilterListInput>;
   tags: Maybe<StringQueryOperatorInput>;
@@ -4121,10 +4122,11 @@ type SanityResource = SanityDocument & Node & {
   readonly _rev: Maybe<Scalars['String']>;
   readonly _key: Maybe<Scalars['String']>;
   readonly title: Maybe<Scalars['String']>;
-  readonly resourceUrl: Maybe<Scalars['String']>;
   readonly description: Maybe<Scalars['String']>;
   readonly slug: Maybe<SanitySlug>;
+  readonly resourceUrl: Maybe<Scalars['String']>;
   readonly keyStage: Maybe<Scalars['String']>;
+  readonly examBoard: Maybe<Scalars['String']>;
   readonly resourceType: Maybe<Scalars['String']>;
   readonly topics: Maybe<ReadonlyArray<Maybe<SanityTopic>>>;
   readonly tags: Maybe<ReadonlyArray<Maybe<Scalars['String']>>>;
@@ -4204,12 +4206,13 @@ type SanityResourceFieldsEnum =
   | '_rev'
   | '_key'
   | 'title'
-  | 'resourceUrl'
   | 'description'
   | 'slug._key'
   | 'slug._type'
   | 'slug.current'
+  | 'resourceUrl'
   | 'keyStage'
+  | 'examBoard'
   | 'resourceType'
   | 'topics'
   | 'topics._id'
@@ -4478,10 +4481,11 @@ type SanityResourceFilterInput = {
   readonly _rev: Maybe<StringQueryOperatorInput>;
   readonly _key: Maybe<StringQueryOperatorInput>;
   readonly title: Maybe<StringQueryOperatorInput>;
-  readonly resourceUrl: Maybe<StringQueryOperatorInput>;
   readonly description: Maybe<StringQueryOperatorInput>;
   readonly slug: Maybe<SanitySlugFilterInput>;
+  readonly resourceUrl: Maybe<StringQueryOperatorInput>;
   readonly keyStage: Maybe<StringQueryOperatorInput>;
+  readonly examBoard: Maybe<StringQueryOperatorInput>;
   readonly resourceType: Maybe<StringQueryOperatorInput>;
   readonly topics: Maybe<SanityTopicFilterListInput>;
   readonly tags: Maybe<StringQueryOperatorInput>;
@@ -6356,33 +6360,12 @@ type PagesQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 type PagesQueryQuery = { readonly allSitePage: { readonly nodes: ReadonlyArray<Pick<SitePage, 'path'>> } };
 
-type AboutQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type AboutQuery = { readonly allAbout: { readonly edges: ReadonlyArray<{ readonly node: Pick<SanityAbout, 'title' | '_rawBody'> }> } };
-
-type ContactQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type ContactQuery = { readonly allContact: { readonly edges: ReadonlyArray<{ readonly node: Pick<SanityContact, 'title' | '_rawBody'> }> } };
-
 type IndexPageQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 type IndexPageQuery = { readonly allSiteSettings: { readonly edges: ReadonlyArray<{ readonly node: Pick<SanitySiteSettings, 'title' | 'description' | 'keywords'> }> }, readonly posts: { readonly edges: ReadonlyArray<{ readonly node: (
         Pick<SanityPost, 'id' | 'title' | 'subtitle' | 'publishedAt'>
         & { readonly mainImage: Maybe<{ readonly asset: Maybe<{ readonly fluid: Maybe<Pick<SanityImageFluid, 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>> }> }>, readonly slug: Maybe<Pick<SanitySlug, 'current'>> }
-      ) }> } };
-
-type ResourcesQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type ResourcesQuery = { readonly resources: { readonly edges: ReadonlyArray<{ readonly node: (
-        Pick<SanityResource, 'id' | 'title' | 'description' | 'resourceUrl' | 'keyStage' | 'resourceType' | 'tags'>
-        & { readonly topics: Maybe<ReadonlyArray<Maybe<(
-          Pick<SanityTopic, 'name'>
-          & { readonly slug: Maybe<Pick<SanitySlug, 'current'>> }
-        )>>>, readonly image: Maybe<{ readonly asset: Maybe<{ readonly fluid: Maybe<Pick<SanityImageFluid, 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>> }> }>, readonly slug: Maybe<Pick<SanitySlug, 'current'>> }
       ) }> } };
 
 type MenuQueryVariables = Exact<{ [key: string]: never; }>;

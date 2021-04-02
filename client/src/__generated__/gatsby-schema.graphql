@@ -851,7 +851,7 @@ type Query {
   allSanityPage(filter: SanityPageFilterInput, sort: SanityPageSortInput, skip: Int, limit: Int): SanityPageConnection!
   sanityPost(_id: StringQueryOperatorInput, _type: StringQueryOperatorInput, _createdAt: DateQueryOperatorInput, _updatedAt: DateQueryOperatorInput, _rev: StringQueryOperatorInput, _key: StringQueryOperatorInput, title: StringQueryOperatorInput, subtitle: StringQueryOperatorInput, slug: SanitySlugFilterInput, authors: SanityAuthorFilterListInput, mainImage: SanityImageFilterInput, categories: SanityCategoryFilterListInput, publishedAt: DateQueryOperatorInput, body: SanityBlockFilterListInput, _rawSlug: JSONQueryOperatorInput, _rawAuthors: JSONQueryOperatorInput, _rawMainImage: JSONQueryOperatorInput, _rawCategories: JSONQueryOperatorInput, _rawBody: JSONQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): SanityPost
   allSanityPost(filter: SanityPostFilterInput, sort: SanityPostSortInput, skip: Int, limit: Int): SanityPostConnection!
-  sanityResource(_id: StringQueryOperatorInput, _type: StringQueryOperatorInput, _createdAt: DateQueryOperatorInput, _updatedAt: DateQueryOperatorInput, _rev: StringQueryOperatorInput, _key: StringQueryOperatorInput, title: StringQueryOperatorInput, resourceUrl: StringQueryOperatorInput, description: StringQueryOperatorInput, slug: SanitySlugFilterInput, keyStage: StringQueryOperatorInput, resourceType: StringQueryOperatorInput, topics: SanityTopicFilterListInput, tags: StringQueryOperatorInput, image: SanityImageFilterInput, _rawSlug: JSONQueryOperatorInput, _rawTopics: JSONQueryOperatorInput, _rawImage: JSONQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): SanityResource
+  sanityResource(_id: StringQueryOperatorInput, _type: StringQueryOperatorInput, _createdAt: DateQueryOperatorInput, _updatedAt: DateQueryOperatorInput, _rev: StringQueryOperatorInput, _key: StringQueryOperatorInput, title: StringQueryOperatorInput, description: StringQueryOperatorInput, slug: SanitySlugFilterInput, resourceUrl: StringQueryOperatorInput, keyStage: StringQueryOperatorInput, examBoard: StringQueryOperatorInput, resourceType: StringQueryOperatorInput, topics: SanityTopicFilterListInput, tags: StringQueryOperatorInput, image: SanityImageFilterInput, _rawSlug: JSONQueryOperatorInput, _rawTopics: JSONQueryOperatorInput, _rawImage: JSONQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): SanityResource
   allSanityResource(filter: SanityResourceFilterInput, sort: SanityResourceSortInput, skip: Int, limit: Int): SanityResourceConnection!
   sanityFileAsset(_id: StringQueryOperatorInput, _type: StringQueryOperatorInput, _createdAt: DateQueryOperatorInput, _updatedAt: DateQueryOperatorInput, _rev: StringQueryOperatorInput, _key: StringQueryOperatorInput, originalFilename: StringQueryOperatorInput, label: StringQueryOperatorInput, title: StringQueryOperatorInput, description: StringQueryOperatorInput, altText: StringQueryOperatorInput, sha1hash: StringQueryOperatorInput, extension: StringQueryOperatorInput, mimeType: StringQueryOperatorInput, size: FloatQueryOperatorInput, assetId: StringQueryOperatorInput, path: StringQueryOperatorInput, url: StringQueryOperatorInput, source: SanityAssetSourceDataFilterInput, _rawSource: JSONQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): SanityFileAsset
   allSanityFileAsset(filter: SanityFileAssetFilterInput, sort: SanityFileAssetSortInput, skip: Int, limit: Int): SanityFileAssetConnection!
@@ -3581,10 +3581,11 @@ type SanityResource implements SanityDocument & Node {
   _rev: String
   _key: String
   title: String
-  resourceUrl: String
   description: String
   slug: SanitySlug
+  resourceUrl: String
   keyStage: String
+  examBoard: String
   resourceType: String
   topics: [SanityTopic]
   tags: [String]
@@ -3621,12 +3622,13 @@ enum SanityResourceFieldsEnum {
   _rev
   _key
   title
-  resourceUrl
   description
   slug____key
   slug____type
   slug___current
+  resourceUrl
   keyStage
+  examBoard
   resourceType
   topics
   topics____id
@@ -3896,10 +3898,11 @@ input SanityResourceFilterInput {
   _rev: StringQueryOperatorInput
   _key: StringQueryOperatorInput
   title: StringQueryOperatorInput
-  resourceUrl: StringQueryOperatorInput
   description: StringQueryOperatorInput
   slug: SanitySlugFilterInput
+  resourceUrl: StringQueryOperatorInput
   keyStage: StringQueryOperatorInput
+  examBoard: StringQueryOperatorInput
   resourceType: StringQueryOperatorInput
   topics: SanityTopicFilterListInput
   tags: StringQueryOperatorInput
