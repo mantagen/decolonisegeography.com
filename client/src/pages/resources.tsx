@@ -183,7 +183,6 @@ const Resources: React.FC = () => {
   } = useStaticQuery<GatsbyTypes.ResourcesQuery>(graphql`
     query Resources {
       resources: allSanityResource(
-        #   sort: { fields: [publishedAt], order: DESC }
         filter: { slug: { current: { ne: null } } }
       ) {
         edges {
@@ -256,7 +255,7 @@ const Resources: React.FC = () => {
     // findAllMatches: false,
     // minMatchCharLength: 1,
     // location: 0,
-    // threshold: 1,
+    // threshold: 0.6,
     // distance: 100,
     // useExtendedSearch: false,
     // ignoreLocation: false,
@@ -362,7 +361,6 @@ const Resources: React.FC = () => {
                     🏷️
                     {hit.item?.tags?.map((tag, i) => (
                       <ResultTag key={`resources__resource-tag--${tag}`}>
-                        {/* {tag} */}
                         <FuseHighlight
                           hit={hit}
                           fallback={tag}
