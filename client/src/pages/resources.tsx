@@ -51,7 +51,7 @@ const ResultsRow = styled.div`
 
 const Result = styled.div`
   position: relative;
-  margin-top: 30px;
+  margin-top: 2rem;
   padding: 0 0.5rem;
   width: 100%;
   min-width: 100%;
@@ -81,11 +81,11 @@ const ResultImageShadow = styled.div`
   align-items: flex-end;
   display: flex;
   position: absolute;
-  bottom: 0px;
-  left: 0px;
-  right: 0px;
-  height: 48px;
-  padding: 8px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3rem;
+  padding: 0.5rem;
   background: linear-gradient(rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.6) 100%);
 `;
 const ResultImage = styled(PostImage)`
@@ -254,12 +254,13 @@ const Resources: React.FC = () => {
     // includeMatches: false,
     // findAllMatches: false,
     // minMatchCharLength: 1,
-    // location: 0,
-    // threshold: 0.6,
+    // Set location to a high number as we're not concerned by where the match is
     // distance: 100,
     // useExtendedSearch: false,
-    // ignoreLocation: false,
     // ignoreFieldNorm: false,
+    // threshold: 0.6,
+    // ignoreLocation: true,
+    location: 9999999,
     keys: ["title", "description", "tags"],
     matchAllOnEmptyQuery: true,
     includeMatches: true,
