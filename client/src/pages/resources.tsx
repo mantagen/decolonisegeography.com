@@ -256,7 +256,7 @@ const Resources: React.FC = () => {
     // findAllMatches: false,
     // minMatchCharLength: 1,
     // location: 0,
-    // threshold: 0.6,
+    // threshold: 1,
     // distance: 100,
     // useExtendedSearch: false,
     // ignoreLocation: false,
@@ -356,7 +356,7 @@ const Resources: React.FC = () => {
                     📝 {getResourceType(hit.item?.resourceType)?.title}
                   </ResultResourceType>
                   <ResultKeyStage>
-                    🧑‍🎓 {getKeyStage(hit.item?.keyStage)?.title}
+                    🎓 {getKeyStage(hit.item?.keyStage)?.title}
                   </ResultKeyStage>
                   <ResultTags>
                     🏷️
