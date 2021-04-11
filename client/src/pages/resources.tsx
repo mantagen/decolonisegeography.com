@@ -25,6 +25,10 @@ const getResourceType = (value: string | undefined) => {
   return resourceTypes.find(resourceType => resourceType.value === value);
 };
 
+const getExamBoard = (value: string | undefined) => {
+  return examBoards.find(examBoard => examBoard.value === value);
+};
+
 const Container = styled.ul`
   max-width: ${IMAGE_MAX_WIDTH_PX}px;
   width: 100%;
@@ -374,6 +378,9 @@ const Resources: React.FC = () => {
                         />
                       </ResultTag>
                     ))}
+                    {hit.item?.examBoard && (
+                      <ResultTag>{getExamBoard(hit.item?.examBoard)?.title}</ResultTag>
+                    )}
                   </ResultTags>
                 </ResultTextWrapper>
               </ResultContent>
