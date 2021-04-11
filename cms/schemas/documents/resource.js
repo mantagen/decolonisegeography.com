@@ -12,7 +12,11 @@ export const keyStages = [
 export const examBoards = [
   { title: "AQA", value: "aqa" },
   { title: "Edexcel", value: "edexcel" },
+  { title: "Edexcel A", value: "edexcel-a" },
+  { title: "Edexcel B", value: "edexcel-b" },
   { title: "OCR", value: "ocr" },
+  { title: "OCR A", value: "ocr-a" },
+  { title: "OCR B", value: "ocr-b" },
 ];
 
 export default {

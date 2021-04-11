@@ -132,8 +132,9 @@ const ResultTag = styled.span`
   background-color: ${colours.backgroundGrey};
   color: ${colours.black};
   font-size: 0.8rem;
-  margin-right: 0.2rem;
-  padding: 0.2rem 0.5rem;
+  margin-left: 0.2rem;
+  padding: 0 0.3rem;
+  align-items: center;
   font-family: "Lato", sans-serif;
 `;
 
@@ -261,7 +262,7 @@ const Resources: React.FC = () => {
     // threshold: 0.6,
     // ignoreLocation: true,
     location: 9999999,
-    keys: ["title", "description", "tags"],
+    keys: ["title", "description", "tags", "topics.name"],
     matchAllOnEmptyQuery: true,
     includeMatches: true,
   };
@@ -360,12 +361,16 @@ const Resources: React.FC = () => {
                   </ResultKeyStage>
                   <ResultTags>
                     🏷️
-                    {hit.item?.tags?.map((tag, i) => (
-                      <ResultTag key={`resources__resource-tag--${tag}`}>
+                    {hit.item?.topics?.map((topic, i) => (
+                      <ResultTag
+                        key={`resources__resource-tag--${topic.slug.current}`}
+                      >
                         <FuseHighlight
                           hit={hit}
-                          fallback={tag}
-                          isMatch={m => m.key === "tags" && m.refIndex === i}
+                          fallback={topic.name}
+                          isMatch={m =>
+                            m.key === "topics.name" && m.refIndex === i
+                          }
                         />
                       </ResultTag>
                     ))}
