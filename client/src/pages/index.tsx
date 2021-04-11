@@ -140,12 +140,7 @@ const IndexPage: React.FC<IndexPageProps> = props => {
 
   return (
     <Layout>
-      <Seo
-      // title={site.title}
-      // description={site.description}
-      // keywords={site.keywords}
-      />
-      {/* <Container> */}
+      <Seo />
       <h1 hidden>Welcome to {siteMeta.title}</h1>
       <PostPreviews>
         {rows.map((row, rowNumber) => {
@@ -188,8 +183,6 @@ const IndexPage: React.FC<IndexPageProps> = props => {
           }
         })}
       </PostPreviews>
-
-      {/* </Container> */}
     </Layout>
   );
 };
