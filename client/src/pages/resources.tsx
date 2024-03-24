@@ -208,14 +208,7 @@ const Resources: React.FC = () => {
             tags
             image {
               asset {
-                fluid(maxWidth: 1192) {
-                  aspectRatio
-                  src
-                  srcSet
-                  srcWebp
-                  srcSetWebp
-                  sizes
-                }
+                gatsbyImageData(width: 1192, layout: CONSTRAINED)
               }
               # alt
             }
@@ -379,7 +372,9 @@ const Resources: React.FC = () => {
                       </ResultTag>
                     ))}
                     {hit.item?.examBoard && (
-                      <ResultTag>{getExamBoard(hit.item?.examBoard)?.title}</ResultTag>
+                      <ResultTag>
+                        {getExamBoard(hit.item?.examBoard)?.title}
+                      </ResultTag>
                     )}
                   </ResultTags>
                 </ResultTextWrapper>
