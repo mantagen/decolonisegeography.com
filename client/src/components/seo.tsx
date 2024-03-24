@@ -1,5 +1,4 @@
 import React from "react";
-import { Helmet } from "react-helmet";
 import { useLocation } from "@reach/router";
 import useSiteSettings from "../hooks/useSiteSettings";
 
@@ -39,8 +38,8 @@ const Seo: React.FC<SeoProps> = props => {
   const siteTwitterHandle = defaults.twitterHandle;
 
   return (
-    <Helmet defaultTitle={defaults.title}>
-      <title>{props.title}</title>
+    <>
+      <title>{props.title || defaults.title}</title>
       <link rel="canonical" href={url} />
       <meta name="description" content={description} />
       {image && <meta name="image" content={image} />}
@@ -60,7 +59,7 @@ const Seo: React.FC<SeoProps> = props => {
       <meta name="twitter:description" content={description} />
       {image && <meta name="twitter:image" content={image} />}
       <html lang="en" />
-    </Helmet>
+    </>
   );
 };
 

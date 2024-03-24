@@ -46,14 +46,7 @@ export const query = graphql`
           publishedAt
           mainImage {
             asset {
-              fluid(maxWidth: 1192) {
-                aspectRatio
-                src
-                srcSet
-                srcWebp
-                srcSetWebp
-                sizes
-              }
+              gatsbyImageData(width: 1192, layout: CONSTRAINED)
             }
             # alt
           }

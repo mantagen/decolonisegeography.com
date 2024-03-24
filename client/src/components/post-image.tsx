@@ -1,19 +1,27 @@
 import React from "react";
-import GatsbyImage, { GatsbyImageFluidProps } from "gatsby-image";
+import { GatsbyImage, ImageDataLike, getImage } from "gatsby-plugin-image";
 import { colours } from "../theme";
 
 export interface PostImageProps {
-  asset: GatsbyImageFluidProps;
+  asset: ImageDataLike;
   // TODO: make this non optional
   alt?: string;
   className?: string;
 }
 const PostImage: React.FC<PostImageProps> = props => {
-  const { asset, alt, className } = props;
+  const { asset, alt = "", className } = props;
+
+  const image = getImage(asset);
+
+  if (!image) {
+    console.log("No image found for asset", asset);
+
+    return null;
+  }
 
   return (
     <GatsbyImage
-      fluid={asset.fluid}
+      image={image}
       alt={alt}
       className={className}
       backgroundColor={colours.backgroundGrey}

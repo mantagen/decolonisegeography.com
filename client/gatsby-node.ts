@@ -1,4 +1,7 @@
-const { isFuture, format } = require("date-fns");
+import { CreatePagesArgs } from "gatsby";
+import { format } from "date-fns";
+import path from "path";
+
 /**
  * Implement Gatsby's Node APIs in this file.
  *
@@ -6,16 +9,28 @@ const { isFuture, format } = require("date-fns");
  */
 
 // TODO: this is a dupe of src/helpers/getBlogPostPath.ts
-function getBlogPostPath({ publishedAt, slug }) {
+function getBlogPostPath({
+  publishedAt,
+  slug,
+}: {
+  publishedAt: string;
+  slug: { current: string };
+}) {
   const dateSegment = format(new Date(publishedAt), "yyyy/MM");
 
   return `/blog/${dateSegment}/${slug.current}/`;
 }
 
-exports.createPages = async ({ graphql, actions, reporter }) => {
+export const createPages = async ({
+  graphql,
+  actions,
+  reporter,
+}: CreatePagesArgs) => {
+  console.log("Creating pages");
+
   const { createPage } = actions;
   const postsResult = await graphql(`
-    {
+    query GetPosts {
       allSanityPost(
         filter: { slug: { current: { ne: null } }, publishedAt: { ne: null } }
       ) {
@@ -50,13 +65,13 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
       const { id } = edge.node;
       createPage({
         path: getBlogPostPath(edge.node),
-        component: require.resolve("./src/templates/post.tsx"),
+        component: path.resolve("./src/templates/post.tsx"),
         context: { id },
       });
     });
 
   const pagesResult = await graphql(`
-    {
+    query GetPages {
       allSanityPage(filter: { slug: { current: { ne: null } } }) {
         edges {
           node {
@@ -78,13 +93,13 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     return;
   }
 
-  const pageEdges = (pagesResult.data.allSanityPage || {}).edges || [];
+  const pageEdges = (pagesResult?.data?.allSanityPage || {}).edges || [];
 
   pageEdges.forEach((edge, index) => {
     const { id, _rawBody, title } = edge.node;
     createPage({
       path: edge.node.slug.current,
-      component: require.resolve("./src/templates/page.tsx"),
+      component: path.resolve("./src/templates/page.tsx"),
       context: { id, _rawBody, title },
     });
   });
