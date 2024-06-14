@@ -32,9 +32,15 @@ interface PageTemplateProps {
   pageContext: GatsbyTypes.SanityPage;
 }
 const PageTemplate: React.FC<PageTemplateProps> = ({ pageContext }) => {
+  console.log(pageContext);
+
   return (
     <Layout>
-      <Seo title={pageContext.title} />
+      <Seo
+        title={pageContext.title}
+        description={pageContext.description}
+        image={pageContext.image.asset.gatsbyImageData.images.fallback.src}
+      />
       <ResourceResult
         linkMode={"asset"}
         hit={{
