@@ -1,6 +1,7 @@
 import { CreatePagesArgs } from "gatsby";
 import { format } from "date-fns";
 import path from "path";
+import getResourcePagePath from "./src/helpers/get-resource-page-path";
 
 /**
  * Implement Gatsby's Node APIs in this file.
@@ -103,4 +104,71 @@ export const createPages = async ({
       context: { id, _rawBody, title },
     });
   });
+
+  const resourcesResult = await graphql(`
+    query Resources {
+      resources: allSanityResource(
+        filter: { slug: { current: { ne: null } } }
+      ) {
+        edges {
+          node {
+            id
+            title
+            description
+            resourceUrl
+            keyStage
+            resourceType
+            examBoard
+            topics {
+              slug {
+                current
+              }
+              name
+            }
+            tags
+            image {
+              asset {
+                gatsbyImageData(width: 1192, layout: CONSTRAINED)
+              }
+              # alt
+            }
+            # _rawExcerpt
+            slug {
+              current
+            }
+          }
+        }
+      }
+    }
+  `);
+
+  if (resourcesResult.errors) {
+    console.log(resourcesResult.errors);
+    reporter.panicOnBuild(`Error while running posts GraphQL query.`);
+    throw new Error("Error while running resources GraphQL query.");
+  }
+
+  console.log(
+    resourcesResult,
+    `
+    
+    
+    GOT IT
+    
+    
+    
+    `
+  );
+
+  const resourceEdges = resourcesResult?.data?.resources?.edges || [];
+
+  resourceEdges.forEach((edge, index) => {
+    console.log("Creating page: ", edge.node.slug.current);
+    createPage({
+      path: getResourcePagePath(edge.node),
+      component: path.resolve("./src/templates/resource.tsx"),
+      context: edge.node,
+    });
+  });
 };
+ 
