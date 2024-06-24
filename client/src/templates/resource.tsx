@@ -32,8 +32,6 @@ interface PageTemplateProps {
   pageContext: GatsbyTypes.SanityPage;
 }
 const PageTemplate: React.FC<PageTemplateProps> = ({ pageContext }) => {
-  console.log(pageContext);
-
   return (
     <Layout>
       <Seo
