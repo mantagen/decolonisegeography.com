@@ -57,7 +57,7 @@ const Post: React.FC<PostProps> = props => {
       <Seo
         title={title}
         description={subtitle}
-        image={mainImage.asset?.fluid?.src}
+        image={mainImage?.asset?.gatsbyImageData?.images?.fallback?.src}
         author={authors[0]}
       />
       <PostHeader>
