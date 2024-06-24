@@ -9,11 +9,10 @@ interface PageTemplateProps {
   pageContext: GatsbyTypes.SanityPage;
 }
 const PageTemplate: React.FC<PageTemplateProps> = ({ pageContext }) => {
-  const { title, _rawBody } = pageContext;
+  const { _rawBody } = pageContext;
 
   return (
     <Layout>
-      <Seo title={title} />
       <PostArticle>
         <PostContent>
           <PortableText blocks={_rawBody} />
@@ -24,3 +23,5 @@ const PageTemplate: React.FC<PageTemplateProps> = ({ pageContext }) => {
 };
 
 export default PageTemplate;
+
+export const Head = props => <Seo title={props.pageContext.title} />;

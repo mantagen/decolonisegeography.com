@@ -174,7 +174,6 @@ const Resources: React.FC = () => {
 
   return (
     <Layout>
-      <Seo title="Resources" />
       <Container>
         <Filters>
           <Search
@@ -240,3 +239,5 @@ const Resources: React.FC = () => {
 };
 
 export default Resources;
+
+export const Head = () => <Seo title="Resources" />;

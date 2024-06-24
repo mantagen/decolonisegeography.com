@@ -4,6 +4,7 @@ import Layout from "../components/layout";
 import Post from "../components/post";
 import { DeepRequired } from "../helpers/deep-required";
 import useSiteSettings from "../hooks/useSiteSettings";
+import Seo from "../components/seo";
 
 export const query = graphql`
   query PostTemplate($id: String!) {
@@ -73,3 +74,15 @@ const PostTemplate: React.FC<PostTemplateProps> = ({ data }) => {
 };
 
 export default PostTemplate;
+
+export const Head = props => {
+  const { title, subtitle, authors = [], mainImage } = props.data.post;
+  return (
+    <Seo
+      title={title}
+      description={subtitle}
+      image={mainImage?.asset?.gatsbyImageData?.images?.fallback?.src}
+      author={authors[0]}
+    />
+  );
+};

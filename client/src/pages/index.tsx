@@ -133,7 +133,6 @@ const IndexPage: React.FC<IndexPageProps> = props => {
 
   return (
     <Layout>
-      <Seo />
       <h1 hidden>Welcome to {siteMeta.title}</h1>
       <PostPreviews>
         {rows.map((row, rowNumber) => {
@@ -181,3 +180,5 @@ const IndexPage: React.FC<IndexPageProps> = props => {
 };
 
 export default IndexPage;
+
+export const Head = () => <Seo />;

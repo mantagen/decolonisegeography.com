@@ -37,10 +37,11 @@ const About: React.FC = () => {
 
   return (
     <Fragment>
-      <Seo title="Contact" />
       <Page blocks={_rawBody} />;
     </Fragment>
   );
 };
 
 export default About;
+
+export const Head = () => <Seo title="Contact" />;

@@ -39,7 +39,6 @@ const About: React.FC = () => {
 
   return (
     <Layout>
-      <Seo title="About" />
       <PostArticle>
         <PostContent>
           <PortableText blocks={_rawBody} />
@@ -50,3 +49,5 @@ const About: React.FC = () => {
 };
 
 export default About;
+
+export const Head = () => <Seo title="About" />;

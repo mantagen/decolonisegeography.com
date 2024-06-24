@@ -34,11 +34,6 @@ interface PageTemplateProps {
 const PageTemplate: React.FC<PageTemplateProps> = ({ pageContext }) => {
   return (
     <Layout>
-      <Seo
-        title={pageContext.title}
-        description={pageContext.description}
-        image={pageContext.image.asset.gatsbyImageData.images.fallback.src}
-      />
       <ResourceResult
         linkMode={"asset"}
         hit={{
@@ -50,3 +45,11 @@ const PageTemplate: React.FC<PageTemplateProps> = ({ pageContext }) => {
 };
 
 export default PageTemplate;
+
+export const Head = props => (
+  <Seo
+    title={props.pageContext.title}
+    description={props.pageContext.description}
+    image={props.pageContext.image.asset.gatsbyImageData.images.fallback.src}
+  />
+);
